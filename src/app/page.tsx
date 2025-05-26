@@ -240,7 +240,7 @@ export default function Home() {
                   team of talented artists brings your vision to life with meticulous attention to detail.
                 </p>
                 <p className="text-lg text-gray-300 leading-relaxed">
-                  Founded in 2018, we've helped hundreds of clients find the perfect artistic expression for their homes
+                  Founded in 2018, we&apos;ve helped hundreds of clients find the perfect artistic expression for their homes
                   and offices. Each piece is handcrafted with premium materials to ensure lasting beauty.
                 </p>
                 <div className="grid grid-cols-2 gap-6 mt-8">
@@ -371,7 +371,7 @@ export default function Home() {
             <div className="bg-gradient-to-br from-gray-700 to-gray-800 p-8 sm:p-10 rounded-2xl shadow-2xl border border-gray-600">
               <h4 className="text-2xl font-semibold mb-6 text-white text-center">Get In Touch</h4>
               <p className="text-gray-300 mb-8 leading-relaxed text-center max-w-2xl mx-auto text-lg">
-                For inquiries or commissions, reach out to us. We'd love to hear about your project.
+                For inquiries or commissions, reach out to us. We&apos;d love to hear about your project.
               </p>
 
               <div className="grid sm:grid-cols-3 gap-6 max-w-2xl mx-auto">

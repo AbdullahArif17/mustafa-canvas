@@ -57,7 +57,6 @@ const staggerContainer = {
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
-  const controls = useAnimation();
 
   // Intersection Observer for active section
   useEffect(() => {
@@ -342,7 +341,7 @@ export default function Home() {
                   to detail.
                 </p>
                 <p className="text-lg text-gray-300 leading-relaxed">
-                  Founded in 2018, we've helped hundreds of clients find the
+                  Founded in 2018, we&#39;ve helped hundreds of clients find the
                   perfect artistic expression for their homes and offices. Each
                   piece is handcrafted with premium materials to ensure lasting
                   beauty.
@@ -416,7 +415,7 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
           >
-            {galleryItems.map((item, idx) => (
+            {galleryItems.map((item) => (
               <motion.div
                 key={item.id}
                 variants={fadeInUp}
@@ -491,7 +490,7 @@ export default function Home() {
                 Get In Touch
               </h3>
               <p className="text-gray-300 mb-8 leading-relaxed text-center max-w-2xl mx-auto text-lg">
-                For inquiries or commissions, reach out to us. We'd love to hear
+                For inquiries or commissions, reach out to us. We&#39;d love to hear
                 about your project.
               </p>
 

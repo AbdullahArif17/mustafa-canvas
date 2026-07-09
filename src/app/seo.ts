@@ -16,9 +16,8 @@ export const siteUrl = (
 
 export const siteBaseUrl = new URL(siteUrl);
 
-export const logoPath = "/ChatGPT%20Image%20Jul%208%2C%202026%2C%2012_09_42%20PM.png";
-export const ogImagePath =
-  "/ChatGPT%20Image%20Jul%208%2C%202026%2C%2012_16_28%20PM.png";
+export const logoPath = "/mustafa-canvas-logo.png";
+export const ogImagePath = "/mustafa-canvas-catalog.png";
 
 export const businessEmail = "mustafacanvas.info@gmail.com";
 export const locationAddress =

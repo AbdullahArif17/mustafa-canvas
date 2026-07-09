@@ -32,13 +32,13 @@ import {
 } from "./seo";
 
 const imagePaths = {
-  logo: "/ChatGPT Image Jul 8, 2026, 12_09_42 PM.png",
-  overview: "/ChatGPT Image Jul 8, 2026, 12_16_28 PM.png",
-  catalog: "/ChatGPT Image Jul 8, 2026, 12_16_28 PM.png",
-  shadeNet: "/ChatGPT Image Jul 8, 2026, 12_26_45 PM.png",
-  canvasRolls: "/ChatGPT Image Jul 8, 2026, 12_26_50 PM.png",
-  schoolParkingShade: "/ChatGPT Image Jul 8, 2026, 12_38_00 PM.png",
-  constructionNetting: "/ChatGPT Image Jul 8, 2026, 12_39_54 PM.png",
+  logo: "/mustafa-canvas-logo.png",
+  overview: "/mustafa-canvas-catalog.png",
+  catalog: "/mustafa-canvas-catalog.png",
+  shadeNet: "/mustafa-canvas-shade-net.png",
+  canvasRolls: "/mustafa-canvas-rolls.png",
+  schoolParkingShade: "/mustafa-canvas-parking-shade.png",
+  constructionNetting: "/mustafa-canvas-construction-netting.png",
 };
 
 const navItems = [
@@ -76,22 +76,18 @@ const proofImages = [
   {
     src: imagePaths.schoolParkingShade,
     label: "School & Parking Shade",
-    className: "md:row-span-2",
   },
   {
     src: imagePaths.constructionNetting,
     label: "Construction Netting",
-    className: "",
   },
   {
     src: imagePaths.shadeNet,
     label: "Sun Shade Net",
-    className: "",
   },
   {
     src: imagePaths.canvasRolls,
     label: "Shade Net & Canvas Solutions",
-    className: "md:col-span-2",
   },
 ];
 
@@ -185,7 +181,6 @@ export default function Home() {
               width={56}
               height={56}
               className="h-12 w-12 rounded-full object-fill"
-              priority
               unoptimized
             />
             <div className="min-w-0">
@@ -255,7 +250,6 @@ export default function Home() {
               width={220}
               height={220}
               className="mb-6 h-24 w-24 rounded-full object-fill sm:h-32 sm:w-32"
-              priority
               unoptimized
             />
             <p className="mb-3 text-sm font-black uppercase tracking-normal text-emerald-700">
@@ -286,14 +280,14 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative min-h-[220px] overflow-hidden rounded-md border border-emerald-100 bg-white shadow-sm sm:min-h-[320px] lg:h-full">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md border border-emerald-100 bg-white shadow-sm">
             <Image
               src={imagePaths.overview}
               alt="Mustafa Canvas product and contact overview"
               fill
               className="object-fill"
               sizes="(max-width: 1024px) 100vw, 58vw"
-              priority
+              preload
               unoptimized
             />
           </div>
@@ -360,13 +354,12 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-md border border-emerald-100 bg-white shadow-sm">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-md border border-emerald-100 bg-white shadow-sm">
               <Image
                 src={imagePaths.catalog}
                 alt="Mustafa Canvas solutions and products catalog"
-                width={2033}
-                height={774}
-                className="h-auto w-full object-fill"
+                fill
+                className="object-fill"
                 sizes="(max-width: 1024px) 100vw, 58vw"
                 unoptimized
               />
@@ -400,11 +393,11 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="grid auto-rows-[280px] gap-4 md:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {proofImages.map((image) => (
               <figure
                 key={image.src}
-                className={`group relative overflow-hidden rounded-md border border-emerald-100 bg-emerald-50 shadow-sm ${image.className}`}
+                className="group relative aspect-[4/3] overflow-hidden rounded-md border border-emerald-100 bg-emerald-50 shadow-sm"
               >
                 <Image
                   src={image.src}

@@ -30,9 +30,12 @@ export const metadata: Metadata = {
   creator: businessName,
   publisher: businessName,
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon.png', sizes: '512x512', type: 'image/png' },
+    ],
     shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
+    apple: [{ url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }],
   },
   manifest: '/manifest.webmanifest',
   openGraph: {
@@ -45,8 +48,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: ogImagePath,
-        width: 2032,
-        height: 774,
+        width: 1600,
+        height: 1200,
         alt: `${businessName} ${businessTagline}`,
       },
     ],

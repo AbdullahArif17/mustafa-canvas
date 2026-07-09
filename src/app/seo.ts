@@ -6,7 +6,7 @@ export const seoDescription =
   "Mustafa Canvas supplies shade nets, waterproof canvas cloth, tarpaulin, PVC cloth, tents, supply bags and tool bags in Karachi, Pakistan.";
 
 const configuredSiteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://mustafacanvas.com";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://mustafa-canvas.vercel.app/";
 
 export const siteUrl = (
   configuredSiteUrl.startsWith("http")

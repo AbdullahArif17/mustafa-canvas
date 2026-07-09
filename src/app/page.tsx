@@ -18,6 +18,18 @@ import {
   Waves,
   X,
 } from "lucide-react";
+import {
+  businessEmail,
+  businessName,
+  businessTagline,
+  contactNumbers,
+  locationAddress,
+  logoPath,
+  ogImagePath,
+  productNames,
+  seoDescription,
+  siteUrl,
+} from "./seo";
 
 const imagePaths = {
   logo: "/ChatGPT Image Jul 8, 2026, 12_09_42 PM.png",
@@ -60,21 +72,6 @@ const qualityItems = [
   "Reliable & Trusted",
 ];
 
-const contactNumbers = [
-  {
-    name: "Taha",
-    display: "03482026858",
-    tel: "03482026858",
-    whatsapp: "923482026858",
-  },
-  {
-    name: "Mustafa",
-    display: "03108117857",
-    tel: "03108117857",
-    whatsapp: "923108117857",
-  },
-];
-
 const proofImages = [
   {
     src: imagePaths.schoolParkingShade,
@@ -98,11 +95,55 @@ const proofImages = [
   },
 ];
 
-const locationAddress =
-  "Shop # 1, MR / 72, Fazal Chamber, Khoury Garden, Murad Khan Rd, Market Quarter, Karachi, Pakistan";
 const mapEmbedSrc = `https://www.google.com/maps?q=${encodeURIComponent(
   `Mustafa Canvas, ${locationAddress}`
 )}&output=embed`;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": `${siteUrl}/#localbusiness`,
+      name: businessName,
+      url: siteUrl,
+      logo: `${siteUrl}${logoPath}`,
+      image: [`${siteUrl}${ogImagePath}`, `${siteUrl}${logoPath}`],
+      description: seoDescription,
+      email: businessEmail,
+      telephone: contactNumbers.map((contact) => `+${contact.whatsapp}`),
+      priceRange: "$$",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress:
+          "Shop # 1, MR / 72, Fazal Chamber, Khoury Garden, Murad Khan Rd, Market Quarter",
+        addressLocality: "Karachi",
+        addressCountry: "PK",
+      },
+      areaServed: {
+        "@type": "City",
+        name: "Karachi",
+      },
+      makesOffer: productNames.map((name) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name,
+        },
+      })),
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: businessName,
+      description: businessTagline,
+      publisher: {
+        "@id": `${siteUrl}/#localbusiness`,
+      },
+    },
+  ],
+};
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -127,6 +168,10 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-white text-slate-950">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <header className="sticky top-0 z-50 border-b border-emerald-100 bg-white/95 backdrop-blur">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link
@@ -438,12 +483,12 @@ export default function Home() {
             </div>
 
             <a
-              href="mailto:mustafacanvas.info@gmail.com"
+              href={`mailto:${businessEmail}`}
               className="flex items-center gap-4 rounded-md border border-emerald-100 bg-white p-5 shadow-sm transition hover:border-emerald-300"
             >
               <Mail className="shrink-0 text-emerald-700" size={22} />
               <span className="break-all font-bold text-slate-950">
-                mustafacanvas.info@gmail.com
+                {businessEmail}
               </span>
             </a>
 

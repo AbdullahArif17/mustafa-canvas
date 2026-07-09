@@ -3,7 +3,7 @@ import './globals.css';
 
 export const metadata = {
   title: 'Mustafa Canvas',
-  description: 'Custom Canvas Art by Mustafa Canvas',
+  description: 'Shade Net & Canvas Solutions',
 };
 
 export default function RootLayout({

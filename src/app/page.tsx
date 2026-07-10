@@ -9,9 +9,9 @@ import {
   Hammer,
   Leaf,
   Mail,
-  MessageCircle,
   MapPin,
   Menu,
+  MessageCircle,
   Phone,
   ShieldCheck,
   Sun,
@@ -32,13 +32,54 @@ import {
 } from "./seo";
 
 const imagePaths = {
-  logo: "/mustafa-canvas-logo.png",
-  overview: "/mustafa-canvas-net-material.png",
-  catalog: "/mustafa-canvas-catalog.png",
-  shadeNet: "/mustafa-canvas-shade-net.png",
-  canvasRolls: "/mustafa-canvas-rolls.png",
-  schoolParkingShade: "/mustafa-canvas-parking-shade.png",
-  constructionNetting: "/mustafa-canvas-construction-netting.png",
+  logo: {
+    src: "/mustafa-canvas-logo.png",
+    alt: "Mustafa Canvas logo",
+    width: 1254,
+    height: 1254,
+  },
+  brandSheet: {
+    src: "/mustafa-canvas-brand-sheet.png",
+    alt: "Mustafa Canvas product range and business details",
+    width: 2032,
+    height: 774,
+  },
+  shadeNetMaterial: {
+    src: "/sun-shade-net-material.png",
+    alt: "Sun shade net material details",
+    width: 1254,
+    height: 1254,
+  },
+  canvasRolls: {
+    src: "/canvas-and-shade-net-rolls.png",
+    alt: "Canvas and shade net rolls",
+    width: 1254,
+    height: 1254,
+  },
+  schoolParkingShade: {
+    src: "/school-parking-shade-installation.png",
+    alt: "School and parking shade installation",
+    width: 941,
+    height: 1672,
+  },
+  constructionNetting: {
+    src: "/construction-netting-installation.png",
+    alt: "Construction netting installation",
+    width: 1254,
+    height: 1254,
+  },
+  productRange: {
+    src: "/mustafa-canvas-product-catalog.png",
+    alt: "Mustafa Canvas shade net and canvas solutions catalog",
+    width: 1448,
+    height: 1086,
+  },
+  sunShadeScene: {
+    src: "/sun-shade-net-installation.png",
+    alt: "Sun shade net outdoor installation",
+    width: 1254,
+    height: 1254,
+  },
 };
 
 const navItems = [
@@ -72,23 +113,11 @@ const qualityItems = [
   "Reliable & Trusted",
 ];
 
-const proofImages = [
-  {
-    src: imagePaths.shadeNet,
-    label: "Sun Shade Net",
-  },
-  {
-    src: imagePaths.constructionNetting,
-    label: "Construction Netting",
-  },
-  {
-    src: imagePaths.schoolParkingShade,
-    label: "School & Parking Shade",
-  },
-  {
-    src: imagePaths.canvasRolls,
-    label: "Shade Net & Canvas Solutions",
-  },
+const galleryImages = [
+  { ...imagePaths.shadeNetMaterial, label: "Sun Shade Net Material" },
+  { ...imagePaths.constructionNetting, label: "Construction Netting" },
+  { ...imagePaths.schoolParkingShade, label: "School & Parking Shade" },
+  { ...imagePaths.canvasRolls, label: "Shade Net & Canvas Solutions" },
 ];
 
 const mapEmbedSrc = `https://www.google.com/maps?q=${encodeURIComponent(
@@ -176,11 +205,12 @@ export default function Home() {
             onClick={() => setMobileMenuOpen(false)}
           >
             <Image
-              src={imagePaths.logo}
-              alt="Mustafa Canvas logo"
-              width={56}
-              height={56}
-              className="h-12 w-12 rounded-full object-fill"
+              src={imagePaths.logo.src}
+              alt={imagePaths.logo.alt}
+              width={imagePaths.logo.width}
+              height={imagePaths.logo.height}
+              className="h-12 w-12 rounded-full object-contain"
+              sizes="48px"
               unoptimized
             />
             <div className="min-w-0">
@@ -242,8 +272,23 @@ export default function Home() {
       </header>
 
       <section id="home" className="bg-white">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-[0.82fr_1.18fr] lg:px-8 lg:py-16">
-          <div className="flex flex-col justify-center">
+        <div className="mx-auto max-w-7xl pt-3 sm:px-6 sm:pt-7 lg:px-8">
+          <div className="catalog-scroll">
+            <Image
+              src={imagePaths.brandSheet.src}
+              alt={imagePaths.brandSheet.alt}
+              width={imagePaths.brandSheet.width}
+              height={imagePaths.brandSheet.height}
+              className="brand-sheet-image sm:rounded-md"
+              sizes="(max-width: 1280px) 100vw, 1280px"
+              preload
+              unoptimized
+            />
+          </div>
+        </div>
+
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[0.86fr_1.14fr] lg:items-center lg:px-8">
+          <div>
             <p className="mb-3 text-sm font-black uppercase tracking-normal text-emerald-700">
               Shade Net & Canvas Solutions
             </p>
@@ -272,43 +317,41 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md bg-white">
+          <figure className="rounded-md bg-emerald-50 p-3 sm:p-4">
             <Image
-              src={imagePaths.overview}
-              alt="Mustafa Canvas shade net material"
-              fill
-              className="object-fill"
-              sizes="(max-width: 1024px) 100vw, 58vw"
-              preload
+              src={imagePaths.sunShadeScene.src}
+              alt={imagePaths.sunShadeScene.alt}
+              width={imagePaths.sunShadeScene.width}
+              height={imagePaths.sunShadeScene.height}
+              className="h-auto w-full rounded-sm"
+              sizes="(max-width: 1024px) 100vw, 56vw"
               unoptimized
             />
-          </div>
+            <figcaption className="mt-3 text-sm font-black uppercase tracking-normal text-emerald-900">
+              Sun Shade Installation
+            </figcaption>
+          </figure>
         </div>
       </section>
 
-      <section id="solutions" className="border-y border-emerald-100 bg-emerald-50/60">
+      <section id="solutions" className="bg-emerald-950 text-white">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <div className="mb-8 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-sm font-black uppercase tracking-normal text-emerald-700">
-                Solutions
-              </p>
-              <h2 className="mt-2 text-3xl font-black uppercase tracking-normal text-slate-950 sm:text-4xl">
-                Shade Net & Canvas Solutions
-              </h2>
-            </div>
+          <div className="mb-8">
+            <p className="text-sm font-black uppercase tracking-normal text-emerald-200">
+              Solutions
+            </p>
+            <h2 className="mt-2 text-3xl font-black uppercase tracking-normal sm:text-4xl">
+              Shade Net & Canvas Solutions
+            </h2>
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {solutionItems.map(({ label, icon: Icon }) => (
-              <article
-                key={label}
-                className="rounded-md border border-emerald-100 bg-white p-5 shadow-sm"
-              >
-                <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-md bg-emerald-700 text-white">
+              <article key={label} className="rounded-md bg-emerald-900 p-5">
+                <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-md bg-white text-emerald-800">
                   <Icon size={22} aria-hidden />
                 </div>
-                <h3 className="text-lg font-black uppercase tracking-normal text-slate-950">
+                <h3 className="text-lg font-black uppercase tracking-normal">
                   {label}
                 </h3>
               </article>
@@ -318,57 +361,58 @@ export default function Home() {
       </section>
 
       <section id="products" className="bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
-            <div>
-              <p className="text-sm font-black uppercase tracking-normal text-emerald-700">
-                Products
-              </p>
-              <h2 className="mt-2 text-3xl font-black uppercase tracking-normal text-slate-950 sm:text-4xl">
-                Canvas, Tarpaulin & PVC Solutions
-              </h2>
-              <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-                {productItems.map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-3 rounded-md border border-emerald-100 bg-emerald-50 px-4 py-3"
-                  >
-                    <CheckCircle2
-                      size={20}
-                      className="shrink-0 text-emerald-700"
-                      aria-hidden
-                    />
-                    <span className="font-bold uppercase tracking-normal text-slate-900">
-                      {item}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-white">
-              <Image
-                src={imagePaths.catalog}
-                alt="Mustafa Canvas solutions and products catalog"
-                fill
-                className="object-fill"
-                sizes="(max-width: 1024px) 100vw, 58vw"
-                unoptimized
-              />
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[0.86fr_1.14fr] lg:items-center lg:px-8">
+          <div>
+            <p className="text-sm font-black uppercase tracking-normal text-emerald-700">
+              Products
+            </p>
+            <h2 className="mt-2 text-3xl font-black uppercase tracking-normal text-slate-950 sm:text-4xl">
+              Canvas, Tarpaulin & PVC Solutions
+            </h2>
+            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+              {productItems.map((item) => (
+                <div
+                  key={item}
+                  className="flex items-center gap-3 rounded-md bg-emerald-50 px-4 py-3"
+                >
+                  <CheckCircle2
+                    size={20}
+                    className="shrink-0 text-emerald-700"
+                    aria-hidden
+                  />
+                  <span className="font-bold uppercase tracking-normal text-slate-900">
+                    {item}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
+
+          <figure className="-mx-4 catalog-scroll bg-white sm:mx-0 sm:rounded-md">
+            <Image
+              src={imagePaths.productRange.src}
+              alt={imagePaths.productRange.alt}
+              width={imagePaths.productRange.width}
+              height={imagePaths.productRange.height}
+              className="product-catalog-image sm:rounded-md"
+              sizes="(max-width: 1024px) 100vw, 56vw"
+              unoptimized
+            />
+          </figure>
         </div>
       </section>
 
-      <section className="isolate overflow-hidden bg-emerald-950 text-white">
+      <section className="bg-emerald-50">
         <div className="mx-auto grid max-w-7xl gap-3 px-4 py-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
           {qualityItems.map((item) => (
             <div
               key={item}
-              className="flex items-center gap-3 rounded-md bg-emerald-900 px-4 py-4"
+              className="flex items-center gap-3 rounded-md bg-white px-4 py-4"
             >
-              <ShieldCheck size={22} className="shrink-0 text-emerald-200" />
-              <span className="font-black uppercase tracking-normal">{item}</span>
+              <ShieldCheck size={22} className="shrink-0 text-emerald-700" />
+              <span className="font-black uppercase tracking-normal text-slate-950">
+                {item}
+              </span>
             </div>
           ))}
         </div>
@@ -385,21 +429,22 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {proofImages.map((image) => (
+          <div className="grid items-start gap-5 lg:grid-cols-2">
+            {galleryImages.map((image) => (
               <figure
                 key={image.src}
-                className="group relative aspect-[4/3] overflow-hidden rounded-md bg-emerald-50"
+                className="self-start rounded-md bg-emerald-50 p-3"
               >
                 <Image
                   src={image.src}
-                  alt={image.label}
-                  fill
-                  className="object-fill transition duration-500 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
+                  className="h-auto w-full rounded-sm"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   unoptimized
                 />
-                <figcaption className="absolute inset-x-0 bottom-0 bg-emerald-950/85 px-4 py-3 text-sm font-black uppercase tracking-normal text-white">
+                <figcaption className="mt-3 text-sm font-black uppercase tracking-normal text-emerald-900">
                   {image.label}
                 </figcaption>
               </figure>
@@ -408,16 +453,16 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contact" className="border-t border-emerald-100 bg-emerald-50">
+      <section id="contact" className="bg-emerald-950 text-white">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
           <div>
-            <p className="text-sm font-black uppercase tracking-normal text-emerald-700">
+            <p className="text-sm font-black uppercase tracking-normal text-emerald-200">
               Contact
             </p>
-            <h2 className="mt-2 text-3xl font-black uppercase tracking-normal text-slate-950 sm:text-4xl">
+            <h2 className="mt-2 text-3xl font-black uppercase tracking-normal sm:text-4xl">
               Mustafa Canvas
             </h2>
-            <p className="mt-4 max-w-xl text-lg font-bold text-emerald-800">
+            <p className="mt-4 max-w-xl text-lg font-bold text-emerald-100">
               Shade Net & Canvas Solutions
             </p>
           </div>
@@ -427,7 +472,7 @@ export default function Home() {
               {contactNumbers.map((contact) => (
                 <div
                   key={contact.name}
-                  className="flex flex-col gap-4 rounded-md border border-emerald-100 bg-white p-5 shadow-sm sm:flex-row sm:items-center sm:justify-between"
+                  className="flex flex-col gap-4 rounded-md bg-white p-5 text-slate-950 sm:flex-row sm:items-center sm:justify-between"
                 >
                   <div className="flex items-start gap-4">
                     <Phone
@@ -435,7 +480,7 @@ export default function Home() {
                       size={22}
                     />
                     <div>
-                      <div className="font-black uppercase tracking-normal text-slate-950">
+                      <div className="font-black uppercase tracking-normal">
                         {contact.name}: {contact.display}
                       </div>
                     </div>
@@ -469,23 +514,21 @@ export default function Home() {
 
             <a
               href={`mailto:${businessEmail}`}
-              className="flex items-center gap-4 rounded-md border border-emerald-100 bg-white p-5 shadow-sm transition hover:border-emerald-300"
+              className="flex items-center gap-4 rounded-md bg-white p-5 text-slate-950 transition hover:bg-emerald-50"
             >
               <Mail className="shrink-0 text-emerald-700" size={22} />
-              <span className="break-all font-bold text-slate-950">
-                {businessEmail}
-              </span>
+              <span className="break-all font-bold">{businessEmail}</span>
             </a>
 
-            <address className="flex items-start gap-4 rounded-md border border-emerald-100 bg-white p-5 not-italic shadow-sm">
+            <address className="flex items-start gap-4 rounded-md bg-white p-5 text-slate-950 not-italic">
               <MapPin className="mt-1 shrink-0 text-emerald-700" size={22} />
-              <span className="font-bold leading-relaxed text-slate-950">
+              <span className="font-bold leading-relaxed">
                 {locationAddress}
               </span>
             </address>
           </div>
 
-          <div className="overflow-hidden rounded-md border border-emerald-100 bg-white shadow-sm lg:col-span-2">
+          <div className="overflow-hidden rounded-md bg-white lg:col-span-2">
             <iframe
               title="Mustafa Canvas location map"
               src={mapEmbedSrc}
@@ -498,15 +541,15 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="bg-emerald-950 px-4 py-8 text-white sm:px-6 lg:px-8">
+      <footer className="bg-white px-4 py-8 text-slate-950 sm:px-6 lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="font-black uppercase tracking-normal">Mustafa Canvas</p>
-            <p className="text-sm font-semibold text-emerald-100">
+            <p className="text-sm font-semibold text-emerald-700">
               Shade Net & Canvas Solutions
             </p>
           </div>
-          <p className="text-sm font-semibold text-emerald-100">
+          <p className="text-sm font-semibold text-slate-700">
             Quality Shade Nets, Canvas, Tarpaulin & PVC Solutions
           </p>
         </div>

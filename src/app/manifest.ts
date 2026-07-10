@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { businessName, businessTagline, logoPath } from "./seo";
+import { businessName, businessTagline } from "./seo";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
@@ -12,7 +12,7 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#047857",
     icons: [
       {
-        src: logoPath,
+        src: "/icon.png",
         sizes: "512x512",
         type: "image/png",
         purpose: "any",

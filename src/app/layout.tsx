@@ -48,8 +48,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: ogImagePath,
-        width: 1600,
-        height: 1200,
+        width: 2032,
+        height: 774,
         alt: `${businessName} ${businessTagline}`,
       },
     ],

@@ -33,7 +33,7 @@ import {
 
 const imagePaths = {
   logo: "/mustafa-canvas-logo.png",
-  overview: "/mustafa-canvas-catalog.png",
+  overview: "/mustafa-canvas-net-material.png",
   catalog: "/mustafa-canvas-catalog.png",
   shadeNet: "/mustafa-canvas-shade-net.png",
   canvasRolls: "/mustafa-canvas-rolls.png",
@@ -244,14 +244,6 @@ export default function Home() {
       <section id="home" className="bg-white">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-[0.82fr_1.18fr] lg:px-8 lg:py-16">
           <div className="flex flex-col justify-center">
-            <Image
-              src={imagePaths.logo}
-              alt="Mustafa Canvas - Shade Net & Canvas Solutions"
-              width={220}
-              height={220}
-              className="mb-6 h-24 w-24 rounded-full object-fill sm:h-32 sm:w-32"
-              unoptimized
-            />
             <p className="mb-3 text-sm font-black uppercase tracking-normal text-emerald-700">
               Shade Net & Canvas Solutions
             </p>
@@ -280,10 +272,10 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md border border-emerald-100 bg-white shadow-sm">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md bg-white">
             <Image
               src={imagePaths.overview}
-              alt="Mustafa Canvas product and contact overview"
+              alt="Mustafa Canvas shade net material"
               fill
               className="object-fill"
               sizes="(max-width: 1024px) 100vw, 58vw"
@@ -354,7 +346,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative aspect-[4/3] overflow-hidden rounded-md border border-emerald-100 bg-white shadow-sm">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-white">
               <Image
                 src={imagePaths.catalog}
                 alt="Mustafa Canvas solutions and products catalog"
@@ -368,12 +360,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-emerald-950 text-white">
+      <section className="isolate overflow-hidden bg-emerald-950 text-white">
         <div className="mx-auto grid max-w-7xl gap-3 px-4 py-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
           {qualityItems.map((item) => (
             <div
               key={item}
-              className="flex items-center gap-3 rounded-md border border-white/10 bg-white/5 px-4 py-4"
+              className="flex items-center gap-3 rounded-md bg-emerald-900 px-4 py-4"
             >
               <ShieldCheck size={22} className="shrink-0 text-emerald-200" />
               <span className="font-black uppercase tracking-normal">{item}</span>
@@ -397,7 +389,7 @@ export default function Home() {
             {proofImages.map((image) => (
               <figure
                 key={image.src}
-                className="group relative aspect-[4/3] overflow-hidden rounded-md border border-emerald-100 bg-emerald-50 shadow-sm"
+                className="group relative aspect-[4/3] overflow-hidden rounded-md bg-emerald-50"
               >
                 <Image
                   src={image.src}

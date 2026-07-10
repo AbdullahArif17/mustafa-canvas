@@ -74,16 +74,16 @@ const qualityItems = [
 
 const proofImages = [
   {
-    src: imagePaths.schoolParkingShade,
-    label: "School & Parking Shade",
+    src: imagePaths.shadeNet,
+    label: "Sun Shade Net",
   },
   {
     src: imagePaths.constructionNetting,
     label: "Construction Netting",
   },
   {
-    src: imagePaths.shadeNet,
-    label: "Sun Shade Net",
+    src: imagePaths.schoolParkingShade,
+    label: "School & Parking Shade",
   },
   {
     src: imagePaths.canvasRolls,

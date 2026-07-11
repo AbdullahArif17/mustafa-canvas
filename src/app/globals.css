@@ -62,37 +62,4 @@ html {
   scroll-behavior: smooth;
 }
 
-.catalog-scroll {
-  overflow: hidden;
-}
-
-.catalog-scroll img {
-  max-width: 100%;
-}
-
-.brand-sheet-image {
-  height: clamp(360px, 96vw, 460px);
-  width: 100%;
-  object-fit: fill;
-}
-
-.product-catalog-image {
-  height: clamp(480px, 122vw, 620px);
-  width: 100%;
-  object-fit: fill;
-}
-
-@media (min-width: 640px) {
-  .catalog-scroll {
-    overflow: visible;
-  }
-
-  .brand-sheet-image,
-  .product-catalog-image {
-    height: auto;
-    width: 100%;
-    max-width: 100%;
-    object-fit: contain;
-  }
-}
 

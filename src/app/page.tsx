@@ -44,6 +44,12 @@ const imagePaths = {
     width: 2032,
     height: 774,
   },
+  brandSheetMobile: {
+    src: "/mustafa-canvas-brand-sheet-mobile.png",
+    alt: "Mustafa Canvas product range and business details for mobile",
+    width: 900,
+    height: 1455,
+  },
   shadeNetMaterial: {
     src: "/sun-shade-net-material.png",
     alt: "Sun shade net material details",
@@ -73,6 +79,12 @@ const imagePaths = {
     alt: "Mustafa Canvas shade net and canvas solutions catalog",
     width: 1448,
     height: 1086,
+  },
+  productRangeMobile: {
+    src: "/mustafa-canvas-product-catalog-mobile.png",
+    alt: "Mustafa Canvas shade net and canvas solutions catalog for mobile",
+    width: 900,
+    height: 2760,
   },
   sunShadeScene: {
     src: "/sun-shade-net-installation.png",
@@ -273,15 +285,24 @@ export default function Home() {
 
       <section id="home" className="bg-white">
         <div className="mx-auto max-w-7xl pt-3 sm:px-6 sm:pt-7 lg:px-8">
-          <div className="catalog-scroll">
+          <div>
+            <Image
+              src={imagePaths.brandSheetMobile.src}
+              alt={imagePaths.brandSheetMobile.alt}
+              width={imagePaths.brandSheetMobile.width}
+              height={imagePaths.brandSheetMobile.height}
+              className="h-auto w-full sm:hidden"
+              sizes="100vw"
+              preload
+              unoptimized
+            />
             <Image
               src={imagePaths.brandSheet.src}
               alt={imagePaths.brandSheet.alt}
               width={imagePaths.brandSheet.width}
               height={imagePaths.brandSheet.height}
-              className="brand-sheet-image sm:rounded-md"
+              className="hidden h-auto w-full sm:block sm:rounded-md"
               sizes="(max-width: 1280px) 100vw, 1280px"
-              preload
               unoptimized
             />
           </div>
@@ -388,13 +409,22 @@ export default function Home() {
             </div>
           </div>
 
-          <figure className="-mx-4 catalog-scroll bg-white sm:mx-0 sm:rounded-md">
+          <figure className="-mx-4 bg-white sm:mx-0 sm:rounded-md">
+            <Image
+              src={imagePaths.productRangeMobile.src}
+              alt={imagePaths.productRangeMobile.alt}
+              width={imagePaths.productRangeMobile.width}
+              height={imagePaths.productRangeMobile.height}
+              className="h-auto w-full sm:hidden"
+              sizes="100vw"
+              unoptimized
+            />
             <Image
               src={imagePaths.productRange.src}
               alt={imagePaths.productRange.alt}
               width={imagePaths.productRange.width}
               height={imagePaths.productRange.height}
-              className="product-catalog-image sm:rounded-md"
+              className="hidden h-auto w-full sm:block sm:rounded-md"
               sizes="(max-width: 1024px) 100vw, 56vw"
               unoptimized
             />

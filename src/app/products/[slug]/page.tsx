@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ContactSection } from "../../components/ContactSection";
 import { Header } from "../../components/Header";
 import { ProductDetail } from "../../components/ProductDetail";
 import { businessName } from "../../seo";
@@ -26,6 +27,7 @@ export default async function ProductDetailsPage({
       <div className="flex-1">
         <ProductDetail slug={slug} />
       </div>
+      <ContactSection />
     </main>
   );
 }

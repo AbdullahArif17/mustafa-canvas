@@ -20,6 +20,8 @@ export const logoPath = "/mustafa-canvas-logo.png";
 export const ogImagePath = "/mustafa-canvas-brand-sheet.png";
 
 export const businessEmail = "mustafacanvas.info@gmail.com";
+export const facebookPageUrl =
+  "https://www.facebook.com/profile.php?id=61567021209977";
 export const locationAddress =
   "Shop # 1, MR / 72, Fazal Chamber, Khoury Garden, Murad Khan Rd, Market Quarter, Karachi, Pakistan";
 

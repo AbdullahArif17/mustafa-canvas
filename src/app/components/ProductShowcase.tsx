@@ -6,6 +6,8 @@ import { ChevronLeft, ChevronRight, PackagePlus } from "lucide-react";
 import { ProductCard } from "./ProductCard";
 import { useProducts } from "./useProducts";
 
+const slideshowDelayMs = 8000;
+
 export function ProductShowcase() {
   const { loaded, products } = useProducts();
   const [activeIndex, setActiveIndex] = useState(0);
@@ -24,12 +26,12 @@ export function ProductShowcase() {
       return;
     }
 
-    const timer = window.setInterval(() => {
-      setActiveIndex((index) => (index + 1) % visibleProducts.length);
-    }, 4500);
+    const timer = window.setTimeout(() => {
+      setActiveIndex((activeIndex + 1) % visibleProducts.length);
+    }, slideshowDelayMs);
 
-    return () => window.clearInterval(timer);
-  }, [visibleProducts.length]);
+    return () => window.clearTimeout(timer);
+  }, [activeIndex, visibleProducts.length]);
 
   const move = (direction: -1 | 1) => {
     if (!visibleProducts.length) {
@@ -74,7 +76,9 @@ export function ProductShowcase() {
           </div>
         ) : activeProduct ? (
           <div className="grid gap-5 lg:grid-cols-[1fr_360px]">
-            <ProductCard product={activeProduct} />
+            <div key={activeProduct.id} className="product-slide-enter min-w-0">
+              <ProductCard product={activeProduct} />
+            </div>
 
             <aside className="rounded-md bg-white p-5 shadow-sm ring-1 ring-emerald-100">
               <div className="flex items-center justify-between gap-3">
@@ -100,6 +104,16 @@ export function ProductShowcase() {
                   </button>
                 </div>
               </div>
+
+              {visibleProducts.length > 1 && (
+                <div className="mt-4 h-1 overflow-hidden rounded-full bg-emerald-100">
+                  <span
+                    key={activeProduct.id}
+                    className="product-slide-progress block h-full bg-emerald-700"
+                    style={{ animationDuration: `${slideshowDelayMs}ms` }}
+                  />
+                </div>
+              )}
 
               <div className="mt-5 grid gap-2">
                 {visibleProducts.map((product, index) => (

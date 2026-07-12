@@ -12,13 +12,15 @@ export const metadata: Metadata = {
 
 export default function ProductsPage() {
   return (
-    <main className="min-h-screen bg-white text-slate-950">
+    <main className="flex flex-1 flex-col bg-white text-slate-950">
       <Header
         logo={siteLogo}
         navItems={siteNavItems}
         imageQuality={imageQuality}
       />
-      <ProductsCatalog />
+      <div className="flex-1">
+        <ProductsCatalog />
+      </div>
     </main>
   );
 }

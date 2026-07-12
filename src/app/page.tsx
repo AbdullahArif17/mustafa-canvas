@@ -3,6 +3,7 @@ import Link from "next/link";
 import {
   BriefcaseBusiness,
   CheckCircle2,
+  ExternalLink,
   Hammer,
   Leaf,
   Mail,
@@ -20,6 +21,7 @@ import {
   businessName,
   businessTagline,
   contactNumbers,
+  facebookPageUrl,
   locationAddress,
   logoPath,
   ogImagePath,
@@ -133,6 +135,7 @@ const structuredData = {
       image: [`${siteUrl}${ogImagePath}`, `${siteUrl}${logoPath}`],
       description: seoDescription,
       email: businessEmail,
+      sameAs: [facebookPageUrl],
       telephone: contactNumbers.map((contact) => `+${contact.whatsapp}`),
       priceRange: "$$",
       address: {
@@ -227,7 +230,7 @@ function ResponsiveImage({
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white text-slate-950">
+    <main className="flex flex-1 flex-col bg-white text-slate-950">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -483,6 +486,19 @@ export default function Home() {
               <span className="break-all font-bold">{businessEmail}</span>
             </a>
 
+            <a
+              href={facebookPageUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-4 rounded-md bg-white p-5 text-slate-950 transition hover:bg-emerald-50"
+            >
+              <ExternalLink
+                className="shrink-0 text-emerald-700"
+                size={22}
+              />
+              <span className="font-bold">Mustafa Canvas on Facebook</span>
+            </a>
+
             <address className="flex items-start gap-4 rounded-md bg-white p-5 text-slate-950 not-italic">
               <MapPin className="mt-1 shrink-0 text-emerald-700" size={22} />
               <span className="font-bold leading-relaxed">
@@ -504,19 +520,6 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="bg-white px-4 py-8 text-slate-950 sm:px-6 lg:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="font-black uppercase tracking-normal">Mustafa Canvas</p>
-            <p className="text-sm font-semibold text-emerald-700">
-              Shade Net & Canvas Solutions
-            </p>
-          </div>
-          <p className="text-sm font-semibold text-slate-700">
-            Quality Shade Nets, Canvas, Tarpaulin & PVC Solutions
-          </p>
-        </div>
-      </footer>
     </main>
   );
 }

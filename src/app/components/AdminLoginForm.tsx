@@ -40,8 +40,8 @@ export function AdminLoginForm() {
   };
 
   return (
-    <section className="bg-white">
-      <div className="mx-auto flex min-h-[calc(100vh-5rem)] max-w-7xl items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+    <section className="flex flex-1 bg-white">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
         <form
           onSubmit={handleSubmit}
           className="grid w-full max-w-md gap-5 rounded-md bg-emerald-50 p-5 sm:p-7"

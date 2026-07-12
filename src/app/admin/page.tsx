@@ -22,7 +22,7 @@ export default async function AdminPage() {
   const session = await getAdminSession();
 
   return (
-    <main className="min-h-screen bg-white text-slate-950">
+    <main className="flex flex-1 flex-col bg-white text-slate-950">
       <Header
         logo={siteLogo}
         navItems={siteNavItems}

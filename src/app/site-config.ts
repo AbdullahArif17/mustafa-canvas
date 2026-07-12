@@ -14,5 +14,4 @@ export const siteNavItems = [
   { href: "/#quality", label: "Quality", sectionId: "quality" },
   { href: "/#contact", label: "Contact", sectionId: "contact" },
   { href: "/products", label: "All Products" },
-  { href: "/admin", label: "Admin" },
 ];

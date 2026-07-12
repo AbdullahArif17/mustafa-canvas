@@ -4,10 +4,10 @@ import {
   productImageBucket,
 } from "../../../product-data";
 import {
-  checkAdminPassword,
   getSupabaseAdmin,
   missingSupabaseEnv,
 } from "../../../lib/supabase";
+import { requireAdminSession } from "../../../lib/admin-session";
 
 export const dynamic = "force-dynamic";
 
@@ -21,7 +21,7 @@ function safeFileName(fileName: string) {
 }
 
 export async function POST(request: Request) {
-  const admin = checkAdminPassword(request);
+  const admin = await requireAdminSession();
 
   if (!admin.ok) {
     return Response.json({ error: admin.message }, { status: admin.status });

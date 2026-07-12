@@ -1,7 +1,12 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { Building2, Images, Palette, Package, Ruler, Weight } from "lucide-react";
-import { type Product, productKindLabel, productSpecs } from "../product-data";
+import { Building2, Palette, Package, Ruler, Weight } from "lucide-react";
+import {
+  type Product,
+  productKindLabel,
+  productMainImage,
+  productSpecs,
+} from "../product-data";
 
 type ProductCardProps = {
   product: Product;
@@ -10,7 +15,7 @@ type ProductCardProps = {
 
 export function ProductCard({ product, actions }: ProductCardProps) {
   const specs = productSpecs(product);
-  const coverImage = product.images[0];
+  const coverImage = productMainImage(product);
 
   return (
     <article className="grid gap-5 rounded-md bg-white p-5 shadow-sm ring-1 ring-emerald-100">
@@ -91,13 +96,6 @@ export function ProductCard({ product, actions }: ProductCardProps) {
             <Package size={18} className="shrink-0 text-emerald-700" />
             <dt className="sr-only">Size</dt>
             <dd>{product.size}</dd>
-          </div>
-        )}
-        {product.images.length > 1 && (
-          <div className="flex items-center gap-3">
-            <Images size={18} className="shrink-0 text-emerald-700" />
-            <dt className="sr-only">Images</dt>
-            <dd>{product.images.length} images</dd>
           </div>
         )}
       </dl>

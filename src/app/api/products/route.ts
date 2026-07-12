@@ -5,10 +5,10 @@ import {
   type ProductRow,
 } from "../../product-data";
 import {
-  checkAdminPassword,
   getSupabaseAdmin,
   missingSupabaseEnv,
 } from "../../lib/supabase";
+import { requireAdminSession } from "../../lib/admin-session";
 
 export const dynamic = "force-dynamic";
 
@@ -43,7 +43,7 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const admin = checkAdminPassword(request);
+  const admin = await requireAdminSession();
 
   if (!admin.ok) {
     return Response.json({ error: admin.message }, { status: admin.status });
@@ -64,7 +64,17 @@ export async function POST(request: Request) {
   const input = normalizeProductInput(await request.json().catch(() => null));
 
   if (!input) {
-    return Response.json({ error: "Invalid product data." }, { status: 400 });
+    return Response.json(
+      { error: "Title, description, and a main image are required." },
+      { status: 400 }
+    );
+  }
+
+  if (!input.images?.length) {
+    return Response.json(
+      { error: "A main product image is required." },
+      { status: 400 }
+    );
   }
 
   const row = productInputToRow(input);

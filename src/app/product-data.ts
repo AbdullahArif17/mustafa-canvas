@@ -221,6 +221,14 @@ export function productKindLabel(productKind: ProductKind) {
   return "Other";
 }
 
+export function productMainImage(product: Pick<Product, "images">) {
+  return product.images[0];
+}
+
+export function productGalleryImages(product: Pick<Product, "images">) {
+  return product.images.slice(1);
+}
+
 export function productSpecs(product: Product) {
   const specs = [];
 

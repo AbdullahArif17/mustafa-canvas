@@ -38,31 +38,3 @@ export function getSupabaseAdmin() {
 
   return cachedClient;
 }
-
-export function checkAdminPassword(request: Request) {
-  const expectedPassword = process.env.ADMIN_PASSWORD;
-
-  if (!expectedPassword) {
-    return {
-      ok: false,
-      status: 503,
-      message: "ADMIN_PASSWORD is not configured.",
-    };
-  }
-
-  const providedPassword = request.headers.get("x-admin-password") || "";
-
-  if (providedPassword !== expectedPassword) {
-    return {
-      ok: false,
-      status: 401,
-      message: "Invalid admin password.",
-    };
-  }
-
-  return {
-    ok: true,
-    status: 200,
-    message: "OK",
-  };
-}

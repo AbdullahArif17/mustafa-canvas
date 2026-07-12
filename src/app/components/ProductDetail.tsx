@@ -1,8 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { Building2, Palette, Package, Ruler, Weight } from "lucide-react";
-import { productKindLabel } from "../product-data";
+import {
+  productGalleryImages,
+  productKindLabel,
+  productMainImage,
+} from "../product-data";
 import { useProducts } from "./useProducts";
 
 type ProductDetailProps = {
@@ -11,6 +16,7 @@ type ProductDetailProps = {
 
 export function ProductDetail({ slug }: ProductDetailProps) {
   const { loaded, products } = useProducts();
+  const [activeImagePath, setActiveImagePath] = useState<string | null>(null);
   const product = products.find((item) => item.slug === slug);
 
   if (!loaded) {
@@ -45,25 +51,39 @@ export function ProductDetail({ slug }: ProductDetailProps) {
     );
   }
 
+  const mainImage = productMainImage(product);
+  const detailImages = mainImage
+    ? [mainImage, ...productGalleryImages(product)]
+    : [];
+  const activeImage =
+    detailImages.find((image) => image.path === activeImagePath) || mainImage;
+
   return (
     <section className="bg-white">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:px-8">
         <div className="grid gap-4">
-          {product.images.length ? (
+          {activeImage ? (
             <>
               <div className="overflow-hidden rounded-md bg-emerald-50">
                 <img
-                  src={product.images[0].url}
-                  alt={product.images[0].alt}
+                  src={activeImage.url}
+                  alt={activeImage.alt}
                   className="max-h-[680px] w-full object-contain"
                 />
               </div>
-              {product.images.length > 1 && (
+              {detailImages.length > 1 && (
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-                  {product.images.slice(1).map((image) => (
-                    <div
+                  {detailImages.map((image, index) => (
+                    <button
                       key={image.path}
-                      className="overflow-hidden rounded-md bg-emerald-50"
+                      type="button"
+                      onClick={() => setActiveImagePath(image.path)}
+                      aria-label={`View ${index === 0 ? "main" : `image ${index + 1}`} for ${product.title}`}
+                      className={`overflow-hidden rounded-md bg-emerald-50 ring-offset-2 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 ${
+                        image.path === activeImage.path
+                          ? "ring-2 ring-emerald-700"
+                          : "hover:ring-2 hover:ring-emerald-200"
+                      }`}
                     >
                       <img
                         src={image.url}
@@ -71,7 +91,7 @@ export function ProductDetail({ slug }: ProductDetailProps) {
                         className="aspect-square w-full object-contain"
                         loading="lazy"
                       />
-                    </div>
+                    </button>
                   ))}
                 </div>
               )}

@@ -155,16 +155,12 @@ export function useProducts() {
   );
 
   const addProduct = useCallback(
-    async (
-      product: ProductInput,
-      adminPassword = ""
-    ): Promise<MutationResult> => {
+    async (product: ProductInput): Promise<MutationResult> => {
       if (mode === "supabase") {
         const response = await fetch("/api/products", {
           method: "POST",
           headers: {
             "content-type": "application/json",
-            "x-admin-password": adminPassword,
           },
           body: JSON.stringify(product),
         });
@@ -193,13 +189,10 @@ export function useProducts() {
   );
 
   const deleteProduct = useCallback(
-    async (productId: string, adminPassword = ""): Promise<MutationResult> => {
+    async (productId: string): Promise<MutationResult> => {
       if (mode === "supabase") {
         const response = await fetch(`/api/products/${productId}`, {
           method: "DELETE",
-          headers: {
-            "x-admin-password": adminPassword,
-          },
         });
         const payload = (await response.json().catch(() => ({}))) as {
           error?: string;

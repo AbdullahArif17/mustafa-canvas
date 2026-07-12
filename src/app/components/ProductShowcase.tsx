@@ -58,18 +58,12 @@ export function ProductShowcase() {
               Latest Products
             </h2>
           </div>
-          <div className="flex flex-col gap-2 sm:flex-row">
+          <div>
             <Link
               href="/products"
               className="inline-flex h-11 items-center justify-center rounded-md bg-emerald-700 px-5 text-sm font-bold uppercase tracking-normal text-white transition hover:bg-emerald-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
             >
               View All
-            </Link>
-            <Link
-              href="/admin"
-              className="inline-flex h-11 items-center justify-center rounded-md border border-emerald-700 px-5 text-sm font-bold uppercase tracking-normal text-emerald-800 transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
-            >
-              Add Product
             </Link>
           </div>
         </div>
@@ -126,7 +120,7 @@ export function ProductShowcase() {
             </aside>
           </div>
         ) : (
-          <div className="flex flex-col gap-4 rounded-md bg-white p-6 ring-1 ring-emerald-100 sm:flex-row sm:items-center sm:justify-between">
+          <div className="rounded-md bg-white p-6 ring-1 ring-emerald-100">
             <div className="flex items-start gap-4">
               <PackagePlus className="mt-1 shrink-0 text-emerald-700" />
               <div>
@@ -135,12 +129,6 @@ export function ProductShowcase() {
                 </h3>
               </div>
             </div>
-            <Link
-              href="/admin"
-              className="inline-flex h-11 items-center justify-center rounded-md bg-emerald-700 px-5 text-sm font-bold uppercase tracking-normal text-white hover:bg-emerald-800"
-            >
-              Open Admin
-            </Link>
           </div>
         )}
       </div>

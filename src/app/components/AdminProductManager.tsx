@@ -30,10 +30,10 @@ export function AdminProductManager() {
   const { loaded, mode, error, products, addProduct, deleteProduct } =
     useProducts();
   const [kind, setKind] = useState<ProductKind>("net");
-  const [adminPassword, setAdminPassword] = useState("");
   const [status, setStatus] = useState("");
   const [saving, setSaving] = useState(false);
-  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [mainImageFile, setMainImageFile] = useState<File | null>(null);
+  const [galleryImageFiles, setGalleryImageFiles] = useState<File[]>([]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -41,29 +41,39 @@ export function AdminProductManager() {
     setStatus("");
 
     const formData = new FormData(event.currentTarget);
-    let uploadedImages: ProductImage[] = [];
 
-    if (selectedFiles.length) {
-      if (mode !== "supabase") {
-        setStatus("Image upload is available after Supabase is connected.");
-        setSaving(false);
-        return;
-      }
-
-      setStatus("Uploading images...");
-      const uploadResult = await uploadProductImages(
-        selectedFiles,
-        adminPassword
-      );
-
-      if (!uploadResult.ok) {
-        setStatus(uploadResult.message);
-        setSaving(false);
-        return;
-      }
-
-      uploadedImages = uploadResult.images;
+    if (!mainImageFile) {
+      setStatus("Select a main product image.");
+      setSaving(false);
+      return;
     }
+
+    if (mode !== "supabase") {
+      setStatus("Image upload is available after Supabase is connected.");
+      setSaving(false);
+      return;
+    }
+
+    const galleryFiles = galleryImageFiles.filter(
+      (file) =>
+        file.name !== mainImageFile.name ||
+        file.size !== mainImageFile.size ||
+        file.lastModified !== mainImageFile.lastModified
+    );
+
+    setStatus("Uploading images...");
+    const uploadResult = await uploadProductImages([
+      mainImageFile,
+      ...galleryFiles,
+    ]);
+
+    if (!uploadResult.ok) {
+      setStatus(uploadResult.message);
+      setSaving(false);
+      return;
+    }
+
+    const uploadedImages: ProductImage[] = uploadResult.images;
 
     const base = {
       kind,
@@ -78,7 +88,7 @@ export function AdminProductManager() {
       images: uploadedImages,
     };
 
-    const result = await addProduct(base, adminPassword);
+    const result = await addProduct(base);
 
     if (!result.ok) {
       setStatus(result.message || "Could not add product.");
@@ -88,14 +98,15 @@ export function AdminProductManager() {
 
     formRef.current?.reset();
     setKind("net");
-    setSelectedFiles([]);
+    setMainImageFile(null);
+    setGalleryImageFiles([]);
     setStatus("Product added.");
     setSaving(false);
   };
 
   const handleDelete = async (productId: string) => {
     setStatus("");
-    const result = await deleteProduct(productId, adminPassword);
+    const result = await deleteProduct(productId);
 
     if (!result.ok) {
       setStatus(result.message || "Could not delete product.");
@@ -146,19 +157,6 @@ export function AdminProductManager() {
           onSubmit={handleSubmit}
           className="grid gap-5 rounded-md bg-emerald-50 p-5"
         >
-          {mode === "supabase" && (
-            <label className={labelClass}>
-              Admin Password
-              <input
-                type="password"
-                value={adminPassword}
-                onChange={(event) => setAdminPassword(event.target.value)}
-                className={fieldClass}
-                required
-              />
-            </label>
-          )}
-
           <label className={labelClass}>
             Product Type
             <select
@@ -245,29 +243,65 @@ export function AdminProductManager() {
             </label>
           </div>
 
-          <label className={labelClass}>
-            Product Images
-            <input
-              type="file"
-              accept="image/*"
-              multiple
-              onChange={(event) =>
-                setSelectedFiles(Array.from(event.target.files || []))
-              }
-              className="rounded-md border border-dashed border-emerald-300 bg-white px-3 py-4 text-sm font-semibold text-slate-950 file:mr-3 file:rounded-md file:border-0 file:bg-emerald-700 file:px-4 file:py-2 file:text-sm file:font-bold file:text-white"
-            />
-            <span className="text-xs font-bold normal-case tracking-normal text-slate-600">
-              Up to {maxProductImageMb} MB per image.
-            </span>
-          </label>
+          <div className="grid gap-5 sm:grid-cols-2">
+            <label className={labelClass}>
+              Main Product Image
+              <input
+                type="file"
+                accept="image/*"
+                required
+                onChange={(event) =>
+                  setMainImageFile(event.target.files?.[0] || null)
+                }
+                className="min-w-0 rounded-md border border-dashed border-emerald-300 bg-white px-3 py-4 text-sm font-semibold text-slate-950 file:mr-3 file:rounded-md file:border-0 file:bg-emerald-700 file:px-4 file:py-2 file:text-sm file:font-bold file:text-white"
+              />
+              <span className="text-xs font-bold normal-case tracking-normal text-slate-600">
+                Used on product cards. Up to {maxProductImageMb} MB.
+              </span>
+            </label>
 
-          {selectedFiles.length > 0 && (
-            <div className="grid gap-2 rounded-md bg-white p-3 text-sm font-bold text-slate-700">
-              {selectedFiles.map((file) => (
-                <div key={`${file.name}-${file.size}`} className="truncate">
-                  {file.name}
+            <label className={labelClass}>
+              Additional Images (Optional)
+              <input
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={(event) =>
+                  setGalleryImageFiles(Array.from(event.target.files || []))
+                }
+                className="min-w-0 rounded-md border border-dashed border-emerald-300 bg-white px-3 py-4 text-sm font-semibold text-slate-950 file:mr-3 file:rounded-md file:border-0 file:bg-emerald-700 file:px-4 file:py-2 file:text-sm file:font-bold file:text-white"
+              />
+              <span className="text-xs font-bold normal-case tracking-normal text-slate-600">
+                Shown only on the product details page.
+              </span>
+            </label>
+          </div>
+
+          {(mainImageFile || galleryImageFiles.length > 0) && (
+            <div className="grid gap-3 rounded-md bg-white p-3 text-sm font-bold text-slate-700">
+              {mainImageFile && (
+                <div className="min-w-0">
+                  <span className="text-xs uppercase text-emerald-700">
+                    Main
+                  </span>
+                  <div className="truncate">{mainImageFile.name}</div>
                 </div>
-              ))}
+              )}
+              {galleryImageFiles.length > 0 && (
+                <div className="grid min-w-0 gap-1">
+                  <span className="text-xs uppercase text-emerald-700">
+                    Additional
+                  </span>
+                  {galleryImageFiles.map((file) => (
+                    <div
+                      key={`${file.name}-${file.size}-${file.lastModified}`}
+                      className="truncate"
+                    >
+                      {file.name}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
 

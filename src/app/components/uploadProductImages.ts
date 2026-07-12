@@ -16,8 +16,7 @@ type SignedUploadResponse = {
 };
 
 export async function uploadProductImages(
-  files: File[],
-  adminPassword: string
+  files: File[]
 ): Promise<{ ok: true; images: ProductImage[] } | { ok: false; message: string }> {
   if (!files.length) {
     return { ok: true, images: [] };
@@ -50,7 +49,6 @@ export async function uploadProductImages(
       method: "POST",
       headers: {
         "content-type": "application/json",
-        "x-admin-password": adminPassword,
       },
       body: JSON.stringify({
         fileName: file.name,

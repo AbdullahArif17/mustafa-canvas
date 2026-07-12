@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Header } from "../components/Header";
+import { AdminLoginForm } from "../components/AdminLoginForm";
 import { AdminProductManager } from "../components/AdminProductManager";
+import { AdminSessionGuard } from "../components/AdminSessionGuard";
+import { getAdminSession } from "../lib/admin-session";
 import { businessName } from "../seo";
 import { imageQuality, siteLogo, siteNavItems } from "../site-config";
 
@@ -13,7 +16,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AdminPage() {
+export const dynamic = "force-dynamic";
+
+export default async function AdminPage() {
+  const session = await getAdminSession();
+
   return (
     <main className="min-h-screen bg-white text-slate-950">
       <Header
@@ -21,7 +28,13 @@ export default function AdminPage() {
         navItems={siteNavItems}
         imageQuality={imageQuality}
       />
-      <AdminProductManager />
+      {session ? (
+        <AdminSessionGuard expiresAt={session.expiresAt}>
+          <AdminProductManager />
+        </AdminSessionGuard>
+      ) : (
+        <AdminLoginForm />
+      )}
     </main>
   );
 }

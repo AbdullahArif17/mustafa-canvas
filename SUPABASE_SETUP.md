@@ -83,4 +83,8 @@ ADMIN_PASSWORD="choose-a-strong-admin-password"
 
 The site uses server API routes for product writes/deletes, so the service role key stays on the server. Product image files upload through Supabase signed upload URLs and are capped at 50 MB by both the app and the storage bucket.
 
+The first entry in each product's `images` array is its main image and appears on public product cards. Any remaining entries are optional gallery images shown only on that product's details page.
+
+The `/admin` route uses `ADMIN_PASSWORD` to create a signed, HTTP-only session that expires after 30 minutes. The password is never stored in browser storage or sent with product requests.
+
 Never expose `SUPABASE_SERVICE_ROLE_KEY` in browser code or public client variables.

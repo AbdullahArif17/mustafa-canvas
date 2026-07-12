@@ -13,56 +13,61 @@ const whatsappMessage = encodeURIComponent(
 
 export function Footer() {
   return (
-    <footer className="border-t border-emerald-100 bg-white px-4 py-8 text-slate-950 sm:px-6 lg:px-8">
-      <div className="mx-auto flex max-w-7xl flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+    <footer className="bg-emerald-950 px-4 py-8 text-white sm:px-6 lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-7 lg:grid-cols-[minmax(220px,0.7fr)_minmax(0,1.3fr)] lg:items-end">
         <div>
           <p className="font-black uppercase tracking-normal">{businessName}</p>
-          <p className="text-sm font-semibold text-emerald-700">
+          <p className="mt-1 text-sm font-semibold text-emerald-200">
             {businessTagline}
           </p>
         </div>
 
-        <nav
-          aria-label="Footer navigation"
-          className="flex flex-wrap items-center gap-x-5 gap-y-3 text-sm font-bold"
-        >
-          <Link href="/" className="hover:text-emerald-700">
-            Home
-          </Link>
-          <Link href="/products" className="hover:text-emerald-700">
-            All Products
-          </Link>
-          {contactNumbers.map((contact) => (
+        <div className="grid gap-5">
+          <nav
+            aria-label="Footer navigation"
+            className="grid grid-cols-2 gap-3 text-sm font-bold sm:flex sm:justify-end sm:gap-6"
+          >
+            <Link href="/" className="hover:text-emerald-200">
+              Home
+            </Link>
+            <Link href="/products" className="hover:text-emerald-200">
+              All Products
+            </Link>
+          </nav>
+
+          <div className="grid gap-2 sm:grid-cols-3">
+            {contactNumbers.map((contact) => (
+              <a
+                key={contact.name}
+                href={`https://wa.me/${contact.whatsapp}?text=${whatsappMessage}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-11 min-w-0 items-center justify-center gap-2 rounded-md border border-emerald-700 bg-emerald-900 px-3 text-sm font-bold transition hover:bg-emerald-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-emerald-950"
+                aria-label={`Message ${contact.name} on WhatsApp`}
+              >
+                <FaWhatsapp
+                  size={18}
+                  className="shrink-0 text-[#25d366]"
+                  aria-hidden
+                />
+                <span className="truncate">WhatsApp {contact.name}</span>
+              </a>
+            ))}
             <a
-              key={contact.name}
-              href={`https://wa.me/${contact.whatsapp}?text=${whatsappMessage}`}
+              href={facebookPageUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-emerald-800 hover:text-emerald-600"
-              aria-label={`Message ${contact.name} on WhatsApp`}
+              className="inline-flex h-11 min-w-0 items-center justify-center gap-2 rounded-md border border-emerald-700 bg-emerald-900 px-3 text-sm font-bold transition hover:bg-emerald-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-emerald-950"
             >
-              <FaWhatsapp
-                size={17}
-                className="text-[#25d366]"
+              <FaFacebookF
+                size={16}
+                className="shrink-0 text-[#1877f2]"
                 aria-hidden
               />
-              WhatsApp {contact.name}
+              Facebook
             </a>
-          ))}
-          <a
-            href={facebookPageUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-emerald-800 hover:text-emerald-600"
-          >
-            <FaFacebookF
-              size={16}
-              className="text-[#1877f2]"
-              aria-hidden
-            />
-            Facebook
-          </a>
-        </nav>
+          </div>
+        </div>
       </div>
     </footer>
   );

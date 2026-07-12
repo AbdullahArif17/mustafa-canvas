@@ -13,36 +13,36 @@ const whatsappMessage = encodeURIComponent(
 
 export function Footer() {
   return (
-    <footer className="bg-emerald-950 px-4 py-8 text-white sm:px-6 lg:px-8">
-      <div className="mx-auto grid max-w-7xl gap-7 lg:grid-cols-[minmax(220px,0.7fr)_minmax(0,1.3fr)] lg:items-end">
+    <footer className="border-t border-emerald-100 bg-white px-4 py-8 text-slate-950 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 text-center lg:flex-row lg:items-end lg:justify-between lg:text-left">
         <div>
           <p className="font-black uppercase tracking-normal">{businessName}</p>
-          <p className="mt-1 text-sm font-semibold text-emerald-200">
+          <p className="mt-1 text-sm font-semibold text-emerald-700">
             {businessTagline}
           </p>
         </div>
 
-        <div className="grid gap-5">
+        <div className="grid w-full justify-items-center gap-4 lg:w-auto lg:justify-items-end">
           <nav
             aria-label="Footer navigation"
-            className="grid grid-cols-2 gap-3 text-sm font-bold sm:flex sm:justify-end sm:gap-6"
+            className="flex items-center justify-center gap-6 text-sm font-bold"
           >
-            <Link href="/" className="hover:text-emerald-200">
+            <Link href="/" className="hover:text-emerald-700">
               Home
             </Link>
-            <Link href="/products" className="hover:text-emerald-200">
+            <Link href="/products" className="hover:text-emerald-700">
               All Products
             </Link>
           </nav>
 
-          <div className="grid gap-2 sm:grid-cols-3">
+          <div className="grid w-full max-w-sm gap-2 sm:max-w-2xl sm:grid-cols-3 lg:w-auto lg:max-w-none">
             {contactNumbers.map((contact) => (
               <a
                 key={contact.name}
                 href={`https://wa.me/${contact.whatsapp}?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-11 min-w-0 items-center justify-center gap-2 rounded-md border border-emerald-700 bg-emerald-900 px-3 text-sm font-bold transition hover:bg-emerald-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-emerald-950"
+                className="inline-flex h-11 min-w-0 items-center justify-center gap-2 rounded-md border border-emerald-200 bg-emerald-50 px-4 text-sm font-bold text-emerald-900 transition hover:border-emerald-300 hover:bg-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
                 aria-label={`Message ${contact.name} on WhatsApp`}
               >
                 <FaWhatsapp
@@ -57,7 +57,7 @@ export function Footer() {
               href={facebookPageUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-11 min-w-0 items-center justify-center gap-2 rounded-md border border-emerald-700 bg-emerald-900 px-3 text-sm font-bold transition hover:bg-emerald-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-emerald-950"
+              className="inline-flex h-11 min-w-0 items-center justify-center gap-2 rounded-md border border-emerald-200 bg-emerald-50 px-4 text-sm font-bold text-emerald-900 transition hover:border-emerald-300 hover:bg-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
             >
               <FaFacebookF
                 size={16}

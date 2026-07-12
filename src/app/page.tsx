@@ -3,17 +3,16 @@ import Link from "next/link";
 import {
   BriefcaseBusiness,
   CheckCircle2,
-  ExternalLink,
   Hammer,
   Leaf,
   Mail,
   MapPin,
-  MessageCircle,
   Phone,
   ShieldCheck,
   Sun,
   Waves,
 } from "lucide-react";
+import { FaFacebookF, FaWhatsapp } from "react-icons/fa6";
 import { Header } from "./components/Header";
 import { ProductShowcase } from "./components/ProductShowcase";
 import {
@@ -470,7 +469,11 @@ export default function Home() {
                       className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-emerald-700 px-4 text-sm font-bold uppercase tracking-normal text-emerald-800 transition hover:bg-emerald-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
                       aria-label={`Message ${contact.name} on WhatsApp`}
                     >
-                      <MessageCircle size={17} aria-hidden />
+                      <FaWhatsapp
+                        size={18}
+                        className="text-[#25d366]"
+                        aria-hidden
+                      />
                       WhatsApp
                     </a>
                   </div>
@@ -492,9 +495,10 @@ export default function Home() {
               rel="noopener noreferrer"
               className="flex items-center gap-4 rounded-md bg-white p-5 text-slate-950 transition hover:bg-emerald-50"
             >
-              <ExternalLink
-                className="shrink-0 text-emerald-700"
-                size={22}
+              <FaFacebookF
+                className="shrink-0 text-[#1877f2]"
+                size={21}
+                aria-hidden
               />
               <span className="font-bold">Mustafa Canvas on Facebook</span>
             </a>

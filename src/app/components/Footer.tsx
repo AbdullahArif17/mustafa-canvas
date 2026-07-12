@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ExternalLink, MessageCircle } from "lucide-react";
+import { FaFacebookF, FaWhatsapp } from "react-icons/fa6";
 import {
   businessName,
   businessTagline,
@@ -41,7 +41,11 @@ export function Footer() {
               className="inline-flex items-center gap-2 text-emerald-800 hover:text-emerald-600"
               aria-label={`Message ${contact.name} on WhatsApp`}
             >
-              <MessageCircle size={16} aria-hidden />
+              <FaWhatsapp
+                size={17}
+                className="text-[#25d366]"
+                aria-hidden
+              />
               WhatsApp {contact.name}
             </a>
           ))}
@@ -51,8 +55,12 @@ export function Footer() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-emerald-800 hover:text-emerald-600"
           >
+            <FaFacebookF
+              size={16}
+              className="text-[#1877f2]"
+              aria-hidden
+            />
             Facebook
-            <ExternalLink size={15} aria-hidden />
           </a>
         </nav>
       </div>

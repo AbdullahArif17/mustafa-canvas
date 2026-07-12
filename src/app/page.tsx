@@ -14,6 +14,7 @@ import {
   Waves,
 } from "lucide-react";
 import { Header } from "./components/Header";
+import { ProductShowcase } from "./components/ProductShowcase";
 import {
   businessEmail,
   businessName,
@@ -26,16 +27,9 @@ import {
   seoDescription,
   siteUrl,
 } from "./seo";
-
-const imageQuality = 100;
+import { imageQuality, siteLogo, siteNavItems } from "./site-config";
 
 const imagePaths = {
-  logo: {
-    src: "/mustafa-canvas-logo.png",
-    alt: "Mustafa Canvas logo",
-    width: 1254,
-    height: 1254,
-  },
   brandSheet: {
     src: "/mustafa-canvas-brand-sheet.png",
     alt: "Mustafa Canvas product range and business details",
@@ -91,13 +85,6 @@ const imagePaths = {
     height: 1254,
   },
 };
-
-const navItems = [
-  { href: "#solutions", label: "Solutions" },
-  { href: "#products", label: "Products" },
-  { href: "#quality", label: "Quality" },
-  { href: "#contact", label: "Contact" },
-];
 
 const solutionItems = [
   { label: "Sun Shade Net", icon: Sun },
@@ -246,8 +233,8 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <Header
-        logo={imagePaths.logo}
-        navItems={navItems}
+        logo={siteLogo}
+        navItems={siteNavItems}
         imageQuality={imageQuality}
       />
 
@@ -375,6 +362,8 @@ export default function Home() {
           </figure>
         </div>
       </section>
+
+      <ProductShowcase />
 
       <section className="bg-emerald-50">
         <div className="mx-auto grid max-w-7xl gap-3 px-4 py-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">

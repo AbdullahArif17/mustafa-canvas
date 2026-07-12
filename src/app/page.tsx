@@ -1,7 +1,4 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
 import Link from "next/link";
 import {
   BriefcaseBusiness,
@@ -10,14 +7,13 @@ import {
   Leaf,
   Mail,
   MapPin,
-  Menu,
   MessageCircle,
   Phone,
   ShieldCheck,
   Sun,
   Waves,
-  X,
 } from "lucide-react";
+import { Header } from "./components/Header";
 import {
   businessEmail,
   businessName,
@@ -30,6 +26,8 @@ import {
   seoDescription,
   siteUrl,
 } from "./seo";
+
+const imageQuality = 100;
 
 const imagePaths = {
   logo: {
@@ -47,8 +45,8 @@ const imagePaths = {
   brandSheetMobile: {
     src: "/mustafa-canvas-brand-sheet-mobile.png",
     alt: "Mustafa Canvas product range and business details for mobile",
-    width: 900,
-    height: 1455,
+    width: 986,
+    height: 1595,
   },
   shadeNetMaterial: {
     src: "/sun-shade-net-material.png",
@@ -83,8 +81,8 @@ const imagePaths = {
   productRangeMobile: {
     src: "/mustafa-canvas-product-catalog-mobile.png",
     alt: "Mustafa Canvas shade net and canvas solutions catalog for mobile",
-    width: 900,
-    height: 2760,
+    width: 1024,
+    height: 1536,
   },
   sunShadeScene: {
     src: "/sun-shade-net-installation.png",
@@ -182,128 +180,86 @@ const structuredData = {
   ],
 };
 
+type ImageAsset = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+};
+
+type ResponsiveImageProps = {
+  mobile: ImageAsset;
+  desktop: ImageAsset;
+  sizes: string;
+  className?: string;
+  fetchPriority?: "high" | "low" | "auto";
+};
+
+function ResponsiveImage({
+  mobile,
+  desktop,
+  sizes,
+  className,
+  fetchPriority,
+}: ResponsiveImageProps) {
+  const commonProps = {
+    alt: mobile.alt,
+    sizes,
+    quality: imageQuality,
+  };
+  const {
+    props: { srcSet: desktopSrcSet },
+  } = getImageProps({
+    ...commonProps,
+    src: desktop.src,
+    width: desktop.width,
+    height: desktop.height,
+  });
+  const {
+    props: { srcSet: mobileSrcSet, ...imageProps },
+  } = getImageProps({
+    ...commonProps,
+    src: mobile.src,
+    width: mobile.width,
+    height: mobile.height,
+    fetchPriority,
+  });
+
+  return (
+    <picture>
+      <source media="(min-width: 640px)" srcSet={desktopSrcSet} />
+      <img
+        {...imageProps}
+        srcSet={mobileSrcSet}
+        className={className}
+        style={{ width: "100%", height: "auto" }}
+      />
+    </picture>
+  );
+}
+
 export default function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
-
-  useEffect(() => {
-    const sections = document.querySelectorAll("section[id]");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: "-35% 0px -55% 0px" }
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <main className="min-h-screen bg-white text-slate-950">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <header className="sticky top-0 z-50 border-b border-emerald-100 bg-white/95 backdrop-blur">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link
-            href="#home"
-            className="flex min-w-0 items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            <Image
-              src={imagePaths.logo.src}
-              alt={imagePaths.logo.alt}
-              width={imagePaths.logo.width}
-              height={imagePaths.logo.height}
-              className="h-12 w-12 rounded-full object-contain"
-              sizes="48px"
-              unoptimized
-            />
-            <div className="min-w-0">
-              <span className="block truncate text-lg font-black uppercase tracking-normal text-emerald-900 sm:text-xl">
-                Mustafa Canvas
-              </span>
-              <span className="block truncate text-xs font-semibold uppercase tracking-normal text-emerald-700">
-                Shade Net & Canvas Solutions
-              </span>
-            </div>
-          </Link>
-
-          <nav className="hidden items-center gap-1 md:flex">
-            {navItems.map((item) => {
-              const sectionId = item.href.replace("#", "");
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`rounded-md px-4 py-2 text-sm font-semibold transition ${
-                    activeSection === sectionId
-                      ? "bg-emerald-700 text-white"
-                      : "text-slate-700 hover:bg-emerald-50 hover:text-emerald-800"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </nav>
-
-          <button
-            type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-emerald-200 text-emerald-900 transition hover:bg-emerald-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 md:hidden"
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileMenuOpen}
-            onClick={() => setMobileMenuOpen((open) => !open)}
-          >
-            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
-
-        {mobileMenuOpen && (
-          <nav className="border-t border-emerald-100 bg-white px-4 py-3 md:hidden">
-            <div className="mx-auto grid max-w-7xl gap-2">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="rounded-md px-3 py-3 text-sm font-semibold text-slate-800 hover:bg-emerald-50 hover:text-emerald-800"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </nav>
-        )}
-      </header>
+      <Header
+        logo={imagePaths.logo}
+        navItems={navItems}
+        imageQuality={imageQuality}
+      />
 
       <section id="home" className="bg-white">
         <div className="mx-auto max-w-7xl pt-3 sm:px-6 sm:pt-7 lg:px-8">
           <div>
-            <Image
-              src={imagePaths.brandSheetMobile.src}
-              alt={imagePaths.brandSheetMobile.alt}
-              width={imagePaths.brandSheetMobile.width}
-              height={imagePaths.brandSheetMobile.height}
-              className="h-auto w-full sm:hidden"
-              sizes="100vw"
-              preload
-              unoptimized
-            />
-            <Image
-              src={imagePaths.brandSheet.src}
-              alt={imagePaths.brandSheet.alt}
-              width={imagePaths.brandSheet.width}
-              height={imagePaths.brandSheet.height}
-              className="hidden h-auto w-full sm:block sm:rounded-md"
-              sizes="(max-width: 1280px) 100vw, 1280px"
-              unoptimized
+            <ResponsiveImage
+              mobile={imagePaths.brandSheetMobile}
+              desktop={imagePaths.brandSheet}
+              sizes="(max-width: 639px) 100vw, (max-width: 1280px) 100vw, 1280px"
+              className="h-auto w-full sm:rounded-md"
+              fetchPriority="high"
             />
           </div>
         </div>
@@ -346,7 +302,7 @@ export default function Home() {
               height={imagePaths.sunShadeScene.height}
               className="h-auto w-full rounded-sm"
               sizes="(max-width: 1024px) 100vw, 56vw"
-              unoptimized
+              quality={imageQuality}
             />
             <figcaption className="mt-3 text-sm font-black uppercase tracking-normal text-emerald-900">
               Sun Shade Installation
@@ -410,23 +366,11 @@ export default function Home() {
           </div>
 
           <figure className="-mx-4 bg-white sm:mx-0 sm:rounded-md">
-            <Image
-              src={imagePaths.productRangeMobile.src}
-              alt={imagePaths.productRangeMobile.alt}
-              width={imagePaths.productRangeMobile.width}
-              height={imagePaths.productRangeMobile.height}
-              className="h-auto w-full sm:hidden"
-              sizes="100vw"
-              unoptimized
-            />
-            <Image
-              src={imagePaths.productRange.src}
-              alt={imagePaths.productRange.alt}
-              width={imagePaths.productRange.width}
-              height={imagePaths.productRange.height}
-              className="hidden h-auto w-full sm:block sm:rounded-md"
-              sizes="(max-width: 1024px) 100vw, 56vw"
-              unoptimized
+            <ResponsiveImage
+              mobile={imagePaths.productRangeMobile}
+              desktop={imagePaths.productRange}
+              sizes="(max-width: 639px) 100vw, (max-width: 1024px) 100vw, 56vw"
+              className="h-auto w-full sm:rounded-md"
             />
           </figure>
         </div>
@@ -472,7 +416,7 @@ export default function Home() {
                   height={image.height}
                   className="h-auto w-full rounded-sm"
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  unoptimized
+                  quality={imageQuality}
                 />
                 <figcaption className="mt-3 text-sm font-black uppercase tracking-normal text-emerald-900">
                   {image.label}

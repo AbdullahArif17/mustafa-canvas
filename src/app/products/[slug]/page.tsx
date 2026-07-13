@@ -5,7 +5,6 @@ import { Header } from "../../components/Header";
 import { ProductDetail } from "../../components/ProductDetail";
 import { getServerProductBySlug } from "../../lib/products";
 import {
-  productKindLabel,
   productMainImage,
   type Product,
 } from "../../product-data";
@@ -34,46 +33,33 @@ function productDescription(product: Product) {
   return `${shortened}...`;
 }
 
-function productJsonLd(product: Product) {
+function productPageJsonLd(product: Product) {
   const url = `${siteUrl}/products/${product.slug}`;
-  const additionalProperty = [
-    product.company && { name: "Company", value: product.company },
-    product.lengthFeet && {
-      name: "Length",
-      value: `${product.lengthFeet} ft`,
-    },
-    product.widthFeet && {
-      name: "Width",
-      value: `${product.widthFeet} ft`,
-    },
-    product.weight && { name: "Weight", value: product.weight },
-    product.size && { name: "Size", value: product.size },
-  ]
-    .filter(Boolean)
-    .map((property) => ({
-      "@type": "PropertyValue",
-      ...property,
-    }));
+  const images = product.images.map((image) => image.url);
 
   return {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Product",
-        "@id": `${url}#product`,
+        "@type": "ItemPage",
+        "@id": `${url}#webpage`,
         name: product.title,
         description: product.description,
         url,
-        image: product.images.map((image) => image.url),
-        sku: product.id,
-        category: productKindLabel(product.kind),
-        brand: {
-          "@type": "Brand",
-          name: businessName,
+        image: images,
+        isPartOf: {
+          "@id": `${siteUrl}/#website`,
         },
-        color: product.color,
-        additionalProperty:
-          additionalProperty.length > 0 ? additionalProperty : undefined,
+        breadcrumb: {
+          "@id": `${url}#breadcrumb`,
+        },
+        mainEntity: {
+          "@type": "Thing",
+          "@id": `${url}#item`,
+          name: product.title,
+          description: product.description,
+          image: images,
+        },
       },
       {
         "@type": "BreadcrumbList",
@@ -178,7 +164,7 @@ export default async function ProductDetailsPage({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: serializeJsonLd(productJsonLd(result.product)),
+            __html: serializeJsonLd(productPageJsonLd(result.product)),
           }}
         />
       )}

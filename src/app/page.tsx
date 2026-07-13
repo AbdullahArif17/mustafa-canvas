@@ -146,17 +146,7 @@ const structuredData = {
         "@type": "City",
         name: "Karachi",
       },
-      hasOfferCatalog: {
-        "@type": "OfferCatalog",
-        name: "Shade Net and Canvas Products",
-        itemListElement: productNames.map((name) => ({
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Product",
-            name,
-          },
-        })),
-      },
+      knowsAbout: productNames,
     },
     {
       "@type": "WebSite",
@@ -234,7 +224,9 @@ export default function Home() {
     <main className="flex flex-1 flex-col bg-white text-slate-950">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
       />
       <Header
         logo={siteLogo}

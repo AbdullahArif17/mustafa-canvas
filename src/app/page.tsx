@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image, { getImageProps } from "next/image";
 import Link from "next/link";
 import {
@@ -114,6 +115,12 @@ const galleryImages = [
   { ...imagePaths.canvasRolls, label: "Shade Net & Canvas Solutions" },
 ];
 
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
+
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
@@ -128,7 +135,6 @@ const structuredData = {
       email: businessEmail,
       sameAs: [facebookPageUrl],
       telephone: contactNumbers.map((contact) => `+${contact.whatsapp}`),
-      priceRange: "$$",
       address: {
         "@type": "PostalAddress",
         streetAddress:
@@ -140,13 +146,17 @@ const structuredData = {
         "@type": "City",
         name: "Karachi",
       },
-      makesOffer: productNames.map((name) => ({
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name,
-        },
-      })),
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Shade Net and Canvas Products",
+        itemListElement: productNames.map((name) => ({
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Product",
+            name,
+          },
+        })),
+      },
     },
     {
       "@type": "WebSite",
@@ -358,6 +368,66 @@ export default function Home() {
       </section>
 
       <ProductShowcase />
+
+      <section aria-labelledby="karachi-products-heading" className="bg-white">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <div className="max-w-4xl">
+            <p className="text-sm font-black uppercase tracking-normal text-emerald-700">
+              Karachi Product Range
+            </p>
+            <h2
+              id="karachi-products-heading"
+              className="mt-2 text-3xl font-black uppercase tracking-normal text-slate-950 sm:text-4xl"
+            >
+              Canvas, Tarpaulin & Sun Shade Nets in Karachi
+            </h2>
+            <p className="mt-5 text-base font-semibold leading-7 text-slate-700 sm:text-lg">
+              Mustafa Canvas supplies canvas cloth, tarpaulin, PVC cloth, sun
+              shade nets and netting products from its shop in Market Quarter,
+              Karachi. The range covers shade, construction, nursery and canvas
+              requirements shown throughout this site.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-8 border-y border-emerald-100 py-8 md:grid-cols-3">
+            <article>
+              <h3 className="text-xl font-black uppercase tracking-normal text-emerald-900">
+                Canvas Cloth
+              </h3>
+              <p className="mt-3 font-semibold leading-7 text-slate-700">
+                Waterproof canvas cloth, tents, supply bags and tool bags are
+                included in the Mustafa Canvas product range.
+              </p>
+            </article>
+            <article>
+              <h3 className="text-xl font-black uppercase tracking-normal text-emerald-900">
+                Tarpaulin & PVC Cloth
+              </h3>
+              <p className="mt-3 font-semibold leading-7 text-slate-700">
+                Tarpaulin and PVC cloth are available alongside the canvas
+                products listed in the catalog.
+              </p>
+            </article>
+            <article>
+              <h3 className="text-xl font-black uppercase tracking-normal text-emerald-900">
+                Sun Shade Nets
+              </h3>
+              <p className="mt-3 font-semibold leading-7 text-slate-700">
+                Sun shade net, nursery netting, construction netting, school
+                and parking shade, and swimming pool shade solutions are shown
+                in the range.
+              </p>
+            </article>
+          </div>
+
+          <Link
+            href="/products"
+            className="mt-8 inline-flex h-12 items-center justify-center rounded-md bg-emerald-700 px-6 text-sm font-bold uppercase tracking-normal text-white transition hover:bg-emerald-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
+          >
+            Browse All Products
+          </Link>
+        </div>
+      </section>
 
       <section className="bg-emerald-50">
         <div className="mx-auto grid max-w-7xl gap-3 px-4 py-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">

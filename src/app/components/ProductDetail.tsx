@@ -7,15 +7,19 @@ import {
   productGalleryImages,
   productKindLabel,
   productMainImage,
+  type Product,
 } from "../product-data";
 import { useProducts } from "./useProducts";
 
 type ProductDetailProps = {
   slug: string;
+  initialProduct?: Product;
 };
 
-export function ProductDetail({ slug }: ProductDetailProps) {
-  const { loaded, products } = useProducts();
+export function ProductDetail({ slug, initialProduct }: ProductDetailProps) {
+  const { loaded, products } = useProducts(
+    initialProduct ? [initialProduct] : undefined
+  );
   const [activeImagePath, setActiveImagePath] = useState<string | null>(null);
   const product = products.find((item) => item.slug === slug);
 

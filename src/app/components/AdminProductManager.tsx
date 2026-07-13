@@ -2,9 +2,10 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
-import { Plus, Trash2 } from "lucide-react";
+import { Pencil, Plus, Trash2, X } from "lucide-react";
 import {
   maxProductImageMb,
+  type Product,
   type ProductImage,
   type ProductKind,
 } from "../product-data";
@@ -27,93 +28,173 @@ function formNumber(formData: FormData, key: string) {
 
 export function AdminProductManager() {
   const formRef = useRef<HTMLFormElement>(null);
-  const { loaded, mode, error, products, addProduct, deleteProduct } =
-    useProducts();
+  const {
+    loaded,
+    mode,
+    error,
+    products,
+    addProduct,
+    updateProduct,
+    deleteProduct,
+  } = useProducts();
   const [kind, setKind] = useState<ProductKind>("net");
   const [status, setStatus] = useState("");
   const [saving, setSaving] = useState(false);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  const [retainedImages, setRetainedImages] = useState<ProductImage[]>([]);
   const [mainImageFile, setMainImageFile] = useState<File | null>(null);
   const [galleryImageFiles, setGalleryImageFiles] = useState<File[]>([]);
+
+  const clearEditor = () => {
+    formRef.current?.reset();
+    setEditingProduct(null);
+    setKind("net");
+    setRetainedImages([]);
+    setMainImageFile(null);
+    setGalleryImageFiles([]);
+  };
+
+  const handleEdit = (product: Product) => {
+    setEditingProduct(product);
+    setKind(product.kind);
+    setRetainedImages(product.images);
+    setMainImageFile(null);
+    setGalleryImageFiles([]);
+    setStatus(`Editing ${product.title}.`);
+
+    window.setTimeout(() => {
+      formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 0);
+  };
+
+  const handleCancelEdit = () => {
+    clearEditor();
+    setStatus("Edit cancelled.");
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSaving(true);
     setStatus("");
 
-    const formData = new FormData(event.currentTarget);
+    try {
+      const formData = new FormData(event.currentTarget);
+      const currentMainImage = retainedImages[0];
 
-    if (!mainImageFile) {
-      setStatus("Select a main product image.");
+      if (!mainImageFile && !currentMainImage) {
+        setStatus("Select a main product image.");
+        return;
+      }
+
+      const filesRequireUpload =
+        Boolean(mainImageFile) || galleryImageFiles.length > 0;
+
+      if (filesRequireUpload && mode !== "supabase") {
+        setStatus("Image upload is available after Supabase is connected.");
+        return;
+      }
+
+      const galleryFiles = mainImageFile
+        ? galleryImageFiles.filter(
+            (file) =>
+              file.name !== mainImageFile.name ||
+              file.size !== mainImageFile.size ||
+              file.lastModified !== mainImageFile.lastModified
+          )
+        : galleryImageFiles;
+      const filesToUpload = mainImageFile
+        ? [mainImageFile, ...galleryFiles]
+        : galleryFiles;
+      let uploadedImages: ProductImage[] = [];
+
+      if (filesToUpload.length) {
+        setStatus("Uploading images...");
+        const uploadResult = await uploadProductImages(filesToUpload);
+
+        if (!uploadResult.ok) {
+          setStatus(uploadResult.message);
+          return;
+        }
+
+        uploadedImages = uploadResult.images;
+      }
+
+      const uploadedMainImage = mainImageFile
+        ? uploadedImages[0]
+        : undefined;
+      const uploadedGalleryImages = mainImageFile
+        ? uploadedImages.slice(1)
+        : uploadedImages;
+      const images = editingProduct
+        ? [
+            ...(uploadedMainImage
+              ? [uploadedMainImage]
+              : retainedImages.slice(0, 1)),
+            ...retainedImages.slice(1),
+            ...uploadedGalleryImages,
+          ]
+        : uploadedImages;
+      const productInput = {
+        kind,
+        title: formText(formData, "title"),
+        description: formText(formData, "description"),
+        color: formText(formData, "color"),
+        company: formText(formData, "company"),
+        lengthFeet: formNumber(formData, "lengthFeet"),
+        widthFeet: formNumber(formData, "widthFeet"),
+        weight: formText(formData, "weight"),
+        size: formText(formData, "size"),
+        images,
+      };
+      const wasEditing = Boolean(editingProduct);
+      const result = editingProduct
+        ? await updateProduct(editingProduct.id, productInput)
+        : await addProduct(productInput);
+
+      if (!result.ok) {
+        setStatus(
+          result.message ||
+            (wasEditing ? "Could not update product." : "Could not add product.")
+        );
+        return;
+      }
+
+      clearEditor();
+      setStatus(wasEditing ? "Product updated." : "Product added.");
+    } catch {
+      setStatus("Could not save the product. Check the connection and try again.");
+    } finally {
       setSaving(false);
-      return;
     }
-
-    if (mode !== "supabase") {
-      setStatus("Image upload is available after Supabase is connected.");
-      setSaving(false);
-      return;
-    }
-
-    const galleryFiles = galleryImageFiles.filter(
-      (file) =>
-        file.name !== mainImageFile.name ||
-        file.size !== mainImageFile.size ||
-        file.lastModified !== mainImageFile.lastModified
-    );
-
-    setStatus("Uploading images...");
-    const uploadResult = await uploadProductImages([
-      mainImageFile,
-      ...galleryFiles,
-    ]);
-
-    if (!uploadResult.ok) {
-      setStatus(uploadResult.message);
-      setSaving(false);
-      return;
-    }
-
-    const uploadedImages: ProductImage[] = uploadResult.images;
-
-    const base = {
-      kind,
-      title: formText(formData, "title"),
-      description: formText(formData, "description"),
-      color: formText(formData, "color"),
-      company: formText(formData, "company"),
-      lengthFeet: formNumber(formData, "lengthFeet"),
-      widthFeet: formNumber(formData, "widthFeet"),
-      weight: formText(formData, "weight"),
-      size: formText(formData, "size"),
-      images: uploadedImages,
-    };
-
-    const result = await addProduct(base);
-
-    if (!result.ok) {
-      setStatus(result.message || "Could not add product.");
-      setSaving(false);
-      return;
-    }
-
-    formRef.current?.reset();
-    setKind("net");
-    setMainImageFile(null);
-    setGalleryImageFiles([]);
-    setStatus("Product added.");
-    setSaving(false);
   };
 
-  const handleDelete = async (productId: string) => {
-    setStatus("");
-    const result = await deleteProduct(productId);
-
-    if (!result.ok) {
-      setStatus(result.message || "Could not delete product.");
+  const handleDelete = async (product: Product) => {
+    if (!window.confirm(`Delete ${product.title}? This cannot be undone.`)) {
       return;
     }
 
-    setStatus("Product deleted.");
+    setStatus("");
+    setDeletingId(product.id);
+
+    try {
+      const result = await deleteProduct(product.id);
+
+      if (!result.ok) {
+        setStatus(result.message || "Could not delete product.");
+        return;
+      }
+
+      if (editingProduct?.id === product.id) {
+        clearEditor();
+      }
+
+      setStatus("Product deleted.");
+    } catch {
+      setStatus("Could not delete the product. Check the connection and try again.");
+    } finally {
+      setDeletingId(null);
+    }
   };
 
   return (
@@ -124,11 +205,12 @@ export function AdminProductManager() {
             Admin Portal
           </p>
           <h1 className="mt-2 text-4xl font-black uppercase tracking-normal text-slate-950 sm:text-5xl">
-            Add Products
+            {editingProduct ? "Edit Product" : "Add Products"}
           </h1>
           <p className="mt-4 max-w-xl text-sm font-semibold leading-6 text-slate-700">
-            Net, plastic, and other product records for the Mustafa Canvas
-            catalog.
+            {editingProduct
+              ? `Update ${editingProduct.title} and manage its product images.`
+              : "Net, plastic, and other product records for the Mustafa Canvas catalog."}
           </p>
           <div className="mt-5 inline-flex rounded-md bg-emerald-50 px-3 py-2 text-xs font-black uppercase tracking-normal text-emerald-900">
             {mode === "supabase" ? "Supabase Connected" : "Local Browser Mode"}
@@ -153,6 +235,7 @@ export function AdminProductManager() {
         </div>
 
         <form
+          key={editingProduct?.id || "new-product"}
           ref={formRef}
           onSubmit={handleSubmit}
           className="grid gap-5 rounded-md bg-emerald-50 p-5"
@@ -174,11 +257,20 @@ export function AdminProductManager() {
           <div className="grid gap-5 sm:grid-cols-2">
             <label className={labelClass}>
               Title
-              <input name="title" className={fieldClass} required />
+              <input
+                name="title"
+                className={fieldClass}
+                defaultValue={editingProduct?.title || ""}
+                required
+              />
             </label>
             <label className={labelClass}>
               Company
-              <input name="company" className={fieldClass} />
+              <input
+                name="company"
+                className={fieldClass}
+                defaultValue={editingProduct?.company || ""}
+              />
             </label>
           </div>
 
@@ -187,6 +279,7 @@ export function AdminProductManager() {
             <textarea
               name="description"
               className="min-h-28 rounded-md border border-emerald-200 bg-white px-3 py-3 text-sm font-semibold text-slate-950 outline-none transition focus:border-emerald-700 focus:ring-2 focus:ring-emerald-100"
+              defaultValue={editingProduct?.description || ""}
               required
             />
           </label>
@@ -199,6 +292,7 @@ export function AdminProductManager() {
                 type="text"
                 className={fieldClass}
                 placeholder="Green, black, blue"
+                defaultValue={editingProduct?.color || ""}
               />
             </label>
 
@@ -208,6 +302,7 @@ export function AdminProductManager() {
                 name="size"
                 className={fieldClass}
                 placeholder="Small, 12x18, 40 micron"
+                defaultValue={editingProduct?.size || ""}
               />
             </label>
           </div>
@@ -221,6 +316,7 @@ export function AdminProductManager() {
                 min="1"
                 step="0.01"
                 className={fieldClass}
+                defaultValue={editingProduct?.lengthFeet || ""}
               />
             </label>
             <label className={labelClass}>
@@ -231,6 +327,7 @@ export function AdminProductManager() {
                 min="1"
                 step="0.01"
                 className={fieldClass}
+                defaultValue={editingProduct?.widthFeet || ""}
               />
             </label>
             <label className={labelClass}>
@@ -239,24 +336,75 @@ export function AdminProductManager() {
                 name="weight"
                 className={fieldClass}
                 placeholder="Example: 30 kg"
+                defaultValue={editingProduct?.weight || ""}
               />
             </label>
           </div>
 
+          {editingProduct && retainedImages.length > 0 && (
+            <div className="grid gap-3 border-y border-emerald-200 py-4">
+              <div>
+                <p className="text-sm font-black uppercase tracking-normal text-emerald-900">
+                  Current Images
+                </p>
+                <p className="mt-1 text-xs font-semibold text-slate-600">
+                  Replace the main image below or remove optional images before
+                  saving.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                {retainedImages.map((image, index) => (
+                  <figure
+                    key={image.path}
+                    className="relative overflow-hidden rounded-md bg-white"
+                  >
+                    <img
+                      src={image.url}
+                      alt={image.alt}
+                      className="aspect-square w-full object-contain"
+                    />
+                    <figcaption className="px-2 py-2 text-xs font-black uppercase tracking-normal text-emerald-900">
+                      {index === 0 ? "Main" : `Additional ${index}`}
+                    </figcaption>
+                    {index > 0 && (
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setRetainedImages((images) =>
+                            images.filter((item) => item.path !== image.path)
+                          )
+                        }
+                        className="absolute right-2 top-2 inline-flex h-9 w-9 items-center justify-center rounded-md bg-white text-red-700 shadow-sm ring-1 ring-red-100 hover:bg-red-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600"
+                        aria-label={`Remove ${image.alt}`}
+                        title="Remove image"
+                      >
+                        <X size={17} aria-hidden />
+                      </button>
+                    )}
+                  </figure>
+                ))}
+              </div>
+            </div>
+          )}
+
           <div className="grid gap-5 sm:grid-cols-2">
             <label className={labelClass}>
-              Main Product Image
+              {editingProduct
+                ? "Replace Main Image (Optional)"
+                : "Main Product Image"}
               <input
                 type="file"
                 accept="image/*"
-                required
+                required={!editingProduct || retainedImages.length === 0}
                 onChange={(event) =>
                   setMainImageFile(event.target.files?.[0] || null)
                 }
                 className="min-w-0 rounded-md border border-dashed border-emerald-300 bg-white px-3 py-4 text-sm font-semibold text-slate-950 file:mr-3 file:rounded-md file:border-0 file:bg-emerald-700 file:px-4 file:py-2 file:text-sm file:font-bold file:text-white"
               />
               <span className="text-xs font-bold normal-case tracking-normal text-slate-600">
-                Used on product cards. Up to {maxProductImageMb} MB.
+                {editingProduct
+                  ? `Leave empty to keep the current main image. Up to ${maxProductImageMb} MB.`
+                  : `Used on product cards. Up to ${maxProductImageMb} MB.`}
               </span>
             </label>
 
@@ -305,14 +453,39 @@ export function AdminProductManager() {
             </div>
           )}
 
-          <button
-            type="submit"
-            disabled={saving}
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-md bg-emerald-700 px-6 text-sm font-black uppercase tracking-normal text-white hover:bg-emerald-800 disabled:cursor-not-allowed disabled:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
+          <div
+            className={
+              editingProduct ? "grid gap-3 sm:grid-cols-2" : "grid gap-3"
+            }
           >
-            <Plus size={18} />
-            {saving ? "Saving" : "Add Product"}
-          </button>
+            <button
+              type="submit"
+              disabled={saving}
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-md bg-emerald-700 px-6 text-sm font-black uppercase tracking-normal text-white hover:bg-emerald-800 disabled:cursor-not-allowed disabled:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
+            >
+              {editingProduct ? (
+                <Pencil size={18} aria-hidden />
+              ) : (
+                <Plus size={18} aria-hidden />
+              )}
+              {saving
+                ? "Saving"
+                : editingProduct
+                  ? "Save Changes"
+                  : "Add Product"}
+            </button>
+            {editingProduct && (
+              <button
+                type="button"
+                onClick={handleCancelEdit}
+                disabled={saving}
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-md border border-emerald-700 px-6 text-sm font-black uppercase tracking-normal text-emerald-900 hover:bg-white disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
+              >
+                <X size={18} aria-hidden />
+                Cancel
+              </button>
+            )}
+          </div>
 
           {status && (
             <p className="text-sm font-bold text-emerald-900">{status}</p>
@@ -341,14 +514,25 @@ export function AdminProductManager() {
                 key={product.id}
                 product={product}
                 actions={
-                  <button
-                    type="button"
-                    onClick={() => handleDelete(product.id)}
-                    className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-red-200 px-4 text-sm font-bold uppercase tracking-normal text-red-700 hover:bg-red-50"
-                  >
-                    <Trash2 size={17} />
-                    Delete
-                  </button>
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => handleEdit(product)}
+                      className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-emerald-700 px-4 text-sm font-bold uppercase tracking-normal text-emerald-800 hover:bg-emerald-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
+                    >
+                      <Pencil size={17} aria-hidden />
+                      Edit
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleDelete(product)}
+                      disabled={deletingId === product.id}
+                      className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-red-200 px-4 text-sm font-bold uppercase tracking-normal text-red-700 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2"
+                    >
+                      <Trash2 size={17} aria-hidden />
+                      {deletingId === product.id ? "Deleting" : "Delete"}
+                    </button>
+                  </div>
                 }
               />
             ))}

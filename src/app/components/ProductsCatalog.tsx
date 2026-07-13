@@ -2,14 +2,18 @@
 
 import { useMemo, useState } from "react";
 import { PackagePlus } from "lucide-react";
-import { type ProductKind } from "../product-data";
+import { type Product, type ProductKind } from "../product-data";
 import { ProductCard } from "./ProductCard";
 import { useProducts } from "./useProducts";
 
 type FilterKind = "all" | ProductKind;
 
-export function ProductsCatalog() {
-  const { loaded, products } = useProducts();
+type ProductsCatalogProps = {
+  initialProducts?: Product[];
+};
+
+export function ProductsCatalog({ initialProducts }: ProductsCatalogProps) {
+  const { loaded, products } = useProducts(initialProducts);
   const [filter, setFilter] = useState<FilterKind>("all");
 
   const filteredProducts = useMemo(() => {

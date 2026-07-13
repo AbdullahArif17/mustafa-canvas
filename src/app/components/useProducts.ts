@@ -105,10 +105,15 @@ async function readRemoteProducts(): Promise<{
   };
 }
 
-export function useProducts() {
-  const [products, setProducts] = useState<Product[]>(defaultProducts);
-  const [loaded, setLoaded] = useState(false);
-  const [mode, setMode] = useState<ProductMode>("local");
+export function useProducts(initialProducts?: Product[]) {
+  const hasInitialProducts = initialProducts !== undefined;
+  const [products, setProducts] = useState<Product[]>(
+    initialProducts || defaultProducts
+  );
+  const [loaded, setLoaded] = useState(hasInitialProducts);
+  const [mode, setMode] = useState<ProductMode>(
+    hasInitialProducts ? "supabase" : "local"
+  );
   const [error, setError] = useState("");
 
   const sync = useCallback(async () => {
@@ -188,6 +193,61 @@ export function useProducts() {
     [mode, sync]
   );
 
+  const updateProduct = useCallback(
+    async (
+      productId: string,
+      product: ProductInput
+    ): Promise<MutationResult> => {
+      if (mode === "supabase") {
+        const response = await fetch(`/api/products/${productId}`, {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(product),
+        });
+        const payload = (await response.json().catch(() => ({}))) as {
+          error?: string;
+        };
+
+        if (!response.ok) {
+          return {
+            ok: false,
+            message: payload.error || "Could not update product.",
+          };
+        }
+
+        await sync();
+        return { ok: true };
+      }
+
+      const storedProducts = readProducts();
+      const existingProduct = storedProducts.find(
+        (item) => item.id === productId
+      );
+
+      if (!existingProduct) {
+        return { ok: false, message: "Product not found." };
+      }
+
+      const nextProducts = storedProducts.map((item) =>
+        item.id === productId
+          ? {
+              ...item,
+              ...product,
+              slug: item.slug,
+              images: product.images || item.images,
+            }
+          : item
+      );
+
+      writeProducts(nextProducts);
+      setProducts(nextProducts);
+      return { ok: true };
+    },
+    [mode, sync]
+  );
+
   const deleteProduct = useCallback(
     async (productId: string): Promise<MutationResult> => {
       if (mode === "supabase") {
@@ -226,6 +286,7 @@ export function useProducts() {
     products: sortedProducts,
     reloadProducts: sync,
     addProduct,
+    updateProduct,
     deleteProduct,
   };
 }

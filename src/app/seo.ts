@@ -1,9 +1,9 @@
 export const businessName = "Mustafa Canvas";
 export const businessTagline = "Shade Net & Canvas Solutions";
 export const seoTitle =
-  "Mustafa Canvas | Shade Net & Canvas Solutions Karachi";
+  "Canvas, Tarpaulin & Sun Shade Nets Karachi | Mustafa Canvas";
 export const seoDescription =
-  "Mustafa Canvas supplies shade nets, waterproof canvas cloth, tarpaulin, PVC cloth, tents, supply bags and tool bags in Karachi, Pakistan.";
+  "Mustafa Canvas supplies canvas cloth, waterproof tarpaulin, PVC cloth, sun shade nets and construction netting in Karachi, Pakistan.";
 
 const configuredSiteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://mustafa-canvas.vercel.app/";
@@ -56,13 +56,19 @@ export const productNames = [
 
 export const seoKeywords = [
   "Mustafa Canvas",
-  "shade net Karachi",
-  "canvas solutions Karachi",
+  "canvas Karachi",
+  "canvas cloth Karachi",
+  "waterproof canvas Karachi",
   "tarpaulin Karachi",
+  "tarpaulin sheet Karachi",
+  "sun shade net Karachi",
+  "green shade net Karachi",
+  "shade net supplier Karachi",
   "PVC cloth Karachi",
-  "waterproof canvas cloth",
-  "construction netting",
-  "nursery netting",
-  "school parking shade",
-  "swimming pool shade",
+  "construction netting Karachi",
+  "nursery shade net Karachi",
+  "school parking shade Karachi",
 ];
+
+export const googleSiteVerification =
+  process.env.GOOGLE_SITE_VERIFICATION?.trim() || undefined;

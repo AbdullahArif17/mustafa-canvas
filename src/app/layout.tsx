@@ -5,6 +5,7 @@ import { Footer } from './components/Footer';
 import {
   businessName,
   businessTagline,
+  googleSiteVerification,
   ogImagePath,
   productNames,
   seoDescription,
@@ -22,9 +23,6 @@ export const metadata: Metadata = {
   },
   description: seoDescription,
   keywords: seoKeywords,
-  alternates: {
-    canonical: '/',
-  },
   category: 'business',
   classification: productNames.join(', '),
   authors: [{ name: businessName }],
@@ -77,6 +75,9 @@ export const metadata: Metadata = {
     email: true,
     address: true,
   },
+  verification: googleSiteVerification
+    ? { google: googleSiteVerification }
+    : undefined,
   other: {
     'geo.region': 'PK-SD',
     'geo.placename': 'Karachi',

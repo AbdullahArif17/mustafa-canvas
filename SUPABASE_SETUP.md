@@ -77,14 +77,29 @@ NEXT_PUBLIC_SUPABASE_URL="https://your-project.supabase.co"
 NEXT_PUBLIC_SUPABASE_ANON_KEY="your-anon-key"
 SUPABASE_SERVICE_ROLE_KEY="your-service-role-key"
 ADMIN_PASSWORD="choose-a-strong-admin-password"
+CRON_SECRET="use-a-random-secret-with-at-least-16-characters"
 ```
 
-4. Restart the dev server after adding env vars.
+4. Add the same `CRON_SECRET` to the Production environment in Vercel and
+redeploy. Vercel automatically sends it as a Bearer token when invoking the
+configured cron route.
 
-The site uses server API routes for product writes/deletes, so the service role key stays on the server. Product image files upload through Supabase signed upload URLs and are capped at 50 MB by both the app and the storage bucket.
+5. Restart the dev server after adding env vars.
+
+The site uses server API routes for product writes, updates, and deletes, so the service role key stays on the server. Product image files upload through Supabase signed upload URLs and are capped at 50 MB by both the app and the storage bucket.
 
 The first entry in each product's `images` array is its main image and appears on public product cards. Any remaining entries are optional gallery images shown only on that product's details page.
 
 The `/admin` route uses `ADMIN_PASSWORD` to create a signed, HTTP-only session that expires after 30 minutes. The password is never stored in browser storage or sent with product requests.
+
+The Vercel cron configuration runs `/api/cron/supabase-health` once per day at
+08:00 UTC. The protected route makes one minimal, read-only query so the Free
+Supabase project receives regular database activity. It does not expose product
+data and cannot be called without `CRON_SECRET`.
+
+Regular activity reduces the chance of a Free project being classified as
+inactive, but Supabase only guarantees that paid projects will not be paused.
+See the [Supabase pausing documentation](https://supabase.com/docs/guides/platform/free-project-pausing)
+and [Vercel cron documentation](https://vercel.com/docs/cron-jobs/manage-cron-jobs).
 
 Never expose `SUPABASE_SERVICE_ROLE_KEY` in browser code or public client variables.

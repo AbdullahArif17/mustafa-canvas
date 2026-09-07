@@ -1,0 +1,6 @@
+# Local dev & attachments
+.codex-remote-attachments/
+.agents/
+    
+# Local Supabase migrations (production connects via remote Supabase URL)
+supabase/

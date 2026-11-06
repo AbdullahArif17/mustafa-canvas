@@ -1,4 +1,4 @@
-export const imageQuality = 100;
+export const imageQuality = 85;
 
 export const siteLogo = {
   src: "/mustafa-canvas-logo.png",

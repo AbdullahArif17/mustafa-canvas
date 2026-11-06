@@ -2,16 +2,20 @@ import type { Metadata } from "next";
 import Image, { getImageProps } from "next/image";
 import Link from "next/link";
 import {
+  ArrowRight,
   BriefcaseBusiness,
+  Building2,
   CheckCircle2,
   Hammer,
   Leaf,
+  Layers,
   ShieldCheck,
   Sun,
   Waves,
 } from "lucide-react";
 import { ContactSection } from "./components/ContactSection";
 import { Header } from "./components/Header";
+import { HeroSection } from "./components/HeroSection";
 import { ProductShowcase } from "./components/ProductShowcase";
 import {
   businessEmail,
@@ -85,11 +89,31 @@ const imagePaths = {
 };
 
 const solutionItems = [
-  { label: "Sun Shade Net", icon: Sun },
-  { label: "Construction Netting", icon: Hammer },
-  { label: "Nursery Netting", icon: Leaf },
-  { label: "School & Parking Shade", icon: BriefcaseBusiness },
-  { label: "Swimming Pool Shade", icon: Waves },
+  {
+    label: "Sun Shade Net",
+    icon: Sun,
+    description: "High-density UV-treated shade fabric reducing heat up to 90% for outdoor spaces.",
+  },
+  {
+    label: "Construction Netting",
+    icon: Hammer,
+    description: "Heavy-duty safety debris nets preventing hazards on building and scaffolding sites.",
+  },
+  {
+    label: "Nursery Netting",
+    icon: Leaf,
+    description: "Optimized sunlight diffusion and moisture retention for nurseries and crops.",
+  },
+  {
+    label: "School & Parking Shade",
+    icon: BriefcaseBusiness,
+    description: "Durable tensile shade structures protecting parking lots, school grounds, and walkways.",
+  },
+  {
+    label: "Swimming Pool Shade",
+    icon: Waves,
+    description: "Cool weather-resistant coverage shielding pool areas and patio spaces from harsh glare.",
+  },
 ];
 
 const productItems = [
@@ -234,202 +258,191 @@ export default function Home() {
         imageQuality={imageQuality}
       />
 
-      <section id="home" className="bg-white">
-        <div className="mx-auto max-w-7xl pt-3 sm:px-6 sm:pt-7 lg:px-8">
-          <div>
-            <ResponsiveImage
-              mobile={imagePaths.brandSheetMobile}
-              desktop={imagePaths.brandSheet}
-              sizes="(max-width: 639px) 100vw, (max-width: 1280px) 100vw, 1280px"
-              className="h-auto w-full sm:rounded-md"
-              fetchPriority="high"
-            />
-          </div>
-        </div>
+      {/* Hero Section with Framer Motion animations & micro-interactions */}
+      <HeroSection
+        brandSheet={imagePaths.brandSheet}
+        brandSheetMobile={imagePaths.brandSheetMobile}
+        sunShadeScene={imagePaths.sunShadeScene}
+        imageQuality={imageQuality}
+      />
 
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[0.86fr_1.14fr] lg:items-center lg:px-8">
-          <div>
-            <p className="mb-3 text-sm font-black uppercase tracking-normal text-emerald-700">
-              Shade Net & Canvas Solutions
-            </p>
-            <h1 className="max-w-2xl text-4xl font-black uppercase tracking-normal text-slate-950 sm:text-5xl lg:text-6xl">
-              Mustafa Canvas
-            </h1>
-            <p className="mt-5 max-w-xl text-xl font-bold leading-tight text-emerald-800 sm:text-2xl">
-              Quality Shade Nets, Canvas, Tarpaulin & PVC Solutions
-            </p>
-            <p className="mt-4 max-w-xl text-lg font-semibold text-slate-700">
-              Built for Strength. Made to Last.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="#products"
-                className="inline-flex h-12 items-center justify-center rounded-md bg-emerald-700 px-6 text-sm font-bold uppercase tracking-normal text-white transition hover:bg-emerald-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
-              >
-                Products
-              </Link>
-              <Link
-                href="#contact"
-                className="inline-flex h-12 items-center justify-center rounded-md border border-emerald-700 px-6 text-sm font-bold uppercase tracking-normal text-emerald-800 transition hover:bg-emerald-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
-              >
-                Contact
-              </Link>
+      {/* Solutions Section */}
+      <section id="solutions" className="relative overflow-hidden bg-gradient-to-b from-emerald-950 to-emerald-900 py-16 text-white sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 max-w-2xl">
+            <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-900/90 px-3.5 py-1 text-xs font-black uppercase tracking-wider text-emerald-300 ring-1 ring-emerald-700/60">
+              Applications
             </div>
-          </div>
-
-          <figure className="rounded-md bg-emerald-50 p-3 sm:p-4">
-            <Image
-              src={imagePaths.sunShadeScene.src}
-              alt={imagePaths.sunShadeScene.alt}
-              width={imagePaths.sunShadeScene.width}
-              height={imagePaths.sunShadeScene.height}
-              className="h-auto w-full rounded-sm"
-              sizes="(max-width: 1024px) 100vw, 56vw"
-              quality={imageQuality}
-            />
-            <figcaption className="mt-3 text-sm font-black uppercase tracking-normal text-emerald-900">
-              Sun Shade Installation
-            </figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section id="solutions" className="bg-emerald-950 text-white">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <div className="mb-8">
-            <p className="text-sm font-black uppercase tracking-normal text-emerald-200">
-              Solutions
-            </p>
-            <h2 className="mt-2 text-3xl font-black uppercase tracking-normal sm:text-4xl">
-              Shade Net & Canvas Solutions
+            <h2 className="mt-3 text-3xl font-black uppercase tracking-tight sm:text-4xl">
+              Specialized Solutions &amp; Netting
             </h2>
+            <p className="mt-3 text-sm font-medium text-emerald-200">
+              Engineered fabric solutions tailored for agriculture, construction, commercial facilities, and residential spaces.
+            </p>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-            {solutionItems.map(({ label, icon: Icon }) => (
-              <article key={label} className="rounded-md bg-emerald-900 p-5">
-                <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-md bg-white text-emerald-800">
-                  <Icon size={22} aria-hidden />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            {solutionItems.map(({ label, icon: Icon, description }) => (
+              <article
+                key={label}
+                className="group relative flex flex-col justify-between rounded-xl bg-emerald-900/70 p-5 ring-1 ring-emerald-800 transition-all duration-300 hover:-translate-y-1 hover:bg-emerald-850 hover:ring-emerald-500/50 hover:shadow-xl hover:shadow-emerald-950/20"
+              >
+                <div>
+                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white text-emerald-800 shadow-sm transition-transform duration-300 group-hover:scale-110">
+                    <Icon size={24} aria-hidden />
+                  </div>
+                  <h3 className="text-base font-black uppercase tracking-tight text-white">
+                    {label}
+                  </h3>
+                  <p className="mt-2 text-xs font-medium leading-relaxed text-emerald-200/90">
+                    {description}
+                  </p>
                 </div>
-                <h3 className="text-lg font-black uppercase tracking-normal">
-                  {label}
-                </h3>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="products" className="bg-white">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[0.86fr_1.14fr] lg:items-center lg:px-8">
+      {/* Products Overview Section */}
+      <section id="products" className="bg-white py-16 sm:py-20">
+        <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.88fr_1.12fr] lg:items-center lg:px-8">
           <div>
-            <p className="text-sm font-black uppercase tracking-normal text-emerald-700">
-              Products
-            </p>
-            <h2 className="mt-2 text-3xl font-black uppercase tracking-normal text-slate-950 sm:text-4xl">
-              Canvas, Tarpaulin & PVC Solutions
+            <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100/80 px-3.5 py-1 text-xs font-black uppercase tracking-wider text-emerald-800 ring-1 ring-emerald-300/60">
+              Core Products
+            </div>
+            <h2 className="mt-3 text-3xl font-black uppercase tracking-tight text-slate-950 sm:text-4xl">
+              Canvas, Tarpaulin &amp; PVC Solutions
             </h2>
-            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+            <p className="mt-4 text-base font-semibold leading-relaxed text-slate-600">
+              From waterproof canvas sheets to heavy-duty vinyl tarpaulins and custom stitched tool bags, our products are crafted to withstand extreme weather conditions.
+            </p>
+
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
               {productItems.map((item) => (
                 <div
                   key={item}
-                  className="flex items-center gap-3 rounded-md bg-emerald-50 px-4 py-3"
+                  className="flex items-center gap-3 rounded-xl bg-emerald-50/70 px-4 py-3.5 ring-1 ring-emerald-100/80 transition-all hover:bg-emerald-100/60"
                 >
                   <CheckCircle2
-                    size={20}
+                    size={19}
                     className="shrink-0 text-emerald-700"
                     aria-hidden
                   />
-                  <span className="font-bold uppercase tracking-normal text-slate-900">
+                  <span className="text-xs font-black uppercase tracking-wider text-slate-900">
                     {item}
                   </span>
                 </div>
               ))}
             </div>
+
+            <div className="mt-8">
+              <Link
+                href="/products"
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-emerald-700 px-6 text-xs font-black uppercase tracking-wider text-white shadow-sm transition hover:bg-emerald-800 active:scale-95"
+              >
+                <span>Browse Full Product Range</span>
+                <ArrowRight size={15} aria-hidden />
+              </Link>
+            </div>
           </div>
 
-          <figure className="-mx-4 bg-white sm:mx-0 sm:rounded-md">
+          <figure className="overflow-hidden rounded-2xl bg-emerald-50/40 p-3 ring-1 ring-emerald-100 sm:p-4">
             <ResponsiveImage
               mobile={imagePaths.productRangeMobile}
               desktop={imagePaths.productRange}
               sizes="(max-width: 639px) 100vw, (max-width: 1024px) 100vw, 56vw"
-              className="h-auto w-full sm:rounded-md"
+              className="h-auto w-full rounded-xl"
             />
           </figure>
         </div>
       </section>
 
+      {/* Dynamic Product Showcase with Slideshow & Skeletons */}
       <ProductShowcase />
 
-      <section aria-labelledby="karachi-products-heading" className="bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <div className="max-w-4xl">
-            <p className="text-sm font-black uppercase tracking-normal text-emerald-700">
-              Karachi Product Range
-            </p>
+      {/* Karachi Product Range Section */}
+      <section aria-labelledby="karachi-products-heading" className="bg-white py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100/80 px-3.5 py-1 text-xs font-black uppercase tracking-wider text-emerald-800 ring-1 ring-emerald-300/60">
+              Karachi Market
+            </div>
             <h2
               id="karachi-products-heading"
-              className="mt-2 text-3xl font-black uppercase tracking-normal text-slate-950 sm:text-4xl"
+              className="mt-3 text-3xl font-black uppercase tracking-tight text-slate-950 sm:text-4xl"
             >
-              Canvas, Tarpaulin & Sun Shade Nets in Karachi
+              Canvas, Tarpaulin &amp; Sun Shade Nets in Karachi
             </h2>
-            <p className="mt-5 text-base font-semibold leading-7 text-slate-700 sm:text-lg">
+            <p className="mt-4 text-base font-semibold leading-relaxed text-slate-600 sm:text-lg">
               Mustafa Canvas supplies canvas cloth, tarpaulin, PVC cloth, sun
-              shade nets and netting products from its shop in Market Quarter,
-              Karachi. The range covers shade, construction, nursery and canvas
-              requirements shown throughout this site.
+              shade nets, and netting products from its shop in Market Quarter,
+              Karachi. We cater to wholesale commercial orders, agricultural supply, and individual retail needs.
             </p>
           </div>
 
-          <div className="mt-10 grid gap-8 border-y border-emerald-100 py-8 md:grid-cols-3">
-            <article>
-              <h3 className="text-xl font-black uppercase tracking-normal text-emerald-900">
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            <article className="rounded-xl border border-emerald-100 bg-white p-6 shadow-sm transition-all hover:border-emerald-300 hover:shadow-md">
+              <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700">
+                <Layers size={22} aria-hidden />
+              </div>
+              <h3 className="text-lg font-black uppercase tracking-tight text-emerald-950">
                 Canvas Cloth
               </h3>
-              <p className="mt-3 font-semibold leading-7 text-slate-700">
-                Waterproof canvas cloth, tents, supply bags and tool bags are
-                included in the Mustafa Canvas product range.
+              <p className="mt-2 text-xs font-medium leading-relaxed text-slate-600">
+                Waterproof canvas cloth, tents, supply bags, and durable tool bags engineered for maximum tensile strength and longevity.
               </p>
             </article>
-            <article>
-              <h3 className="text-xl font-black uppercase tracking-normal text-emerald-900">
-                Tarpaulin & PVC Cloth
+
+            <article className="rounded-xl border border-emerald-100 bg-white p-6 shadow-sm transition-all hover:border-emerald-300 hover:shadow-md">
+              <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700">
+                <ShieldCheck size={22} aria-hidden />
+              </div>
+              <h3 className="text-lg font-black uppercase tracking-tight text-emerald-950">
+                Tarpaulin &amp; PVC Cloth
               </h3>
-              <p className="mt-3 font-semibold leading-7 text-slate-700">
-                Tarpaulin and PVC cloth are available alongside the canvas
-                products listed in the catalog.
+              <p className="mt-2 text-xs font-medium leading-relaxed text-slate-600">
+                Heavy-duty tarpaulin sheets and waterproof PVC coated fabrics designed to protect industrial machinery, transport cargo, and raw materials.
               </p>
             </article>
-            <article>
-              <h3 className="text-xl font-black uppercase tracking-normal text-emerald-900">
+
+            <article className="rounded-xl border border-emerald-100 bg-white p-6 shadow-sm transition-all hover:border-emerald-300 hover:shadow-md">
+              <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700">
+                <Sun size={22} aria-hidden />
+              </div>
+              <h3 className="text-lg font-black uppercase tracking-tight text-emerald-950">
                 Sun Shade Nets
               </h3>
-              <p className="mt-3 font-semibold leading-7 text-slate-700">
-                Sun shade net, nursery netting, construction netting, school
-                and parking shade, and swimming pool shade solutions are shown
-                in the range.
+              <p className="mt-2 text-xs font-medium leading-relaxed text-slate-600">
+                Sun shade net, nursery netting, construction safety netting, parking lot shade, and swimming pool shade solutions tailored to custom sizes.
               </p>
             </article>
           </div>
 
-          <Link
-            href="/products"
-            className="mt-8 inline-flex h-12 items-center justify-center rounded-md bg-emerald-700 px-6 text-sm font-bold uppercase tracking-normal text-white transition hover:bg-emerald-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
-          >
-            Browse All Products
-          </Link>
+          <div className="mt-8">
+            <Link
+              href="/products"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-emerald-700 px-6 text-xs font-black uppercase tracking-wider text-white shadow-sm transition hover:bg-emerald-800 active:scale-95"
+            >
+              <span>Browse All Products</span>
+              <ArrowRight size={15} aria-hidden />
+            </Link>
+          </div>
         </div>
       </section>
 
-      <section className="bg-emerald-50">
-        <div className="mx-auto grid max-w-7xl gap-3 px-4 py-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
+      {/* Quality Guarantees Banner */}
+      <section className="bg-emerald-50/70 border-y border-emerald-100/80 py-10">
+        <div className="mx-auto grid max-w-7xl gap-4 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
           {qualityItems.map((item) => (
             <div
               key={item}
-              className="flex items-center gap-3 rounded-md bg-white px-4 py-4"
+              className="flex items-center gap-3.5 rounded-xl bg-white p-4 shadow-sm ring-1 ring-emerald-200/50"
             >
-              <ShieldCheck size={22} className="shrink-0 text-emerald-700" />
-              <span className="font-black uppercase tracking-normal text-slate-950">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700">
+                <ShieldCheck size={20} aria-hidden />
+              </div>
+              <span className="text-xs font-black uppercase tracking-wider text-slate-950">
                 {item}
               </span>
             </div>
@@ -437,33 +450,39 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="quality" className="bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <div className="mb-8">
-            <p className="text-sm font-black uppercase tracking-normal text-emerald-700">
-              Quality
-            </p>
-            <h2 className="mt-2 text-3xl font-black uppercase tracking-normal text-slate-950 sm:text-4xl">
+      {/* Quality Gallery Section */}
+      <section id="quality" className="bg-white py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 max-w-2xl">
+            <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100/80 px-3.5 py-1 text-xs font-black uppercase tracking-wider text-emerald-800 ring-1 ring-emerald-300/60">
+              Manufacturing Standards
+            </div>
+            <h2 className="mt-3 text-3xl font-black uppercase tracking-tight text-slate-950 sm:text-4xl">
               Built for Strength. Made to Last.
             </h2>
+            <p className="mt-3 text-sm font-medium text-slate-600">
+              High-density polymers, precision stitching, and reinforced edges ensure peak performance and extreme tear resistance.
+            </p>
           </div>
 
-          <div className="grid items-start gap-5 lg:grid-cols-2">
+          <div className="grid items-start gap-6 lg:grid-cols-2">
             {galleryImages.map((image) => (
               <figure
                 key={image.src}
-                className="self-start rounded-md bg-emerald-50 p-3"
+                className="group relative self-start overflow-hidden rounded-2xl bg-emerald-50/70 p-3 ring-1 ring-emerald-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg sm:p-4"
               >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  width={image.width}
-                  height={image.height}
-                  className="h-auto w-full rounded-sm"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  quality={imageQuality}
-                />
-                <figcaption className="mt-3 text-sm font-black uppercase tracking-normal text-emerald-900">
+                <div className="overflow-hidden rounded-xl bg-white">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={image.width}
+                    height={image.height}
+                    className="h-auto w-full rounded-xl transition-transform duration-500 ease-out group-hover:scale-102"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    quality={imageQuality}
+                  />
+                </div>
+                <figcaption className="mt-3.5 px-1 text-xs font-black uppercase tracking-wider text-emerald-950">
                   {image.label}
                 </figcaption>
               </figure>
@@ -472,8 +491,8 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Contact Section */}
       <ContactSection />
-
     </main>
   );
 }

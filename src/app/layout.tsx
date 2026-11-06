@@ -1,6 +1,7 @@
 // app/layout.tsx
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
+import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { Footer } from './components/Footer';
 import {
   businessName,
@@ -101,6 +102,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="flex min-h-screen flex-col">
         <div className="flex flex-1 flex-col">{children}</div>
+        <FloatingWhatsApp />
         <Footer />
       </body>
     </html>

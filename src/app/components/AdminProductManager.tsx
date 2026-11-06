@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
-import { Pencil, Plus, Trash2, X } from "lucide-react";
+import { ArrowRight, Pencil, Plus, Trash2, X } from "lucide-react";
 import {
   maxProductImageMb,
   type Product,
@@ -10,12 +10,13 @@ import {
   type ProductKind,
 } from "../product-data";
 import { ProductCard } from "./ProductCard";
+import { ProductCardSkeleton } from "./ProductCardSkeleton";
 import { uploadProductImages } from "./uploadProductImages";
 import { useProducts } from "./useProducts";
 
 const fieldClass =
-  "h-12 rounded-md border border-emerald-200 bg-white px-3 text-sm font-semibold text-slate-950 outline-none transition focus:border-emerald-700 focus:ring-2 focus:ring-emerald-100";
-const labelClass = "grid gap-2 text-sm font-black uppercase tracking-normal";
+  "h-12 rounded-lg border border-emerald-200 bg-white px-3.5 text-xs font-semibold text-slate-950 outline-none transition focus:border-emerald-700 focus:ring-2 focus:ring-emerald-100";
+const labelClass = "grid gap-2 text-xs font-black uppercase tracking-wider text-slate-800";
 
 function formText(formData: FormData, key: string) {
   return String(formData.get(key) || "").trim();
@@ -198,38 +199,46 @@ export function AdminProductManager() {
   };
 
   return (
-    <section className="bg-white">
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+    <section className="bg-white py-12">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.88fr_1.12fr] lg:px-8">
         <div>
-          <p className="text-sm font-black uppercase tracking-normal text-emerald-700">
-            Admin Portal
-          </p>
-          <h1 className="mt-2 text-4xl font-black uppercase tracking-normal text-slate-950 sm:text-5xl">
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100/80 px-3 py-1 text-xs font-black uppercase tracking-wider text-emerald-800 ring-1 ring-emerald-300/60">
+            Control Panel
+          </div>
+          <h1 className="mt-3 text-4xl font-black uppercase tracking-tight text-slate-950 sm:text-5xl">
             {editingProduct ? "Edit Product" : "Add Products"}
           </h1>
-          <p className="mt-4 max-w-xl text-sm font-semibold leading-6 text-slate-700">
+          <p className="mt-3 max-w-xl text-sm font-semibold leading-relaxed text-slate-600">
             {editingProduct
-              ? `Update ${editingProduct.title} and manage its product images.`
-              : "Net, plastic, and other product records for the Mustafa Canvas catalog."}
+              ? `Update specifications and manage photo assets for ${editingProduct.title}.`
+              : "Create net, plastic, tarpaulin, or canvas entries for the live customer catalog."}
           </p>
-          <div className="mt-5 inline-flex rounded-md bg-emerald-50 px-3 py-2 text-xs font-black uppercase tracking-normal text-emerald-900">
-            {mode === "supabase" ? "Supabase Connected" : "Local Browser Mode"}
+          <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3.5 py-1 text-xs font-black uppercase tracking-wider text-emerald-900 ring-1 ring-emerald-200">
+            <span
+              className={`h-2 w-2 rounded-full ${
+                mode === "supabase" ? "bg-emerald-600" : "bg-amber-500"
+              }`}
+            />
+            <span>{mode === "supabase" ? "Supabase Connected" : "Local Browser Storage"}</span>
           </div>
           {error && (
-            <p className="mt-3 text-sm font-bold text-amber-700">{error}</p>
+            <p className="mt-3 rounded-lg bg-amber-50 p-3 text-xs font-bold text-amber-800 ring-1 ring-amber-200">
+              {error}
+            </p>
           )}
-          <div className="mt-6 flex flex-col gap-2 sm:flex-row">
+          <div className="mt-6 flex flex-col gap-2.5 sm:flex-row">
             <Link
               href="/products"
-              className="inline-flex h-11 items-center justify-center rounded-md border border-emerald-700 px-5 text-sm font-bold uppercase tracking-normal text-emerald-800 hover:bg-emerald-50"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-emerald-700/80 bg-white px-5 text-xs font-bold uppercase tracking-wider text-emerald-800 transition hover:bg-emerald-50 active:scale-95"
             >
-              View Products
+              <span>View Products</span>
+              <ArrowRight size={14} />
             </Link>
             <Link
               href="/#catalog"
-              className="inline-flex h-11 items-center justify-center rounded-md bg-emerald-700 px-5 text-sm font-bold uppercase tracking-normal text-white hover:bg-emerald-800"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-emerald-700 px-5 text-xs font-bold uppercase tracking-wider text-white shadow-sm transition hover:bg-emerald-800 active:scale-95"
             >
-              View Slideshow
+              <span>View Slideshow</span>
             </Link>
           </div>
         </div>
@@ -238,7 +247,7 @@ export function AdminProductManager() {
           key={editingProduct?.id || "new-product"}
           ref={formRef}
           onSubmit={handleSubmit}
-          className="grid gap-5 rounded-md bg-emerald-50 p-5"
+          className="grid gap-5 rounded-2xl border border-emerald-100 bg-emerald-50/50 p-6 shadow-sm sm:p-7"
         >
           <label className={labelClass}>
             Product Type
@@ -265,7 +274,7 @@ export function AdminProductManager() {
               />
             </label>
             <label className={labelClass}>
-              Company
+              Company / Brand
               <input
                 name="company"
                 className={fieldClass}
@@ -278,7 +287,7 @@ export function AdminProductManager() {
             Description
             <textarea
               name="description"
-              className="min-h-28 rounded-md border border-emerald-200 bg-white px-3 py-3 text-sm font-semibold text-slate-950 outline-none transition focus:border-emerald-700 focus:ring-2 focus:ring-emerald-100"
+              className="min-h-28 rounded-lg border border-emerald-200 bg-white px-3.5 py-3 text-xs font-semibold text-slate-950 outline-none transition focus:border-emerald-700 focus:ring-2 focus:ring-emerald-100"
               defaultValue={editingProduct?.description || ""}
               required
             />
@@ -286,7 +295,7 @@ export function AdminProductManager() {
 
           <div className="grid gap-5 sm:grid-cols-2">
             <label className={labelClass}>
-              Color
+              Color Tone
               <input
                 name="color"
                 type="text"
@@ -297,7 +306,7 @@ export function AdminProductManager() {
             </label>
 
             <label className={labelClass}>
-              Size
+              Size / Thickness
               <input
                 name="size"
                 className={fieldClass}
@@ -309,7 +318,7 @@ export function AdminProductManager() {
 
           <div className="grid gap-5 sm:grid-cols-3">
             <label className={labelClass}>
-              Length In Feet
+              Length (Feet)
               <input
                 name="lengthFeet"
                 type="number"
@@ -320,7 +329,7 @@ export function AdminProductManager() {
               />
             </label>
             <label className={labelClass}>
-              Width In Feet
+              Width (Feet)
               <input
                 name="widthFeet"
                 type="number"
@@ -335,7 +344,7 @@ export function AdminProductManager() {
               <input
                 name="weight"
                 className={fieldClass}
-                placeholder="Example: 30 kg"
+                placeholder="e.g. 30 kg"
                 defaultValue={editingProduct?.weight || ""}
               />
             </label>
@@ -344,27 +353,26 @@ export function AdminProductManager() {
           {editingProduct && retainedImages.length > 0 && (
             <div className="grid gap-3 border-y border-emerald-200 py-4">
               <div>
-                <p className="text-sm font-black uppercase tracking-normal text-emerald-900">
-                  Current Images
+                <p className="text-xs font-black uppercase tracking-wider text-emerald-900">
+                  Current Photo Assets
                 </p>
-                <p className="mt-1 text-xs font-semibold text-slate-600">
-                  Replace the main image below or remove optional images before
-                  saving.
+                <p className="mt-0.5 text-xs font-semibold text-slate-500">
+                  Replace the main image below or remove secondary shots before saving.
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                 {retainedImages.map((image, index) => (
                   <figure
                     key={image.path}
-                    className="relative overflow-hidden rounded-md bg-white"
+                    className="relative overflow-hidden rounded-xl bg-white p-2 ring-1 ring-emerald-100"
                   >
                     <img
                       src={image.url}
                       alt={image.alt}
-                      className="aspect-square w-full object-contain"
+                      className="aspect-square w-full object-contain rounded-lg"
                     />
-                    <figcaption className="px-2 py-2 text-xs font-black uppercase tracking-normal text-emerald-900">
-                      {index === 0 ? "Main" : `Additional ${index}`}
+                    <figcaption className="mt-2 text-center text-[11px] font-black uppercase tracking-wider text-emerald-900">
+                      {index === 0 ? "Main Cover" : `Photo ${index + 1}`}
                     </figcaption>
                     {index > 0 && (
                       <button
@@ -374,11 +382,11 @@ export function AdminProductManager() {
                             images.filter((item) => item.path !== image.path)
                           )
                         }
-                        className="absolute right-2 top-2 inline-flex h-9 w-9 items-center justify-center rounded-md bg-white text-red-700 shadow-sm ring-1 ring-red-100 hover:bg-red-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600"
+                        className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-white/90 text-red-700 shadow-sm ring-1 ring-red-200 hover:bg-red-50"
                         aria-label={`Remove ${image.alt}`}
                         title="Remove image"
                       >
-                        <X size={17} aria-hidden />
+                        <X size={15} aria-hidden />
                       </button>
                     )}
                   </figure>
@@ -399,17 +407,17 @@ export function AdminProductManager() {
                 onChange={(event) =>
                   setMainImageFile(event.target.files?.[0] || null)
                 }
-                className="min-w-0 rounded-md border border-dashed border-emerald-300 bg-white px-3 py-4 text-sm font-semibold text-slate-950 file:mr-3 file:rounded-md file:border-0 file:bg-emerald-700 file:px-4 file:py-2 file:text-sm file:font-bold file:text-white"
+                className="min-w-0 rounded-lg border border-dashed border-emerald-300 bg-white px-3 py-3.5 text-xs font-semibold text-slate-950 file:mr-3 file:rounded-md file:border-0 file:bg-emerald-700 file:px-3 file:py-1.5 file:text-xs file:font-bold file:text-white"
               />
-              <span className="text-xs font-bold normal-case tracking-normal text-slate-600">
+              <span className="text-[11px] font-semibold text-slate-500">
                 {editingProduct
-                  ? `Leave empty to keep the current main image. Up to ${maxProductImageMb} MB.`
-                  : `Used on product cards. Up to ${maxProductImageMb} MB.`}
+                  ? `Leave empty to keep current main image. Up to ${maxProductImageMb} MB.`
+                  : `Primary card photo. Up to ${maxProductImageMb} MB.`}
               </span>
             </label>
 
             <label className={labelClass}>
-              Additional Images (Optional)
+              Additional Gallery Images (Optional)
               <input
                 type="file"
                 accept="image/*"
@@ -417,33 +425,33 @@ export function AdminProductManager() {
                 onChange={(event) =>
                   setGalleryImageFiles(Array.from(event.target.files || []))
                 }
-                className="min-w-0 rounded-md border border-dashed border-emerald-300 bg-white px-3 py-4 text-sm font-semibold text-slate-950 file:mr-3 file:rounded-md file:border-0 file:bg-emerald-700 file:px-4 file:py-2 file:text-sm file:font-bold file:text-white"
+                className="min-w-0 rounded-lg border border-dashed border-emerald-300 bg-white px-3 py-3.5 text-xs font-semibold text-slate-950 file:mr-3 file:rounded-md file:border-0 file:bg-emerald-700 file:px-3 file:py-1.5 file:text-xs file:font-bold file:text-white"
               />
-              <span className="text-xs font-bold normal-case tracking-normal text-slate-600">
-                Shown only on the product details page.
+              <span className="text-[11px] font-semibold text-slate-500">
+                Shown on the product detail page.
               </span>
             </label>
           </div>
 
           {(mainImageFile || galleryImageFiles.length > 0) && (
-            <div className="grid gap-3 rounded-md bg-white p-3 text-sm font-bold text-slate-700">
+            <div className="grid gap-2.5 rounded-lg bg-white p-3 text-xs font-bold text-slate-700 ring-1 ring-emerald-100">
               {mainImageFile && (
-                <div className="min-w-0">
-                  <span className="text-xs uppercase text-emerald-700">
+                <div className="flex items-center gap-2">
+                  <span className="rounded bg-emerald-100 px-2 py-0.5 text-[10px] uppercase text-emerald-800">
                     Main
                   </span>
-                  <div className="truncate">{mainImageFile.name}</div>
+                  <span className="truncate">{mainImageFile.name}</span>
                 </div>
               )}
               {galleryImageFiles.length > 0 && (
-                <div className="grid min-w-0 gap-1">
-                  <span className="text-xs uppercase text-emerald-700">
-                    Additional
+                <div className="grid gap-1">
+                  <span className="text-[10px] uppercase text-emerald-700">
+                    Gallery ({galleryImageFiles.length} files)
                   </span>
                   {galleryImageFiles.map((file) => (
                     <div
                       key={`${file.name}-${file.size}-${file.lastModified}`}
-                      className="truncate"
+                      className="truncate text-[11px] text-slate-500"
                     >
                       {file.name}
                     </div>
@@ -461,15 +469,15 @@ export function AdminProductManager() {
             <button
               type="submit"
               disabled={saving}
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-md bg-emerald-700 px-6 text-sm font-black uppercase tracking-normal text-white hover:bg-emerald-800 disabled:cursor-not-allowed disabled:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-emerald-700 px-6 text-xs font-black uppercase tracking-wider text-white shadow-sm transition hover:bg-emerald-800 active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
             >
               {editingProduct ? (
-                <Pencil size={18} aria-hidden />
+                <Pencil size={16} aria-hidden />
               ) : (
-                <Plus size={18} aria-hidden />
+                <Plus size={16} aria-hidden />
               )}
               {saving
-                ? "Saving"
+                ? "Saving..."
                 : editingProduct
                   ? "Save Changes"
                   : "Add Product"}
@@ -479,58 +487,64 @@ export function AdminProductManager() {
                 type="button"
                 onClick={handleCancelEdit}
                 disabled={saving}
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-md border border-emerald-700 px-6 text-sm font-black uppercase tracking-normal text-emerald-900 hover:bg-white disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border-2 border-emerald-700 bg-white px-6 text-xs font-black uppercase tracking-wider text-emerald-900 transition hover:bg-emerald-50 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
               >
-                <X size={18} aria-hidden />
-                Cancel
+                <X size={16} aria-hidden />
+                <span>Cancel</span>
               </button>
             )}
           </div>
 
           {status && (
-            <p className="text-sm font-bold text-emerald-900">{status}</p>
+            <div className="rounded-lg bg-emerald-100/70 p-3 text-xs font-bold text-emerald-900 ring-1 ring-emerald-300">
+              {status}
+            </div>
           )}
         </form>
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
-        <div className="mb-6">
-          <p className="text-sm font-black uppercase tracking-normal text-emerald-700">
-            Current Products
-          </p>
-          <h2 className="mt-2 text-3xl font-black uppercase tracking-normal text-slate-950">
-            Catalog
-          </h2>
+      <div className="mx-auto max-w-7xl px-4 pb-14 pt-12 sm:px-6 lg:px-8">
+        <div className="mb-6 flex items-end justify-between border-b border-emerald-100 pb-4">
+          <div>
+            <p className="text-xs font-black uppercase tracking-wider text-emerald-700">
+              Database Records
+            </p>
+            <h2 className="mt-1 text-2xl font-black uppercase tracking-tight text-slate-950">
+              All Catalog Products ({products.length})
+            </h2>
+          </div>
         </div>
 
         {!loaded ? (
-          <div className="rounded-md bg-emerald-50 p-6 text-sm font-bold text-slate-700">
-            Loading products...
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            <ProductCardSkeleton />
+            <ProductCardSkeleton />
+            <ProductCardSkeleton />
           </div>
         ) : products.length ? (
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {products.map((product) => (
               <ProductCard
                 key={product.id}
                 product={product}
                 actions={
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100">
                     <button
                       type="button"
                       onClick={() => handleEdit(product)}
-                      className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-emerald-700 px-4 text-sm font-bold uppercase tracking-normal text-emerald-800 hover:bg-emerald-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
+                      className="inline-flex h-10 items-center justify-center gap-1.5 rounded-lg border border-emerald-700/80 bg-white px-3 text-xs font-bold uppercase tracking-wider text-emerald-800 transition hover:bg-emerald-50 active:scale-95"
                     >
-                      <Pencil size={17} aria-hidden />
-                      Edit
+                      <Pencil size={15} aria-hidden />
+                      <span>Edit</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => handleDelete(product)}
                       disabled={deletingId === product.id}
-                      className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-red-200 px-4 text-sm font-bold uppercase tracking-normal text-red-700 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2"
+                      className="inline-flex h-10 items-center justify-center gap-1.5 rounded-lg border border-red-200 bg-white px-3 text-xs font-bold uppercase tracking-wider text-red-700 transition hover:bg-red-50 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
                     >
-                      <Trash2 size={17} aria-hidden />
-                      {deletingId === product.id ? "Deleting" : "Delete"}
+                      <Trash2 size={15} aria-hidden />
+                      <span>{deletingId === product.id ? "Deleting" : "Delete"}</span>
                     </button>
                   </div>
                 }
@@ -538,8 +552,8 @@ export function AdminProductManager() {
             ))}
           </div>
         ) : (
-          <div className="rounded-md bg-emerald-50 p-6 text-sm font-bold text-slate-700">
-            No products added yet.
+          <div className="rounded-xl border border-dashed border-emerald-200 bg-emerald-50/40 p-8 text-center text-xs font-bold text-slate-600">
+            No products currently in the database. Use the form above to add your first product.
           </div>
         )}
       </div>

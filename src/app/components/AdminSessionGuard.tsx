@@ -33,16 +33,19 @@ export function AdminSessionGuard({
 
   return (
     <>
-      <div className="border-b border-emerald-100 bg-emerald-50">
-        <div className="mx-auto flex max-w-7xl justify-end px-4 py-3 sm:px-6 lg:px-8">
+      <div className="border-b border-emerald-100 bg-emerald-50/70">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2.5 sm:px-6 lg:px-8">
+          <span className="text-xs font-bold text-emerald-800">
+            Authenticated Administrator Session
+          </span>
           <button
             type="button"
             onClick={logout}
             disabled={loggingOut}
-            className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-emerald-700 px-4 text-sm font-bold uppercase tracking-normal text-emerald-900 hover:bg-white disabled:opacity-60"
+            className="inline-flex h-9 items-center justify-center gap-1.5 rounded-lg border border-emerald-700/80 bg-white px-3.5 text-xs font-bold uppercase tracking-wider text-emerald-900 transition hover:bg-emerald-50 active:scale-95 disabled:opacity-60"
           >
-            <LogOut size={17} />
-            {loggingOut ? "Signing Out" : "Sign Out"}
+            <LogOut size={15} />
+            <span>{loggingOut ? "Signing Out..." : "Sign Out"}</span>
           </button>
         </div>
       </div>

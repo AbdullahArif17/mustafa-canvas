@@ -18,87 +18,87 @@ export function ProductCard({ product, actions }: ProductCardProps) {
   const coverImage = productMainImage(product);
 
   return (
-    <article className="group flex flex-col justify-between rounded-xl bg-white p-5 shadow-sm ring-1 ring-emerald-100/90 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-950/5 hover:ring-emerald-300">
+    <article className="group flex flex-col justify-between rounded-2xl bg-white p-5 shadow-sm ring-1 ring-forest-100/90 doppelrand-card transition-all duration-300 hover:-translate-y-1 hover:ring-forest-300">
       <div className="space-y-4">
         {coverImage && (
           <Link
             href={`/products/${product.slug}`}
-            className="group/img relative block aspect-[4/3] w-full overflow-hidden rounded-lg bg-emerald-50/70"
+            className="group/img relative block aspect-[4/3] w-full overflow-hidden rounded-xl bg-canvas-50/80 border border-forest-100/60"
           >
             <img
               src={coverImage.url}
               alt={coverImage.alt}
-              className="h-full w-full object-contain p-2 transition-transform duration-500 ease-out group-hover/img:scale-105"
+              className="h-full w-full object-contain p-3 transition-transform duration-500 ease-out group-hover/img:scale-105"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/10 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover/img:opacity-100" />
+            <div className="absolute inset-0 bg-gradient-to-t from-forest-950/10 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover/img:opacity-100" />
           </Link>
         )}
 
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-black uppercase tracking-wider text-emerald-800 ring-1 ring-emerald-200/60">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" aria-hidden />
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-forest-50 border border-forest-200/60 px-2.5 py-0.5 text-[11px] font-semibold tracking-wide uppercase text-forest-800">
+              <span className="h-1.5 w-1.5 rounded-full bg-forest-600" aria-hidden />
               {productKindLabel(product.kind)}
             </span>
             <Link
               href={`/products/${product.slug}`}
-              className="mt-3 block text-xl font-black uppercase tracking-normal text-slate-950 transition-colors group-hover:text-emerald-700"
+              className="mt-2.5 block font-display text-lg font-bold tracking-tight text-slate-900 transition-colors group-hover:text-forest-700"
             >
               {product.title}
             </Link>
           </div>
           {product.color && (
             <span
-              className="h-8 w-8 shrink-0 rounded-full border-2 border-white ring-1 ring-emerald-300 shadow-sm"
+              className="h-6 w-6 shrink-0 rounded-full border border-white ring-1 ring-forest-300/80 shadow-sm"
               style={{ backgroundColor: product.color }}
-              title={product.color}
+              title={`Color: ${product.color}`}
             />
           )}
         </div>
 
-        <p className="line-clamp-2 text-sm font-semibold leading-relaxed text-slate-600">
+        <p className="line-clamp-2 text-xs font-normal leading-relaxed text-slate-600">
           {product.description}
         </p>
 
-        <dl className="grid gap-2.5 text-xs font-bold text-slate-800">
+        <dl className="grid gap-2 border-t border-forest-100/60 pt-3 text-xs text-slate-700">
           {product.color && (
-            <div className="flex items-center gap-2.5">
-              <Palette size={16} className="shrink-0 text-emerald-700" aria-hidden />
-              <dt className="sr-only">Color</dt>
-              <dd className="font-semibold text-slate-700">{product.color}</dd>
+            <div className="flex items-center gap-2">
+              <Palette size={14} className="shrink-0 text-forest-700" aria-hidden />
+              <dt className="text-slate-400 font-medium">Color:</dt>
+              <dd className="font-semibold text-slate-800">{product.color}</dd>
             </div>
           )}
           {product.company && (
-            <div className="flex items-center gap-2.5">
-              <Building2 size={16} className="shrink-0 text-emerald-700" aria-hidden />
-              <dt className="sr-only">Company</dt>
-              <dd className="font-semibold text-slate-700">{product.company}</dd>
+            <div className="flex items-center gap-2">
+              <Building2 size={14} className="shrink-0 text-forest-700" aria-hidden />
+              <dt className="text-slate-400 font-medium">Origin:</dt>
+              <dd className="font-semibold text-slate-800">{product.company}</dd>
             </div>
           )}
           {(product.lengthFeet || product.widthFeet) && (
-            <div className="flex items-center gap-2.5">
-              <Ruler size={16} className="shrink-0 text-emerald-700" aria-hidden />
-              <dt className="sr-only">Dimensions</dt>
-              <dd className="font-semibold text-slate-700">
-                {product.lengthFeet ? `${product.lengthFeet} ft` : "Any length"}
+            <div className="flex items-center gap-2">
+              <Ruler size={14} className="shrink-0 text-forest-700" aria-hidden />
+              <dt className="text-slate-400 font-medium">Dimensions:</dt>
+              <dd className="font-semibold text-slate-800">
+                {product.lengthFeet ? `${product.lengthFeet} ft` : "Standard"}
                 {" × "}
-                {product.widthFeet ? `${product.widthFeet} ft` : "any width"}
+                {product.widthFeet ? `${product.widthFeet} ft` : "Standard"}
               </dd>
             </div>
           )}
           {product.weight && (
-            <div className="flex items-center gap-2.5">
-              <Weight size={16} className="shrink-0 text-emerald-700" aria-hidden />
-              <dt className="sr-only">Weight</dt>
-              <dd className="font-semibold text-slate-700">{product.weight}</dd>
+            <div className="flex items-center gap-2">
+              <Weight size={14} className="shrink-0 text-forest-700" aria-hidden />
+              <dt className="text-slate-400 font-medium">Weight:</dt>
+              <dd className="font-semibold text-slate-800">{product.weight}</dd>
             </div>
           )}
           {product.size && (
-            <div className="flex items-center gap-2.5">
-              <Package size={16} className="shrink-0 text-emerald-700" aria-hidden />
-              <dt className="sr-only">Size</dt>
-              <dd className="font-semibold text-slate-700">{product.size}</dd>
+            <div className="flex items-center gap-2">
+              <Package size={14} className="shrink-0 text-forest-700" aria-hidden />
+              <dt className="text-slate-400 font-medium">Spec:</dt>
+              <dd className="font-semibold text-slate-800">{product.size}</dd>
             </div>
           )}
         </dl>
@@ -108,7 +108,7 @@ export function ProductCard({ product, actions }: ProductCardProps) {
             {specs.map((spec) => (
               <span
                 key={spec}
-                className="rounded-md bg-emerald-50/80 px-2.5 py-1 text-xs font-bold text-emerald-900 ring-1 ring-emerald-200/50"
+                className="rounded-md bg-canvas-100/80 px-2 py-0.5 text-[11px] font-medium text-forest-900 border border-canvas-200/60"
               >
                 {spec}
               </span>
@@ -117,13 +117,15 @@ export function ProductCard({ product, actions }: ProductCardProps) {
         )}
       </div>
 
-      <div className="mt-5 space-y-2">
+      <div className="mt-5 space-y-2 border-t border-forest-100/60 pt-4">
         <Link
           href={`/products/${product.slug}`}
-          className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg border border-emerald-700/80 bg-white px-4 text-sm font-bold uppercase tracking-wider text-emerald-800 transition-all duration-200 hover:bg-emerald-700 hover:text-white active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
+          className="group/btn inline-flex h-11 w-full items-center justify-between rounded-xl border border-forest-200/90 bg-white px-4 text-xs font-semibold tracking-wide text-forest-900 transition-all duration-200 hover:bg-forest-900 hover:text-white hover:border-forest-900 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 focus-visible:ring-offset-2"
         >
-          <span>View Details</span>
-          <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" aria-hidden />
+          <span>View Specifications</span>
+          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-forest-50 text-forest-800 transition-transform group-hover/btn:bg-white/20 group-hover/btn:text-white group-hover/btn:translate-x-0.5">
+            <ArrowRight size={13} aria-hidden />
+          </span>
         </Link>
 
         {actions}

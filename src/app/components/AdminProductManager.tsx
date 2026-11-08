@@ -15,8 +15,8 @@ import { uploadProductImages } from "./uploadProductImages";
 import { useProducts } from "./useProducts";
 
 const fieldClass =
-  "h-12 rounded-lg border border-emerald-200 bg-white px-3.5 text-xs font-semibold text-slate-950 outline-none transition focus:border-emerald-700 focus:ring-2 focus:ring-emerald-100";
-const labelClass = "grid gap-2 text-xs font-black uppercase tracking-wider text-slate-800";
+  "h-11 rounded-xl border border-forest-200 bg-white px-3.5 text-xs font-medium text-slate-900 outline-none transition focus:border-forest-700 focus:ring-2 focus:ring-forest-100";
+const labelClass = "grid gap-1.5 text-xs font-semibold text-slate-700";
 
 function formText(formData: FormData, key: string) {
   return String(formData.get(key) || "").trim();
@@ -199,44 +199,44 @@ export function AdminProductManager() {
   };
 
   return (
-    <section className="bg-white py-12">
+    <section className="bg-white py-14 sm:py-20">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.88fr_1.12fr] lg:px-8">
         <div>
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100/80 px-3 py-1 text-xs font-black uppercase tracking-wider text-emerald-800 ring-1 ring-emerald-300/60">
+          <div className="inline-flex items-center gap-1.5 rounded-full border border-forest-200/80 bg-forest-50/70 px-3.5 py-1 text-[11px] font-semibold tracking-widest uppercase text-forest-800">
             Control Panel
           </div>
-          <h1 className="mt-3 text-4xl font-black uppercase tracking-tight text-slate-950 sm:text-5xl">
+          <h1 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-forest-950 sm:text-4xl">
             {editingProduct ? "Edit Product" : "Add Products"}
           </h1>
-          <p className="mt-3 max-w-xl text-sm font-semibold leading-relaxed text-slate-600">
+          <p className="mt-3 max-w-xl text-sm font-normal leading-relaxed text-slate-600">
             {editingProduct
               ? `Update specifications and manage photo assets for ${editingProduct.title}.`
               : "Create net, plastic, tarpaulin, or canvas entries for the live customer catalog."}
           </p>
-          <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3.5 py-1 text-xs font-black uppercase tracking-wider text-emerald-900 ring-1 ring-emerald-200">
+          <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-forest-200/80 bg-white px-3.5 py-1 text-xs font-semibold text-forest-900 shadow-sm">
             <span
               className={`h-2 w-2 rounded-full ${
-                mode === "supabase" ? "bg-emerald-600" : "bg-amber-500"
+                mode === "supabase" ? "bg-forest-600" : "bg-brass-500"
               }`}
             />
             <span>{mode === "supabase" ? "Supabase Connected" : "Local Browser Storage"}</span>
           </div>
           {error && (
-            <p className="mt-3 rounded-lg bg-amber-50 p-3 text-xs font-bold text-amber-800 ring-1 ring-amber-200">
+            <p className="mt-3 rounded-xl bg-amber-50 p-3 text-xs font-medium text-amber-800 ring-1 ring-amber-200">
               {error}
             </p>
           )}
           <div className="mt-6 flex flex-col gap-2.5 sm:flex-row">
             <Link
               href="/products"
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-emerald-700/80 bg-white px-5 text-xs font-bold uppercase tracking-wider text-emerald-800 transition hover:bg-emerald-50 active:scale-95"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-forest-200 bg-white px-5 text-xs font-semibold tracking-wide text-forest-900 shadow-sm transition hover:bg-forest-50 active:scale-95"
             >
               <span>View Products</span>
               <ArrowRight size={14} />
             </Link>
             <Link
               href="/#catalog"
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-emerald-700 px-5 text-xs font-bold uppercase tracking-wider text-white shadow-sm transition hover:bg-emerald-800 active:scale-95"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-forest-900 px-5 text-xs font-semibold tracking-wide text-white shadow-sm transition hover:bg-forest-800 active:scale-95"
             >
               <span>View Slideshow</span>
             </Link>
@@ -247,7 +247,7 @@ export function AdminProductManager() {
           key={editingProduct?.id || "new-product"}
           ref={formRef}
           onSubmit={handleSubmit}
-          className="grid gap-5 rounded-2xl border border-emerald-100 bg-emerald-50/50 p-6 shadow-sm sm:p-7"
+          className="grid gap-5 rounded-3xl border border-forest-100 bg-canvas-50/70 p-6 shadow-sm doppelrand-card sm:p-8"
         >
           <label className={labelClass}>
             Product Type
@@ -469,12 +469,12 @@ export function AdminProductManager() {
             <button
               type="submit"
               disabled={saving}
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-emerald-700 px-6 text-xs font-black uppercase tracking-wider text-white shadow-sm transition hover:bg-emerald-800 active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-forest-900 px-6 text-xs font-semibold tracking-wide text-white shadow-sm transition hover:bg-forest-800 active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-slate-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 focus-visible:ring-offset-2"
             >
               {editingProduct ? (
-                <Pencil size={16} aria-hidden />
+                <Pencil size={15} aria-hidden />
               ) : (
-                <Plus size={16} aria-hidden />
+                <Plus size={15} aria-hidden />
               )}
               {saving
                 ? "Saving..."
@@ -487,29 +487,29 @@ export function AdminProductManager() {
                 type="button"
                 onClick={handleCancelEdit}
                 disabled={saving}
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border-2 border-emerald-700 bg-white px-6 text-xs font-black uppercase tracking-wider text-emerald-900 transition hover:bg-emerald-50 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-forest-200 bg-white px-6 text-xs font-semibold tracking-wide text-forest-900 transition hover:bg-forest-50 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
               >
-                <X size={16} aria-hidden />
+                <X size={15} aria-hidden />
                 <span>Cancel</span>
               </button>
             )}
           </div>
 
           {status && (
-            <div className="rounded-lg bg-emerald-100/70 p-3 text-xs font-bold text-emerald-900 ring-1 ring-emerald-300">
+            <div className="rounded-xl bg-forest-50 p-3 text-xs font-medium text-forest-900 ring-1 ring-forest-200">
               {status}
             </div>
           )}
         </form>
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 pb-14 pt-12 sm:px-6 lg:px-8">
-        <div className="mb-6 flex items-end justify-between border-b border-emerald-100 pb-4">
+      <div className="mx-auto max-w-7xl px-4 pb-16 pt-14 sm:px-6 lg:px-8">
+        <div className="mb-8 flex items-end justify-between border-b border-forest-100/80 pb-4">
           <div>
-            <p className="text-xs font-black uppercase tracking-wider text-emerald-700">
+            <p className="inline-flex items-center gap-1.5 rounded-full border border-forest-200/80 bg-forest-50/60 px-3 py-0.5 text-[10px] font-semibold tracking-widest uppercase text-forest-800">
               Database Records
             </p>
-            <h2 className="mt-1 text-2xl font-black uppercase tracking-tight text-slate-950">
+            <h2 className="mt-2 font-display text-2xl font-extrabold tracking-tight text-forest-950 sm:text-3xl">
               All Catalog Products ({products.length})
             </h2>
           </div>
@@ -528,22 +528,22 @@ export function AdminProductManager() {
                 key={product.id}
                 product={product}
                 actions={
-                  <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100">
+                  <div className="grid grid-cols-2 gap-2 pt-2 border-t border-forest-100/60">
                     <button
                       type="button"
                       onClick={() => handleEdit(product)}
-                      className="inline-flex h-10 items-center justify-center gap-1.5 rounded-lg border border-emerald-700/80 bg-white px-3 text-xs font-bold uppercase tracking-wider text-emerald-800 transition hover:bg-emerald-50 active:scale-95"
+                      className="inline-flex h-9 items-center justify-center gap-1.5 rounded-lg border border-forest-200 bg-white px-3 text-xs font-semibold text-forest-900 transition hover:bg-forest-50 active:scale-95"
                     >
-                      <Pencil size={15} aria-hidden />
+                      <Pencil size={13} aria-hidden />
                       <span>Edit</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => handleDelete(product)}
                       disabled={deletingId === product.id}
-                      className="inline-flex h-10 items-center justify-center gap-1.5 rounded-lg border border-red-200 bg-white px-3 text-xs font-bold uppercase tracking-wider text-red-700 transition hover:bg-red-50 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+                      className="inline-flex h-9 items-center justify-center gap-1.5 rounded-lg border border-red-200 bg-white px-3 text-xs font-semibold text-red-700 transition hover:bg-red-50 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
                     >
-                      <Trash2 size={15} aria-hidden />
+                      <Trash2 size={13} aria-hidden />
                       <span>{deletingId === product.id ? "Deleting" : "Delete"}</span>
                     </button>
                   </div>
@@ -552,7 +552,7 @@ export function AdminProductManager() {
             ))}
           </div>
         ) : (
-          <div className="rounded-xl border border-dashed border-emerald-200 bg-emerald-50/40 p-8 text-center text-xs font-bold text-slate-600">
+          <div className="rounded-2xl border border-dashed border-forest-200 bg-canvas-50/50 p-10 text-center text-xs font-medium text-slate-500">
             No products currently in the database. Use the form above to add your first product.
           </div>
         )}

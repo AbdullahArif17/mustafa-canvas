@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
@@ -19,7 +19,50 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-sans)", "system-ui", "-apple-system", "sans-serif"],
+        display: ["var(--font-display)", "var(--font-sans)", "system-ui", "sans-serif"],
+      },
       colors: {
+        forest: {
+          50: "#f0f6f3",
+          100: "#dbece3",
+          200: "#b9dcce",
+          300: "#8fc4b1",
+          400: "#60a590",
+          500: "#3e8773",
+          600: "#2d6b5b",
+          700: "#235549",
+          800: "#1d443b",
+          900: "#132e28",
+          950: "#091a16",
+        },
+        brass: {
+          50: "#fdfbf7",
+          100: "#f8f3e8",
+          200: "#ede1c5",
+          300: "#dec99b",
+          400: "#ccac6e",
+          500: "#b89047",
+          600: "#9c7437",
+          700: "#7b572c",
+          800: "#654627",
+          900: "#543a24",
+          950: "#301e12",
+        },
+        canvas: {
+          50: "#faf9f6",
+          100: "#f4f2ec",
+          200: "#eae6dc",
+          300: "#dad4c3",
+          400: "#c4bca6",
+          500: "#aca28a",
+          600: "#938871",
+          700: "#776d5b",
+          800: "#61594b",
+          900: "#504a3f",
+          950: "#2a2721",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -76,7 +119,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
-
+export default config;

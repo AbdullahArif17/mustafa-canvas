@@ -19,28 +19,35 @@ const mapEmbedSrc = `https://www.google.com/maps?q=${encodeURIComponent(
 
 export function ContactSection() {
   return (
-    <section id="contact" className="relative overflow-hidden bg-gradient-to-b from-emerald-950 via-emerald-950 to-emerald-900 py-16 text-white sm:py-20">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.88fr_1.12fr] lg:px-8">
+    <section id="contact" className="relative overflow-hidden bg-gradient-to-b from-forest-950 via-[#061915] to-forest-950 py-20 text-white sm:py-28">
+      {/* Decorative ambient gradients */}
+      <div className="pointer-events-none absolute -left-20 top-1/4 h-[440px] w-[440px] rounded-full bg-forest-800/20 blur-3xl" aria-hidden />
+      <div className="pointer-events-none absolute right-0 bottom-10 h-[400px] w-[400px] rounded-full bg-brass-600/10 blur-3xl" aria-hidden />
+
+      <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
         <div>
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-900/90 px-3.5 py-1 text-xs font-black uppercase tracking-wider text-emerald-300 ring-1 ring-emerald-700/60">
-            Get In Touch
+          <div className="inline-flex items-center gap-2 rounded-full border border-forest-700/70 bg-forest-900/80 px-3.5 py-1 text-[11px] font-semibold tracking-widest uppercase text-brass-300">
+            <span className="h-1.5 w-1.5 rounded-full bg-brass-400" />
+            <span>Direct Orders &amp; Inquiries</span>
           </div>
-          <h2 className="mt-4 text-3xl font-black uppercase tracking-tight text-white sm:text-4xl lg:text-5xl">
+          <h2 className="mt-5 font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
             {businessName}
           </h2>
-          <p className="mt-4 max-w-xl text-lg font-bold text-emerald-200">
+          <p className="mt-4 font-display text-lg font-semibold text-forest-200">
             {businessTagline}
           </p>
-          <p className="mt-3 max-w-xl text-sm font-medium leading-relaxed text-emerald-100/80">
-            Visit our wholesale store in Karachi or contact our sales team directly via phone or WhatsApp for quotes, customized dimensions, and prompt delivery.
+          <p className="mt-3 text-sm font-normal leading-relaxed text-forest-200/80">
+            Visit our wholesale location in Market Quarter Karachi or contact our sales team directly for quotation requests, wholesale trade orders, and rapid dispatch across Pakistan.
           </p>
 
-          <div className="mt-8 rounded-xl bg-emerald-900/60 p-4 ring-1 ring-emerald-800">
-            <div className="flex items-center gap-3">
-              <Clock size={18} className="text-emerald-300 shrink-0" aria-hidden />
+          <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm">
+            <div className="flex items-center gap-3.5">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-forest-900 border border-forest-700 text-brass-300">
+                <Clock size={18} aria-hidden />
+              </div>
               <div>
-                <p className="text-xs font-black uppercase tracking-wider text-emerald-200">Business Hours</p>
-                <p className="text-xs font-semibold text-emerald-100">Monday &ndash; Saturday: 10:00 AM &ndash; 8:00 PM</p>
+                <p className="text-[11px] font-bold uppercase tracking-wider text-brass-300">Operational Hours</p>
+                <p className="text-xs font-medium text-forest-100">Monday &ndash; Saturday: 10:00 AM &ndash; 8:00 PM</p>
               </div>
             </div>
           </div>
@@ -51,15 +58,15 @@ export function ContactSection() {
             {contactNumbers.map((contact) => (
               <div
                 key={contact.name}
-                className="flex flex-col gap-4 rounded-xl bg-white p-5 text-slate-950 shadow-sm transition-all hover:shadow-md sm:flex-row sm:items-center sm:justify-between"
+                className="flex flex-col gap-4 rounded-2xl border border-forest-100/80 bg-white p-5 text-slate-900 shadow-sm transition-all hover:shadow-md sm:flex-row sm:items-center sm:justify-between"
               >
                 <div className="flex items-center gap-3.5">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700">
-                    <Phone size={20} aria-hidden />
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-forest-50 border border-forest-100 text-forest-800">
+                    <Phone size={18} aria-hidden />
                   </div>
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Direct Contact</span>
-                    <div className="text-base font-black text-slate-900">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Direct Contact</span>
+                    <div className="font-display text-base font-bold text-slate-900">
                       {contact.name}: {contact.display}
                     </div>
                   </div>
@@ -68,17 +75,17 @@ export function ContactSection() {
                 <div className="grid grid-cols-2 gap-2 sm:flex sm:items-center">
                   <a
                     href={`tel:${contact.tel}`}
-                    className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-emerald-700 px-4 text-xs font-bold uppercase tracking-wider text-white shadow-sm transition-all hover:bg-emerald-800 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
+                    className="inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-forest-900 px-4 text-xs font-semibold tracking-wide text-white shadow-sm transition-all hover:bg-forest-800 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 focus-visible:ring-offset-2"
                     aria-label={`Call ${contact.name}`}
                   >
-                    <Phone size={14} aria-hidden />
+                    <Phone size={13} aria-hidden />
                     <span>Call</span>
                   </a>
                   <a
                     href={`https://wa.me/${contact.whatsapp}?text=${whatsappMessage}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-emerald-700/80 bg-white px-4 text-xs font-bold uppercase tracking-wider text-emerald-800 transition-all hover:bg-emerald-50 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
+                    className="inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-forest-200 bg-white px-4 text-xs font-semibold tracking-wide text-forest-900 transition-all hover:bg-forest-50 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 focus-visible:ring-offset-2"
                     aria-label={`Message ${contact.name} on WhatsApp`}
                   >
                     <FaWhatsapp
@@ -95,14 +102,14 @@ export function ContactSection() {
 
           <a
             href={`mailto:${businessEmail}`}
-            className="flex items-center gap-3.5 rounded-xl bg-white p-4 text-slate-950 shadow-sm transition hover:bg-emerald-50"
+            className="flex items-center gap-3.5 rounded-2xl border border-forest-100/80 bg-white p-4 text-slate-900 shadow-sm transition hover:bg-forest-50 hover:border-forest-200"
           >
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700">
-              <Mail size={19} aria-hidden />
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-forest-50 text-forest-800">
+              <Mail size={18} aria-hidden />
             </div>
             <div>
               <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Email Inquiry</span>
-              <p className="break-all text-sm font-bold text-slate-900">{businessEmail}</p>
+              <p className="break-all font-display text-sm font-semibold text-slate-900">{businessEmail}</p>
             </div>
           </a>
 
@@ -110,37 +117,40 @@ export function ContactSection() {
             href={facebookPageUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3.5 rounded-xl bg-white p-4 text-slate-950 shadow-sm transition hover:bg-emerald-50"
+            className="flex items-center gap-3.5 rounded-2xl border border-forest-100/80 bg-white p-4 text-slate-900 shadow-sm transition hover:bg-forest-50 hover:border-forest-200"
           >
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-[#1877f2]">
-              <FaFacebookF size={18} aria-hidden />
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#1877f2]/10 text-[#1877f2]">
+              <FaFacebookF size={17} aria-hidden />
             </div>
             <div>
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Social Page</span>
-              <p className="text-sm font-bold text-slate-900">Mustafa Canvas Official Facebook</p>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Official Social</span>
+              <p className="font-display text-sm font-semibold text-slate-900">Mustafa Canvas Facebook Community</p>
             </div>
           </a>
 
-          <address className="flex items-start gap-3.5 rounded-xl bg-white p-4 text-slate-950 not-italic shadow-sm">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700">
-              <MapPin size={19} aria-hidden />
+          <address className="flex items-start gap-3.5 rounded-2xl border border-forest-100/80 bg-white p-4 text-slate-900 not-italic shadow-sm">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-forest-50 text-forest-800">
+              <MapPin size={18} aria-hidden />
             </div>
             <div>
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Shop Address</span>
-              <p className="text-xs font-bold leading-relaxed text-slate-900">{locationAddress}</p>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Karachi Warehouse &amp; Shop</span>
+              <p className="text-xs font-medium leading-relaxed text-slate-800">{locationAddress}</p>
             </div>
           </address>
         </div>
 
-        <div className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-emerald-900/50 lg:col-span-2">
-          <iframe
-            title="Mustafa Canvas location map in Market Quarter Karachi"
-            src={mapEmbedSrc}
-            className="h-[320px] w-full border-0 sm:h-[420px]"
-            loading="lazy"
-            allowFullScreen
-            referrerPolicy="no-referrer-when-downgrade"
-          />
+        {/* Embedded Interactive Map in Double-Bezel Enclosure */}
+        <div className="overflow-hidden rounded-3xl bg-white p-2.5 shadow-2xl ring-1 ring-forest-800/50 lg:col-span-2">
+          <div className="overflow-hidden rounded-2xl">
+            <iframe
+              title="Mustafa Canvas location map in Market Quarter Karachi"
+              src={mapEmbedSrc}
+              className="h-[340px] w-full border-0 sm:h-[440px]"
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
         </div>
       </div>
     </section>

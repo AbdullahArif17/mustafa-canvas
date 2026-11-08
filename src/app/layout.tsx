@@ -1,8 +1,23 @@
 // app/layout.tsx
 import type { Metadata, Viewport } from 'next';
+import { Plus_Jakarta_Sans, Outfit } from 'next/font/google';
 import './globals.css';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { Footer } from './components/Footer';
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-sans',
+  weight: ['300', '400', '500', '600', '700', '800'],
+});
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-display',
+  weight: ['400', '500', '600', '700', '800', '900'],
+});
 import {
   businessName,
   businessTagline,
@@ -99,8 +114,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="flex min-h-screen flex-col">
+    <html lang="en" className={`${plusJakartaSans.variable} ${outfit.variable}`}>
+      <body className="flex min-h-screen flex-col font-sans bg-background text-foreground antialiased selection:bg-emerald-900 selection:text-white">
         <div className="flex flex-1 flex-col">{children}</div>
         <FloatingWhatsApp />
         <Footer />

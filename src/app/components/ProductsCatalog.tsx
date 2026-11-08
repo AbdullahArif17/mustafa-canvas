@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ArrowUpDown, PackagePlus, RotateCcw, Search, X } from "lucide-react";
+import { ArrowUpDown, PackagePlus, RotateCcw, Search, Sparkles, X } from "lucide-react";
 import { type Product, type ProductKind } from "../product-data";
 import { ProductCard } from "./ProductCard";
 import { ProductCardSkeleton } from "./ProductCardSkeleton";
@@ -72,28 +72,29 @@ export function ProductsCatalog({ initialProducts }: ProductsCatalogProps) {
   };
 
   return (
-    <section className="bg-white py-12">
+    <section className="bg-white py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-8 flex flex-col gap-4 border-b border-emerald-100 pb-8 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mb-10 flex flex-col gap-4 border-b border-forest-100/80 pb-8 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100/80 px-3 py-1 text-xs font-black uppercase tracking-wider text-emerald-800 ring-1 ring-emerald-300/60">
-              Product Catalog
+            <div className="inline-flex items-center gap-2 rounded-full border border-forest-200/80 bg-forest-50/70 px-3.5 py-1 text-[11px] font-semibold tracking-widest uppercase text-forest-800">
+              <Sparkles size={13} className="text-brass-600" />
+              <span>Fabric Catalog</span>
             </div>
-            <h1 className="mt-3 text-4xl font-black uppercase tracking-tight text-slate-950 sm:text-5xl">
-              All Products
+            <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-forest-950 sm:text-5xl">
+              All Fabric Products
             </h1>
-            <p className="mt-2 text-sm font-semibold text-slate-600">
+            <p className="mt-2 text-sm font-normal text-slate-600">
               Explore our comprehensive range of industrial shade nets, canvas, and tarpaulins.
             </p>
           </div>
 
-          <div className="flex items-center gap-2 text-xs font-bold text-slate-500">
-            <span>Showing {filteredProducts.length} of {products.length} products</span>
+          <div className="flex items-center gap-2 text-xs font-semibold text-slate-500">
+            <span>Showing <strong className="text-forest-950">{filteredProducts.length}</strong> of {products.length} products</span>
           </div>
         </div>
 
         {/* Filters, Search & Sort Bar */}
-        <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           {/* Category Tabs */}
           <div className="flex flex-wrap gap-2">
             {filterTabs.map(({ kind, label }) => {
@@ -104,18 +105,18 @@ export function ProductsCatalog({ initialProducts }: ProductsCatalogProps) {
                   key={kind}
                   type="button"
                   onClick={() => setFilter(kind)}
-                  className={`inline-flex h-11 items-center gap-2 rounded-lg px-4 text-xs font-black uppercase tracking-wider transition-all active:scale-95 ${
+                  className={`inline-flex h-10 items-center gap-2 rounded-full px-4 text-xs font-semibold tracking-wide transition-all active:scale-95 ${
                     isSelected
-                      ? "bg-emerald-700 text-white shadow-sm ring-1 ring-emerald-700"
-                      : "border border-emerald-200 bg-white text-emerald-950 hover:bg-emerald-50 hover:border-emerald-300"
+                      ? "bg-forest-900 text-white shadow-sm ring-1 ring-forest-900"
+                      : "border border-forest-200/80 bg-white text-forest-950 hover:bg-forest-50 hover:border-forest-300"
                   }`}
                 >
                   <span>{label}</span>
                   <span
-                    className={`rounded-full px-2 py-0.5 text-[11px] font-bold ${
+                    className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${
                       isSelected
                         ? "bg-white/20 text-white"
-                        : "bg-emerald-100 text-emerald-900"
+                        : "bg-forest-100/70 text-forest-800"
                     }`}
                   >
                     {count}
@@ -130,7 +131,7 @@ export function ProductsCatalog({ initialProducts }: ProductsCatalogProps) {
             {/* Search Input */}
             <div className="relative min-w-[240px]">
               <Search
-                size={17}
+                size={16}
                 className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
                 aria-hidden
               />
@@ -139,7 +140,7 @@ export function ProductsCatalog({ initialProducts }: ProductsCatalogProps) {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search products..."
-                className="h-11 w-full rounded-lg border border-emerald-200 bg-white pl-10 pr-9 text-xs font-semibold text-slate-900 outline-none transition focus:border-emerald-700 focus:ring-2 focus:ring-emerald-100"
+                className="h-10 w-full rounded-full border border-forest-200/90 bg-white pl-10 pr-9 text-xs font-medium text-slate-900 outline-none transition focus:border-forest-700 focus:ring-2 focus:ring-forest-100"
               />
               {searchQuery && (
                 <button
@@ -148,7 +149,7 @@ export function ProductsCatalog({ initialProducts }: ProductsCatalogProps) {
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
                   aria-label="Clear search"
                 >
-                  <X size={15} />
+                  <X size={14} />
                 </button>
               )}
             </div>
@@ -156,14 +157,14 @@ export function ProductsCatalog({ initialProducts }: ProductsCatalogProps) {
             {/* Sort Selector */}
             <div className="relative flex w-full items-center sm:w-auto">
               <ArrowUpDown
-                size={15}
-                className="pointer-events-none absolute left-3 text-slate-400"
+                size={14}
+                className="pointer-events-none absolute left-3.5 text-slate-400"
                 aria-hidden
               />
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortOption)}
-                className="h-11 w-full rounded-lg border border-emerald-200 bg-white pl-9 pr-8 text-xs font-bold uppercase tracking-wider text-slate-800 outline-none transition hover:border-emerald-300 focus:border-emerald-700 focus:ring-2 focus:ring-emerald-100 sm:w-auto"
+                className="h-10 w-full rounded-full border border-forest-200/90 bg-white pl-9 pr-8 text-xs font-semibold tracking-wide text-slate-700 outline-none transition hover:border-forest-300 focus:border-forest-700 focus:ring-2 focus:ring-forest-100 sm:w-auto"
               >
                 <option value="newest">Newest First</option>
                 <option value="title-asc">Name: A to Z</option>
@@ -187,14 +188,14 @@ export function ProductsCatalog({ initialProducts }: ProductsCatalogProps) {
             ))}
           </div>
         ) : (
-          <div className="rounded-2xl border-2 border-dashed border-emerald-200 bg-emerald-50/40 p-12 text-center">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
-              <PackagePlus size={28} />
+          <div className="rounded-3xl border-2 border-dashed border-forest-200 bg-canvas-50/60 p-14 text-center">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-forest-100/70 text-forest-800">
+              <PackagePlus size={26} />
             </div>
-            <h2 className="mt-4 text-xl font-black uppercase tracking-tight text-slate-950">
+            <h2 className="mt-4 font-display text-xl font-bold text-slate-900">
               No products found
             </h2>
-            <p className="mt-2 text-sm font-semibold text-slate-600">
+            <p className="mt-2 text-sm text-slate-500">
               {searchQuery
                 ? `No products matched "${searchQuery}". Try a different keyword.`
                 : "No products currently available in this category."}
@@ -202,9 +203,9 @@ export function ProductsCatalog({ initialProducts }: ProductsCatalogProps) {
             <button
               type="button"
               onClick={resetFilters}
-              className="mt-6 inline-flex h-11 items-center gap-2 rounded-lg bg-emerald-700 px-5 text-xs font-black uppercase tracking-wider text-white transition hover:bg-emerald-800"
+              className="mt-6 inline-flex h-10 items-center gap-2 rounded-full bg-forest-900 px-5 text-xs font-semibold tracking-wide text-white transition hover:bg-forest-800"
             >
-              <RotateCcw size={15} />
+              <RotateCcw size={14} />
               <span>Reset All Filters</span>
             </button>
           </div>

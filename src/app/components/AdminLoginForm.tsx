@@ -40,30 +40,30 @@ export function AdminLoginForm() {
   };
 
   return (
-    <section className="flex flex-1 items-center justify-center bg-gradient-to-b from-emerald-50/40 to-white py-16">
+    <section className="flex flex-1 items-center justify-center bg-gradient-to-b from-canvas-50 via-white to-canvas-50 py-20">
       <div className="mx-auto flex w-full max-w-md items-center justify-center px-4 sm:px-6">
         <form
           onSubmit={handleSubmit}
-          className="grid w-full gap-5 rounded-2xl bg-white p-6 shadow-xl ring-1 ring-emerald-100 sm:p-8"
+          className="grid w-full gap-6 rounded-3xl bg-white p-7 shadow-xl ring-1 ring-forest-100/90 doppelrand-card sm:p-9"
         >
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-700 text-white shadow-sm">
-            <LockKeyhole size={22} aria-hidden />
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-forest-900 text-white shadow-sm">
+            <LockKeyhole size={20} aria-hidden />
           </div>
 
           <div>
-            <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100/80 px-3 py-1 text-xs font-black uppercase tracking-wider text-emerald-800">
-              Authorized Personnel
-            </div>
-            <h1 className="mt-3 text-3xl font-black uppercase tracking-tight text-slate-950">
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-forest-200/80 bg-forest-50/70 px-3 py-0.5 text-[11px] font-semibold tracking-widest uppercase text-forest-800">
               Admin Access
+            </div>
+            <h1 className="mt-3 font-display text-2xl font-extrabold tracking-tight text-forest-950 sm:text-3xl">
+              Catalog Management
             </h1>
-            <p className="mt-1 text-xs font-semibold text-slate-500">
-              Enter your administration password to manage the Mustafa Canvas catalog.
+            <p className="mt-1 text-xs text-slate-500 font-normal">
+              Enter your administration password to manage products and imagery.
             </p>
           </div>
 
-          <label className="grid gap-2 text-xs font-black uppercase tracking-wider text-slate-950">
-            Password
+          <label className="grid gap-2 text-xs font-semibold text-slate-700">
+            Security Key / Password
             <input
               type="password"
               value={password}
@@ -71,20 +71,20 @@ export function AdminLoginForm() {
               autoComplete="current-password"
               autoFocus
               required
-              className="h-12 rounded-lg border border-emerald-200 bg-white px-3.5 text-sm font-semibold outline-none transition focus:border-emerald-700 focus:ring-2 focus:ring-emerald-100"
+              className="h-11 rounded-xl border border-forest-200 bg-white px-3.5 text-sm font-medium outline-none transition focus:border-forest-700 focus:ring-2 focus:ring-forest-100"
             />
           </label>
 
           <button
             type="submit"
             disabled={submitting}
-            className="inline-flex h-12 items-center justify-center rounded-lg bg-emerald-700 px-6 text-xs font-black uppercase tracking-wider text-white shadow-sm transition hover:bg-emerald-800 active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-emerald-300"
+            className="inline-flex h-11 items-center justify-center rounded-full bg-forest-900 px-6 text-xs font-semibold tracking-wide text-white shadow-sm transition hover:bg-forest-800 active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-slate-300"
           >
-            {submitting ? "Signing In..." : "Sign In to Portal"}
+            {submitting ? "Authenticating..." : "Sign In to Portal"}
           </button>
 
           {status && (
-            <div role="alert" className="rounded-lg bg-red-50 p-3 text-xs font-bold text-red-700 ring-1 ring-red-200">
+            <div role="alert" className="rounded-xl bg-red-50 p-3 text-xs font-medium text-red-700 ring-1 ring-red-200">
               {status}
             </div>
           )}

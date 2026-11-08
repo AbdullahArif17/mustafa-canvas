@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, ChevronLeft, ChevronRight, PackagePlus, Pause, Play } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, PackagePlus, Pause, Play, Sparkles } from "lucide-react";
 import { ProductCard } from "./ProductCard";
 import { ProductCardSkeleton } from "./ProductCardSkeleton";
 import { useProducts } from "./useProducts";
@@ -59,33 +59,39 @@ export function ProductShowcase() {
     const diff = touchStartX.current - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 40) {
       if (diff > 0) {
-        move(1); // Swiped left -> next
+        move(1);
       } else {
-        move(-1); // Swiped right -> prev
+        move(-1);
       }
     }
     touchStartX.current = null;
   };
 
   return (
-    <section id="catalog" className="relative overflow-hidden bg-emerald-50/60 py-16">
+    <section id="catalog" className="relative overflow-hidden bg-canvas-50/70 py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100/80 px-3 py-1 text-xs font-black uppercase tracking-wider text-emerald-800 ring-1 ring-emerald-300/60">
-              Live Showcase
+            <div className="inline-flex items-center gap-2 rounded-full border border-forest-200/80 bg-white px-3.5 py-1 text-[11px] font-semibold tracking-widest uppercase text-forest-800 shadow-sm">
+              <Sparkles size={13} className="text-brass-600" aria-hidden />
+              <span>Live Showcase</span>
             </div>
-            <h2 className="mt-2 text-3xl font-black uppercase tracking-tight text-slate-950 sm:text-4xl">
-              Featured Products
+            <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-forest-950 sm:text-4xl">
+              Featured Fabric Innovations
             </h2>
+            <p className="mt-2 text-sm font-normal text-slate-600">
+              Explore our highest-demand UV shade netting, vinyl tarpaulins, and custom canvas products.
+            </p>
           </div>
           <div>
             <Link
               href="/products"
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-emerald-700 px-5 text-sm font-bold uppercase tracking-wider text-white shadow-sm transition-all hover:bg-emerald-800 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
+              className="group inline-flex h-11 items-center justify-between gap-3 rounded-full bg-forest-900 pl-5 pr-2 text-xs font-semibold tracking-wide text-white shadow-sm transition-all hover:bg-forest-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 focus-visible:ring-offset-2"
             >
               <span>View Full Catalog</span>
-              <ArrowRight size={16} aria-hidden />
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/15 transition-transform duration-200 group-hover:translate-x-0.5">
+                <ArrowRight size={13} aria-hidden />
+              </span>
             </Link>
           </div>
         </div>
@@ -93,7 +99,7 @@ export function ProductShowcase() {
         {!loaded ? (
           <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
             <ProductCardSkeleton />
-            <div className="hidden h-96 rounded-xl bg-white p-5 shadow-sm ring-1 ring-emerald-100 lg:block animate-shimmer" />
+            <div className="hidden h-96 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-forest-100 lg:block animate-shimmer" />
           </div>
         ) : activeProduct ? (
           <div
@@ -110,21 +116,21 @@ export function ProductShowcase() {
               <ProductCard product={activeProduct} />
             </div>
 
-            <aside className="flex flex-col justify-between rounded-xl bg-white p-5 shadow-sm ring-1 ring-emerald-100/80">
+            <aside className="flex flex-col justify-between rounded-2xl bg-white p-6 shadow-sm ring-1 ring-forest-100 doppelrand-card">
               <div>
-                <div className="flex items-center justify-between gap-3 border-b border-emerald-100 pb-4">
+                <div className="flex items-center justify-between gap-3 border-b border-forest-100/80 pb-4">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-black uppercase tracking-wider text-emerald-900">
-                      Product {activeIndex + 1} of {visibleProducts.length}
+                    <span className="text-xs font-bold text-forest-950">
+                      Item {activeIndex + 1} <span className="text-slate-400 font-normal">of</span> {visibleProducts.length}
                     </span>
                     <button
                       type="button"
                       onClick={() => setIsPaused(!isPaused)}
-                      className="inline-flex h-7 w-7 items-center justify-center rounded-md text-emerald-700 hover:bg-emerald-50"
+                      className="inline-flex h-7 w-7 items-center justify-center rounded-full text-forest-700 hover:bg-forest-50 transition-colors"
                       aria-label={isPaused ? "Resume autoplay" : "Pause autoplay"}
                       title={isPaused ? "Resume autoplay" : "Pause autoplay"}
                     >
-                      {isPaused ? <Play size={13} /> : <Pause size={13} />}
+                      {isPaused ? <Play size={12} /> : <Pause size={12} />}
                     </button>
                   </div>
 
@@ -132,27 +138,27 @@ export function ProductShowcase() {
                     <button
                       type="button"
                       onClick={() => move(-1)}
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-emerald-200 text-emerald-900 transition hover:bg-emerald-50 active:scale-95"
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-forest-200 text-forest-900 transition hover:bg-forest-50 active:scale-95"
                       aria-label="Previous product"
                     >
-                      <ChevronLeft size={18} />
+                      <ChevronLeft size={16} />
                     </button>
                     <button
                       type="button"
                       onClick={() => move(1)}
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-emerald-200 text-emerald-900 transition hover:bg-emerald-50 active:scale-95"
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-forest-200 text-forest-900 transition hover:bg-forest-50 active:scale-95"
                       aria-label="Next product"
                     >
-                      <ChevronRight size={18} />
+                      <ChevronRight size={16} />
                     </button>
                   </div>
                 </div>
 
                 {visibleProducts.length > 1 && (
-                  <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-emerald-100">
+                  <div className="mt-4 h-1 overflow-hidden rounded-full bg-forest-100/80">
                     <span
                       key={`${activeProduct.id}-${isPaused ? "paused" : "running"}`}
-                      className={`product-slide-progress block h-full bg-emerald-700 ${isPaused ? "opacity-40" : ""}`}
+                      className={`product-slide-progress block h-full bg-brass-500 ${isPaused ? "opacity-40" : ""}`}
                       style={{
                         animationDuration: `${slideshowDelayMs}ms`,
                         animationPlayState: isPaused ? "paused" : "running",
@@ -161,41 +167,41 @@ export function ProductShowcase() {
                   </div>
                 )}
 
-                <div className="mt-4 grid max-h-[340px] gap-2 overflow-y-auto pr-1">
+                <div className="mt-4 grid max-h-[340px] gap-1.5 overflow-y-auto pr-1">
                   {visibleProducts.map((product, index) => (
                     <button
                       key={product.id}
                       type="button"
                       onClick={() => setActiveIndex(index)}
-                      className={`flex items-center justify-between rounded-lg px-3.5 py-2.5 text-left text-xs font-bold uppercase tracking-wider transition-all ${
+                      className={`flex items-center justify-between rounded-xl px-3.5 py-2.5 text-left text-xs font-semibold transition-all ${
                         index === activeIndex
-                          ? "bg-emerald-700 text-white shadow-sm"
-                          : "bg-emerald-50/70 text-slate-800 hover:bg-emerald-100"
+                          ? "bg-forest-900 text-white shadow-sm"
+                          : "bg-canvas-50 text-slate-700 hover:bg-forest-50 hover:text-forest-950"
                       }`}
                     >
                       <span className="truncate">{product.title}</span>
                       {index === activeIndex && (
-                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-white ml-2" />
+                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-brass-400 ml-2" />
                       )}
                     </button>
                   ))}
                 </div>
               </div>
 
-              <div className="mt-4 pt-4 border-t border-emerald-100 text-center text-xs font-semibold text-slate-500">
+              <div className="mt-4 border-t border-forest-100/80 pt-4 text-center text-xs font-medium text-slate-400">
                 Swipe or select to inspect products
               </div>
             </aside>
           </div>
         ) : (
-          <div className="rounded-xl bg-white p-8 text-center ring-1 ring-emerald-100">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-50 text-emerald-700">
-              <PackagePlus size={28} />
+          <div className="rounded-2xl bg-white p-10 text-center ring-1 ring-forest-100 doppelrand-card">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-forest-50 text-forest-700">
+              <PackagePlus size={26} />
             </div>
-            <h3 className="mt-4 text-lg font-black uppercase tracking-tight text-slate-950">
+            <h3 className="mt-4 font-display text-lg font-bold text-slate-900">
               No products found in catalog
             </h3>
-            <p className="mt-1 text-sm font-semibold text-slate-600">
+            <p className="mt-1 text-sm text-slate-500">
               Products added via the Admin Portal will automatically appear here.
             </p>
           </div>

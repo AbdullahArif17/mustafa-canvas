@@ -18,25 +18,40 @@ export const siteBaseUrl = new URL(siteUrl);
 
 export const logoPath = "/mustafa-canvas-logo.png";
 export const ogImagePath = "/mustafa-canvas-brand-sheet.png";
+export const businessCardImagePath = "/mustafa-canvas-business-card.jpg";
 
 export const businessEmail = "mustafacanvas.info@gmail.com";
 export const facebookPageUrl =
-  "https://www.facebook.com/profile.php?id=61567021209977";
+  "https://www.facebook.com/Mustafacanvas";
+export const instagramPageUrl =
+  "https://www.instagram.com/Mustafacanvas";
 export const locationAddress =
-  "Shop # 1, MR / 72, Fazal Chamber, Khoury Garden, Murad Khan Rd, Market Quarter, Karachi, Pakistan";
+  "Shop # 1, MR 1/72, Fazal Chamber, Murad Khan road, Khori garden, Karachi, Pakistan";
 
 export const contactNumbers = [
   {
-    name: "Taha",
-    display: "03482026858",
-    tel: "03482026858",
-    whatsapp: "923482026858",
-  },
-  {
     name: "Mustafa",
-    display: "03108117857",
+    display: "0310-8117857",
     tel: "03108117857",
     whatsapp: "923108117857",
+  },
+  {
+    name: "Abid",
+    display: "0300-2661044",
+    tel: "03002661044",
+    whatsapp: "923002661044",
+  },
+  {
+    name: "Arif",
+    display: "0334-3678448",
+    tel: "03343678448",
+    whatsapp: "923343678448",
+  },
+  {
+    name: "Taha",
+    display: "0348-2026858",
+    tel: "03482026858",
+    whatsapp: "923482026858",
   },
 ];
 

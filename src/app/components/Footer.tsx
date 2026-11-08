@@ -1,10 +1,13 @@
 import Link from "next/link";
-import { FaFacebookF, FaWhatsapp } from "react-icons/fa6";
+import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa6";
+import { Download, ShieldCheck } from "lucide-react";
 import {
+  businessCardImagePath,
   businessName,
   businessTagline,
   contactNumbers,
   facebookPageUrl,
+  instagramPageUrl,
   locationAddress,
 } from "../seo";
 import { BackToTopButton } from "./BackToTopButton";
@@ -75,14 +78,34 @@ export function Footer() {
                     <span>WhatsApp {contact.name}</span>
                   </a>
                 ))}
+                <div className="grid grid-cols-2 gap-2 pt-1">
+                  <a
+                    href={instagramPageUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-forest-200/80 bg-white px-3 text-xs font-semibold text-forest-950 shadow-sm transition hover:bg-forest-50"
+                  >
+                    <FaInstagram size={14} className="text-pink-600" aria-hidden />
+                    <span>Instagram</span>
+                  </a>
+                  <a
+                    href={facebookPageUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-forest-200/80 bg-white px-3 text-xs font-semibold text-forest-950 shadow-sm transition hover:bg-forest-50"
+                  >
+                    <FaFacebookF size={13} className="text-[#1877f2]" aria-hidden />
+                    <span>Facebook</span>
+                  </a>
+                </div>
+
                 <a
-                  href={facebookPageUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex h-10 items-center gap-2 rounded-xl border border-forest-200/80 bg-white px-3.5 text-xs font-semibold text-forest-950 shadow-sm transition hover:bg-forest-50 hover:border-forest-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700"
+                  href={businessCardImagePath}
+                  download="mustafa-canvas-official-business-card.jpg"
+                  className="mt-1 inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-brass-400/60 bg-brass-50 px-3.5 text-xs font-semibold text-brass-900 shadow-sm transition hover:bg-brass-100"
                 >
-                  <FaFacebookF size={14} className="shrink-0 text-[#1877f2]" aria-hidden />
-                  <span>Facebook Page</span>
+                  <Download size={13} className="text-brass-700" />
+                  <span>Download Business Card</span>
                 </a>
               </div>
             </div>

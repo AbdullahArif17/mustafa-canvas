@@ -440,7 +440,7 @@ export default function Home() {
             </article>
           </div>
 
-          <div className="mt-10">
+          <div className="mt-10 flex flex-wrap items-center gap-3.5">
             <Link
               href="/products"
               className="group inline-flex h-12 items-center justify-between gap-3 rounded-full bg-forest-900 pl-6 pr-2 text-xs font-semibold tracking-wide text-white shadow-sm transition-all hover:bg-forest-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 focus-visible:ring-offset-2"
@@ -449,6 +449,14 @@ export default function Home() {
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 transition-transform duration-200 group-hover:translate-x-0.5">
                 <ArrowRight size={14} aria-hidden />
               </span>
+            </Link>
+
+            <Link
+              href="#contact"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-forest-200 bg-white px-6 text-xs font-semibold tracking-wide text-forest-900 shadow-sm transition hover:bg-forest-50 hover:border-forest-300 active:scale-95"
+            >
+              <ShieldCheck size={16} className="text-forest-700" />
+              <span>Official Business Card &amp; Details</span>
             </Link>
           </div>
         </div>

@@ -275,26 +275,35 @@ export function ProductDetail({ slug, initialProduct }: ProductDetailProps) {
 
               <div className="grid grid-cols-2 gap-3">
                 <a
-                  href="tel:03482026858"
-                  className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-forest-200 bg-white px-4 text-xs font-semibold tracking-wide text-forest-900 transition hover:bg-forest-50 active:scale-[0.98]"
-                >
-                  <Phone size={14} aria-hidden />
-                  <span>Call 0348</span>
-                </a>
-
-                <a
                   href="tel:03108117857"
                   className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-forest-200 bg-white px-4 text-xs font-semibold tracking-wide text-forest-900 transition hover:bg-forest-50 active:scale-[0.98]"
                 >
                   <Phone size={14} aria-hidden />
-                  <span>Call 0310</span>
+                  <span>Call Mustafa</span>
+                </a>
+
+                <a
+                  href="tel:03002661044"
+                  className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-forest-200 bg-white px-4 text-xs font-semibold tracking-wide text-forest-900 transition hover:bg-forest-50 active:scale-[0.98]"
+                >
+                  <Phone size={14} aria-hidden />
+                  <span>Call Abid</span>
                 </a>
               </div>
             </div>
 
-            <div className="mt-6 flex items-center gap-2 text-xs font-medium text-slate-500">
-              <ShieldCheck size={16} className="text-forest-700 shrink-0" aria-hidden />
-              <span>Available for wholesale &amp; retail supply with delivery options.</span>
+            <div className="mt-6 flex flex-col gap-2.5 border-t border-forest-100/70 pt-5 text-xs text-slate-500">
+              <div className="flex items-center gap-2 font-medium">
+                <ShieldCheck size={16} className="text-forest-700 shrink-0" aria-hidden />
+                <span>Available for wholesale &amp; retail supply with delivery options.</span>
+              </div>
+              <Link
+                href="#contact"
+                className="inline-flex items-center gap-1.5 font-semibold text-forest-800 hover:text-forest-950 transition-colors"
+              >
+                <span>View Official Business Card &amp; Shop Location</span>
+                <span>&rarr;</span>
+              </Link>
             </div>
           </article>
         </div>

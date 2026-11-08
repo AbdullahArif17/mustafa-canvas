@@ -132,7 +132,7 @@ export function Header({ logo, navItems, imageQuality }: HeaderProps) {
           {/* Action CTAs */}
           <div className="hidden items-center gap-3 md:flex">
             <a
-              href="https://wa.me/923482026858?text=Hello%20Mustafa%20Canvas%2C%20I%20want%20to%20inquire%20about%20your%20products."
+              href="https://wa.me/923108117857?text=Hello%20Mustafa%20Canvas%2C%20I%20want%20to%20inquire%20about%20your%20products."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex h-10 items-center gap-2 rounded-full border border-forest-200/90 bg-white px-4 text-xs font-semibold tracking-wide text-forest-900 shadow-sm transition-all hover:bg-forest-50 hover:border-forest-300 active:scale-95"
@@ -143,12 +143,12 @@ export function Header({ logo, navItems, imageQuality }: HeaderProps) {
             </a>
 
             <a
-              href="tel:03482026858"
+              href="tel:03108117857"
               className="group inline-flex h-10 items-center gap-2.5 rounded-full bg-forest-900 pl-4 pr-3 text-xs font-semibold tracking-wide text-white shadow-sm shadow-forest-950/15 transition-all hover:bg-forest-800 active:scale-95"
               aria-label="Call Mustafa Canvas"
             >
               <Phone size={13} aria-hidden />
-              <span>0348-2026858</span>
+              <span>0310-8117857</span>
               <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/15 transition-transform duration-200 group-hover:translate-x-0.5">
                 <ArrowUpRight size={11} aria-hidden />
               </span>
@@ -212,7 +212,7 @@ export function Header({ logo, navItems, imageQuality }: HeaderProps) {
 
                 <div className="mt-4 grid grid-cols-2 gap-3 border-t border-forest-100 pt-4">
                   <a
-                    href="https://wa.me/923482026858?text=Hello%20Mustafa%20Canvas%2C%20I%20want%20to%20inquire%20about%20your%20products."
+                    href="https://wa.me/923108117857?text=Hello%20Mustafa%20Canvas%2C%20I%20want%20to%20inquire%20about%20your%20products."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-forest-200 bg-white px-3 text-xs font-semibold tracking-wide text-forest-950 shadow-sm"
@@ -221,7 +221,7 @@ export function Header({ logo, navItems, imageQuality }: HeaderProps) {
                     <span>WhatsApp</span>
                   </a>
                   <a
-                    href="tel:03482026858"
+                    href="tel:03108117857"
                     className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-forest-900 px-3 text-xs font-semibold tracking-wide text-white shadow-sm"
                   >
                     <Phone size={13} aria-hidden />

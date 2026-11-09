@@ -23,12 +23,12 @@ export function ProductCard({ product, actions }: ProductCardProps) {
         {coverImage && (
           <Link
             href={`/products/${product.slug}`}
-            className="group/img relative block aspect-[4/3] w-full overflow-hidden rounded-xl bg-canvas-50/80 border border-forest-100/60"
+            className="group/img relative block aspect-[4/3] w-full overflow-hidden rounded-xl bg-canvas-100/40"
           >
             <img
               src={coverImage.url}
               alt={coverImage.alt}
-              className="h-full w-full object-contain p-3 transition-transform duration-500 ease-out group-hover/img:scale-105"
+              className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover/img:scale-105"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-forest-950/10 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover/img:opacity-100" />

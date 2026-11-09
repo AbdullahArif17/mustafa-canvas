@@ -9,14 +9,12 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-sans',
-  weight: ['300', '400', '500', '600', '700', '800'],
 });
 
 const outfit = Outfit({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-display',
-  weight: ['400', '500', '600', '700', '800', '900'],
 });
 import {
   businessName,
@@ -97,7 +95,13 @@ export const metadata: Metadata = {
   other: {
     'geo.region': 'PK-SD',
     'geo.placename': 'Karachi',
+    'geo.position': '24.8569;66.9998',
+    'ICBM': '24.8569, 66.9998',
+    'business:contact_data:street_address':
+      'Shop # 1, MR 1/72, Fazal Chamber, Murad Khan road, Khori garden',
     'business:contact_data:locality': 'Karachi',
+    'business:contact_data:region': 'Sindh',
+    'business:contact_data:postal_code': '74000',
     'business:contact_data:country_name': 'Pakistan',
   },
 };
@@ -105,7 +109,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#047857',
+  themeColor: '#091a16',
 };
 
 export default function RootLayout({

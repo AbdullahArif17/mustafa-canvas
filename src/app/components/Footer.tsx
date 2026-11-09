@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa6";
-import { Download, ShieldCheck } from "lucide-react";
 import {
-  businessCardImagePath,
   businessName,
   businessTagline,
   contactNumbers,
@@ -54,9 +52,6 @@ export function Footer() {
                 <Link href="/#contact" className="text-slate-600 transition hover:text-forest-900">
                   Contact &amp; Wholesale
                 </Link>
-                <Link href="/admin" className="text-slate-400 transition hover:text-slate-600">
-                  Admin Portal
-                </Link>
               </nav>
             </div>
 
@@ -98,15 +93,6 @@ export function Footer() {
                     <span>Facebook</span>
                   </a>
                 </div>
-
-                <a
-                  href={businessCardImagePath}
-                  download="mustafa-canvas-official-business-card.jpg"
-                  className="mt-1 inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-brass-400/60 bg-brass-50 px-3.5 text-xs font-semibold text-brass-900 shadow-sm transition hover:bg-brass-100"
-                >
-                  <Download size={13} className="text-brass-700" />
-                  <span>Download Business Card</span>
-                </a>
               </div>
             </div>
           </div>

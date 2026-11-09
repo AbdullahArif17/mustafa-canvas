@@ -3,31 +3,40 @@ import Image, { getImageProps } from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
+  Boxes,
   BriefcaseBusiness,
   Building2,
   CheckCircle2,
   Hammer,
   Leaf,
   Layers,
+  Package,
+  Ruler,
   ShieldCheck,
   Sparkles,
   Sun,
+  Truck,
   Waves,
 } from "lucide-react";
 import { ContactSection } from "./components/ContactSection";
 import { Header } from "./components/Header";
 import { HeroSection } from "./components/HeroSection";
 import { ProductShowcase } from "./components/ProductShowcase";
+import { SeoFaqSection } from "./components/SeoFaqSection";
 import {
   businessEmail,
   businessName,
   businessTagline,
   contactNumbers,
   facebookPageUrl,
+  faqItems,
+  instagramPageUrl,
+  locationAddress,
   logoPath,
   ogImagePath,
   productNames,
   seoDescription,
+  seoKeywords,
   siteUrl,
 } from "./seo";
 import { imageQuality, siteLogo, siteNavItems } from "./site-config";
@@ -42,48 +51,48 @@ const imagePaths = {
   brandSheetMobile: {
     src: "/mustafa-canvas-brand-sheet-mobile.png",
     alt: "Mustafa Canvas product range and business details for mobile",
-    width: 986,
-    height: 1595,
+    width: 1080,
+    height: 2858,
   },
   shadeNetMaterial: {
     src: "/sun-shade-net-material.png",
-    alt: "Sun shade net material details",
+    alt: "Green sun shade net material details with virgin HDPE knotting",
     width: 1254,
     height: 1254,
   },
   canvasRolls: {
     src: "/canvas-and-shade-net-rolls.png",
-    alt: "Canvas and shade net rolls",
+    alt: "Wholesale complete rolls of canvas and green shade nets",
     width: 1254,
     height: 1254,
   },
   schoolParkingShade: {
     src: "/school-parking-shade-installation.png",
-    alt: "School and parking shade installation",
+    alt: "Tensile parking shade and school sunshade installation",
     width: 941,
     height: 1672,
   },
   constructionNetting: {
     src: "/construction-netting-installation.png",
-    alt: "Construction netting installation",
+    alt: "Green construction netting and debris safety installation",
     width: 1254,
     height: 1254,
   },
   productRange: {
     src: "/mustafa-canvas-product-catalog.png",
-    alt: "Mustafa Canvas shade net and canvas solutions catalog",
-    width: 1448,
-    height: 1086,
+    alt: "Mustafa Canvas green nets, Haripur nets, and canvas catalog",
+    width: 1396,
+    height: 905,
   },
   productRangeMobile: {
     src: "/mustafa-canvas-product-catalog-mobile.png",
-    alt: "Mustafa Canvas shade net and canvas solutions catalog for mobile",
-    width: 1024,
-    height: 1536,
+    alt: "Mustafa Canvas product catalog mobile view",
+    width: 1080,
+    height: 2607,
   },
   sunShadeScene: {
     src: "/sun-shade-net-installation.png",
-    alt: "Sun shade net outdoor installation",
+    alt: "Green shade net outdoor installation in Karachi",
     width: 1254,
     height: 1254,
   },
@@ -91,9 +100,9 @@ const imagePaths = {
 
 const solutionItems = [
   {
-    label: "Sun Shade Nets",
+    label: "Green Shade Nets",
     icon: Sun,
-    description: "High-density UV-treated shade fabric reducing surface heat up to 90% for outdoor, school & residential spaces.",
+    description: "High-density UV-treated green fabric reducing heat up to 90% for outdoor, school & residential spaces.",
   },
   {
     label: "Construction Netting",
@@ -101,9 +110,9 @@ const solutionItems = [
     description: "Heavy-duty safety debris netting engineered to prevent falling hazards on building and scaffolding projects.",
   },
   {
-    label: "Nursery Netting",
+    label: "Haripur Nursery Netting",
     icon: Leaf,
-    description: "Optimized diffuse sunlight diffusion and microclimate moisture retention for agricultural nurseries and crops.",
+    description: "Authentic Haripur agricultural netting for optimum sunlight diffusion and microclimate moisture retention.",
   },
   {
     label: "School & Parking Shades",
@@ -117,39 +126,74 @@ const solutionItems = [
   },
 ];
 
+const wholesaleRollItems = [
+  {
+    title: "Green Shade Net Complete Rolls",
+    spec: "50m & 100m Master Rolls",
+    density: "50%, 75%, 85%, 90% Blockade",
+    desc: "Virgin HDPE lock-stitched rolls that will not unravel when cut. Perfect for greenhouses, agricultural nurseries, and commercial parking canopies.",
+    badge: "High Demand",
+  },
+  {
+    title: "Authentic Haripur Net Rolls",
+    spec: "Factory Sealed Complete Rolls",
+    density: "Heavy Tensile Knotting",
+    desc: "Genuine Haripur nets famous across Pakistan for extreme wind tolerance, tear resistance, and anti-aging UV stabilizers.",
+    badge: "Haripur Certified",
+  },
+  {
+    title: "Waterproof Canvas Cloth Rolls",
+    spec: "50 Yards Master Bolts",
+    density: "10oz, 12oz, 16oz Duck Fabric",
+    desc: "Heavy-duty 100% cotton duck canvas rolls chemically treated for maximum water repellency, abrasion resistance, and military tent specs.",
+    badge: "Industrial Grade",
+  },
+  {
+    title: "Heavy-Duty PVC Tarpaulin Rolls",
+    spec: "Standard Master Widths",
+    density: "Multi-Layer Vinyl Coated",
+    desc: "Tear-proof waterproof PVC vinyl fabric rolls engineered for long-haul transport truck covers, industrial floor tarps, and machinery sheds.",
+    badge: "100% Waterproof",
+  },
+];
+
 const productItems = [
-  "Waterproof Canvas Cloth",
-  "Heavy-Duty Tarpaulin",
-  "Vinyl PVC Cloth",
-  "Commercial Tents",
-  "Industrial Supply Bags",
-  "Custom Stitched Tool Bags",
+  "Green Sun Shade Nets (50%-90%)",
+  "Authentic Haripur Netting",
+  "Wholesale Complete Rolls (50m/100m)",
+  "Waterproof Canvas Cloth Rolls",
+  "Heavy-Duty Vinyl Tarpaulin",
+  "Vinyl PVC Coated Cloth",
+  "Construction Debris Netting",
+  "Agricultural Nursery Green Net",
+  "Commercial Tents & Canopies",
+  "Custom Stitched Tool & Supply Bags",
 ];
 
 const qualityItems = [
   {
-    title: "Heavy-Duty Density",
-    desc: "Virgin polymer yarns with high tensile strength",
+    title: "Virgin HDPE Polymer",
+    desc: "100% pure polymer yarns with extreme tensile tear strength",
   },
   {
     title: "UV Blockade & Heat Guard",
-    desc: "Stabilized against degradation and color fading",
+    desc: "Stabilized against thermal degradation and intense sun radiation",
   },
   {
-    title: "Custom Cut & Stitched",
-    desc: "Tailored widths, eyelets, and reinforced hems",
+    title: "Wholesale Complete Rolls",
+    desc: "Factory-sealed 50m and 100m rolls ready for bulk freight dispatch",
   },
   {
-    title: "Direct Wholesale Pricing",
-    desc: "Direct-from-foundry rates in Karachi Market",
+    title: "Direct Karachi Factory Pricing",
+    desc: "Wholesale rates direct from our Khori Garden market shop",
   },
 ];
 
 const galleryImages = [
-  { ...imagePaths.shadeNetMaterial, label: "Sun Shade Net Material", tag: "Virgin HDPE Polymer" },
+  { ...imagePaths.shadeNetMaterial, label: "Green Shade Net Material", tag: "Virgin HDPE Polymer" },
   { ...imagePaths.constructionNetting, label: "Construction Debris Netting", tag: "Safety Certified" },
   { ...imagePaths.schoolParkingShade, label: "School & Parking Shade", tag: "Architectural Tensile" },
-  { ...imagePaths.canvasRolls, label: "Shade Net & Canvas Rolls", tag: "Wholesale Ready" },
+  { ...imagePaths.canvasRolls, label: "Wholesale Complete Rolls", tag: "Factory Ready" },
 ];
 
 export const metadata: Metadata = {
@@ -162,28 +206,127 @@ const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "LocalBusiness",
+      "@type": ["LocalBusiness", "WholesaleStore"],
       "@id": `${siteUrl}/#localbusiness`,
-      name: businessName,
+      name: `${businessName} - Green Nets, Haripur Nets & Canvas Wholesale Shop`,
       url: siteUrl,
       logo: `${siteUrl}${logoPath}`,
-      image: [`${siteUrl}${ogImagePath}`, `${siteUrl}${logoPath}`],
+      image: [
+        `${siteUrl}${ogImagePath}`,
+        `${siteUrl}${logoPath}`,
+        `${siteUrl}/mustafa-canvas-business-card.jpg`,
+      ],
       description: seoDescription,
       email: businessEmail,
-      sameAs: [facebookPageUrl],
+      sameAs: [facebookPageUrl, instagramPageUrl],
       telephone: contactNumbers.map((contact) => `+${contact.whatsapp}`),
+      priceRange: "$$",
       address: {
         "@type": "PostalAddress",
         streetAddress:
-          "Shop # 1, MR / 72, Fazal Chamber, Khoury Garden, Murad Khan Rd, Market Quarter",
+          "Shop # 1, MR 1/72, Fazal Chamber, Murad Khan Rd, Khori Garden, Market Quarter",
         addressLocality: "Karachi",
+        addressRegion: "Sindh",
+        postalCode: "74000",
         addressCountry: "PK",
       },
-      areaServed: {
-        "@type": "City",
-        name: "Karachi",
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 24.8569,
+        longitude: 66.9998,
+      },
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+          ],
+          opens: "10:00",
+          closes: "20:00",
+        },
+      ],
+      areaServed: [
+        { "@type": "City", name: "Karachi" },
+        { "@type": "City", name: "Lahore" },
+        { "@type": "City", name: "Islamabad" },
+        { "@type": "City", name: "Rawalpindi" },
+        { "@type": "City", name: "Peshawar" },
+        { "@type": "City", name: "Quetta" },
+        { "@type": "City", name: "Multan" },
+        { "@type": "City", name: "Faisalabad" },
+        { "@type": "City", name: "Haripur" },
+        { "@type": "Country", name: "Pakistan" },
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Wholesale Complete Rolls & Canvas Inventory",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Product",
+              name: "Haripur Green Nets (Complete Master Rolls)",
+              description:
+                "Authentic Haripur UV-stabilized green nets for agricultural nurseries, greenhouses, and sunshade structures in 50m and 100m complete rolls.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Product",
+              name: "Green Sun Shade Nets (50%, 75%, 85%, 90% Blockade)",
+              description:
+                "High-density virgin HDPE green shade net rolls for temperature reduction, car parking, and open lawns.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Product",
+              name: "Waterproof Canvas Cloth Complete Rolls",
+              description:
+                "Heavy-duty cotton duck canvas cloth rolls for military tents, truck covers, and tool bags.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Product",
+              name: "Heavy-Duty Vinyl PVC Tarpaulin Master Rolls",
+              description:
+                "100% waterproof heavy-duty PVC coated tarpaulin sheets and master rolls for industrial transport and weather protection.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Product",
+              name: "Construction Safety Debris Netting Rolls",
+              description:
+                "Flame retardant building scaffolding debris netting rolls for construction site safety.",
+            },
+          },
+        ],
       },
       knowsAbout: productNames,
+      keywords: seoKeywords.join(", "),
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${siteUrl}/#faq`,
+      mainEntity: faqItems.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
     },
     {
       "@type": "WebSite",
@@ -271,7 +414,7 @@ export default function Home() {
         imageQuality={imageQuality}
       />
 
-      {/* Hero Section */}
+      {/* Hero Section with SEO Title & H1 */}
       <HeroSection
         brandSheet={imagePaths.brandSheet}
         brandSheetMobile={imagePaths.brandSheetMobile}
@@ -279,9 +422,8 @@ export default function Home() {
         imageQuality={imageQuality}
       />
 
-      {/* Solutions Section (Deep Racing Forest Archetype with Subtle Brass Touches) */}
+      {/* Applications & Solutions Section */}
       <section id="solutions" className="relative overflow-hidden bg-gradient-to-b from-forest-950 via-[#071d18] to-forest-950 py-20 text-white sm:py-28">
-        {/* Subtle radial ambient highlights */}
         <div className="pointer-events-none absolute left-1/4 top-0 h-[400px] w-[400px] rounded-full bg-forest-800/20 blur-3xl" aria-hidden />
         <div className="pointer-events-none absolute right-1/4 bottom-0 h-[400px] w-[400px] rounded-full bg-brass-500/10 blur-3xl" aria-hidden />
 
@@ -292,10 +434,10 @@ export default function Home() {
               <span>Specialized Applications</span>
             </div>
             <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
-              Engineered Shade &amp; Safety Netting
+              Engineered Green Nets &amp; Safety Solutions
             </h2>
             <p className="mt-4 text-base font-normal leading-relaxed text-forest-200/90 sm:text-lg">
-              Precision-woven polymer solutions designed for high-heat protection, dust suppression, agricultural microclimates, and commercial safety.
+              Precision-woven polymer solutions designed for high-heat protection, dust suppression, agricultural microclimates, and commercial safety across Pakistan.
             </p>
           </div>
 
@@ -322,6 +464,88 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Dedicated Wholesale Complete Rolls Section (Targeting "wholesale complete rolls", "green nets", "haripur nets") */}
+      <section id="wholesale-rolls" className="bg-white py-20 sm:py-28 border-b border-forest-100">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-forest-200/80 bg-forest-50/70 px-3.5 py-1 text-[11px] font-semibold tracking-widest uppercase text-forest-900">
+              <Boxes size={14} className="text-forest-700" />
+              <span>Bulk Factory Supply</span>
+            </div>
+            <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-forest-950 sm:text-4xl lg:text-5xl">
+              Wholesale Complete Rolls &amp; Master Sizing
+            </h2>
+            <p className="mt-4 text-base font-normal leading-relaxed text-slate-600 sm:text-lg">
+              Mustafa Canvas is Karachi&apos;s primary stockist of factory-sealed complete rolls. We deliver 50-meter and 100-meter master rolls of genuine Haripur nets, green shade fabric, waterproof canvas, and PVC tarpaulins directly to commercial contractors and agricultural resellers across Pakistan.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {wholesaleRollItems.map((item) => (
+              <article
+                key={item.title}
+                className="group flex flex-col justify-between rounded-3xl border border-forest-100 bg-canvas-50/50 p-6 shadow-sm doppelrand-card transition-all duration-300 hover:-translate-y-1 hover:border-forest-300 hover:bg-white hover:shadow-xl"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="rounded-full bg-forest-100/80 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-forest-800">
+                      {item.badge}
+                    </span>
+                    <Package size={18} className="text-forest-600" aria-hidden />
+                  </div>
+
+                  <h3 className="mt-4 font-display text-lg font-bold text-slate-900 group-hover:text-forest-800 transition-colors">
+                    {item.title}
+                  </h3>
+
+                  <div className="mt-3 space-y-1 text-xs">
+                    <p className="font-semibold text-forest-800">{item.spec}</p>
+                    <p className="text-slate-500 font-medium">{item.density}</p>
+                  </div>
+
+                  <p className="mt-3 text-xs text-slate-600 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-forest-100/70">
+                  <Link
+                    href="#contact"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-forest-800 group-hover:text-forest-950 transition-colors"
+                  >
+                    <span>Request Wholesale Rate</span>
+                    <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-10 rounded-2xl border border-forest-200/80 bg-forest-50/60 p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div className="flex items-center gap-3.5">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-forest-900 text-white">
+                <Truck size={20} />
+              </div>
+              <div>
+                <h4 className="font-display text-sm font-bold text-forest-950">
+                  Nationwide Bulk Freight &amp; Direct Transport Dispatch
+                </h4>
+                <p className="text-xs text-slate-600">
+                  Daily wholesale dispatches of complete rolls to Lahore, Islamabad, Rawalpindi, Peshawar, Quetta, Multan, Faisalabad, and all cities.
+                </p>
+              </div>
+            </div>
+
+            <Link
+              href="#contact"
+              className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-full bg-forest-900 px-5 text-xs font-semibold tracking-wide text-white transition hover:bg-forest-800"
+            >
+              Order Complete Rolls
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Core Products Overview Section */}
       <section id="products" className="bg-canvas-50/50 py-20 sm:py-28">
         <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
@@ -331,10 +555,10 @@ export default function Home() {
               <span>Core Manufacturing Line</span>
             </div>
             <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-forest-950 sm:text-4xl lg:text-5xl">
-              Canvas, Tarpaulin &amp; PVC Solutions
+              Canvas, Tarpaulin &amp; Green Nets
             </h2>
             <p className="mt-4 text-base font-normal leading-relaxed text-slate-600 sm:text-lg">
-              From heavy cotton duck canvas to waterproof vinyl tarpaulins and custom stitched tool kits, each fabric is manufactured to withstand intense abrasion, monsoon downpours, and relentless sun.
+              From heavy cotton duck canvas to waterproof vinyl tarpaulins, authentic Haripur netting, and custom stitched tool kits, each fabric is manufactured to withstand intense abrasion, monsoon downpours, and relentless sun.
             </p>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -368,15 +592,13 @@ export default function Home() {
             </div>
           </div>
 
-          <figure className="overflow-hidden rounded-3xl bg-white p-2.5 ring-1 ring-forest-200/70 shadow-lg doppelrand-card sm:p-3.5">
-            <div className="overflow-hidden rounded-2xl bg-canvas-100/40">
-              <ResponsiveImage
-                mobile={imagePaths.productRangeMobile}
-                desktop={imagePaths.productRange}
-                sizes="(max-width: 639px) 100vw, (max-width: 1024px) 100vw, 56vw"
-                className="h-auto w-full rounded-2xl object-cover"
-              />
-            </div>
+          <figure className="overflow-hidden rounded-2xl shadow-md">
+            <ResponsiveImage
+              mobile={imagePaths.productRangeMobile}
+              desktop={imagePaths.productRange}
+              sizes="(max-width: 639px) 100vw, (max-width: 1024px) 100vw, 56vw"
+              className="h-auto w-full rounded-2xl object-cover"
+            />
           </figure>
         </div>
       </section>
@@ -384,38 +606,39 @@ export default function Home() {
       {/* Dynamic Product Showcase with Slideshow & Skeletons */}
       <ProductShowcase />
 
-      {/* Karachi Market Range Section */}
+      {/* Karachi Market Authority & Canvas Shop Section (Targeting "canvas shops in Karachi", "haripur nets") */}
       <section aria-labelledby="karachi-products-heading" className="bg-white py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-forest-200/80 bg-forest-50/60 px-3.5 py-1 text-[11px] font-semibold tracking-widest uppercase text-forest-900">
-              <span>Karachi Market Authority</span>
+              <Building2 size={13} className="text-forest-700" />
+              <span>Historic Karachi Wholesale Hub</span>
             </div>
             <h2
               id="karachi-products-heading"
               className="mt-4 font-display text-3xl font-extrabold tracking-tight text-forest-950 sm:text-4xl lg:text-5xl"
             >
-              Supplying Canvas, Tarpaulin &amp; Nets Nationwide
+              Leading Canvas Shop in Karachi &mdash; Khori Garden
             </h2>
             <p className="mt-4 text-base font-normal leading-relaxed text-slate-600 sm:text-lg">
-              Operating directly from Fazal Chamber, Market Quarter, Karachi, Mustafa Canvas supplies both commercial bulk contractors and individual projects across Pakistan with premium quality fabrics.
+              Operating directly from Fazal Chamber, Murad Khan Road, Khori Garden, Market Quarter, Karachi, Mustafa Canvas is recognized as one of the most reliable canvas shops in Karachi. We supply authentic Haripur nets, heavy-duty tarpaulins, and wholesale complete rolls across Pakistan with unmatched quality control.
             </p>
           </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
-            <article className="rounded-2xl border border-forest-100 bg-white p-6 shadow-sm doppelrand-card transition-all hover:border-forest-300 hover:shadow-md">
+            <article className="rounded-3xl border border-forest-100 bg-white p-6 shadow-sm doppelrand-card transition-all hover:border-forest-300 hover:shadow-md">
               <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-forest-50 border border-forest-100 text-forest-800">
                 <Layers size={22} aria-hidden />
               </div>
               <h3 className="font-display text-lg font-bold text-slate-900">
-                Industrial Canvas Cloth
+                Canvas Shop &amp; Cloth Rolls
               </h3>
               <p className="mt-2.5 text-xs font-normal leading-relaxed text-slate-600">
-                Waterproof canvas cloth, tents, transport covers, and heavy-duty tool bags fabricated for extreme mechanical durability.
+                Waterproof canvas cloth, tents, transport covers, supply bags, and durable tool bags engineered for maximum tensile strength and longevity.
               </p>
             </article>
 
-            <article className="rounded-2xl border border-forest-100 bg-white p-6 shadow-sm doppelrand-card transition-all hover:border-forest-300 hover:shadow-md">
+            <article className="rounded-3xl border border-forest-100 bg-white p-6 shadow-sm doppelrand-card transition-all hover:border-forest-300 hover:shadow-md">
               <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-forest-50 border border-forest-100 text-forest-800">
                 <ShieldCheck size={22} aria-hidden />
               </div>
@@ -423,19 +646,19 @@ export default function Home() {
                 Tarpaulins &amp; Vinyl PVC
               </h3>
               <p className="mt-2.5 text-xs font-normal leading-relaxed text-slate-600">
-                Heavy-grade tarpaulin sheets and waterproof PVC coated fabrics designed to protect industrial machinery, grain, and transport cargo.
+                Heavy-duty tarpaulin sheets and waterproof PVC coated fabrics designed to protect industrial machinery, transport cargo, and raw materials.
               </p>
             </article>
 
-            <article className="rounded-2xl border border-forest-100 bg-white p-6 shadow-sm doppelrand-card transition-all hover:border-forest-300 hover:shadow-md">
+            <article className="rounded-3xl border border-forest-100 bg-white p-6 shadow-sm doppelrand-card transition-all hover:border-forest-300 hover:shadow-md">
               <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-forest-50 border border-forest-100 text-forest-800">
                 <Sun size={22} aria-hidden />
               </div>
               <h3 className="font-display text-lg font-bold text-slate-900">
-                Sun Shade &amp; Nursery Nets
+                Haripur Green Nets
               </h3>
               <p className="mt-2.5 text-xs font-normal leading-relaxed text-slate-600">
-                UV-stabilized shade nets, agricultural nursery coverings, building safety netting, and car parking shades in custom dimensions.
+                Genuine Haripur green nets, agricultural nursery netting, construction debris netting, and car parking shades available in custom sizes and wholesale complete rolls.
               </p>
             </article>
           </div>
@@ -456,13 +679,13 @@ export default function Home() {
               className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-forest-200 bg-white px-6 text-xs font-semibold tracking-wide text-forest-900 shadow-sm transition hover:bg-forest-50 hover:border-forest-300 active:scale-95"
             >
               <ShieldCheck size={16} className="text-forest-700" />
-              <span>Official Business Card &amp; Details</span>
+              <span>Official Business Card &amp; Shop Details</span>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Quality Guarantees Banner (Double-Bezel Micro-Cards) */}
+      {/* Quality Guarantees Banner */}
       <section className="bg-canvas-50/80 border-y border-forest-100/80 py-12">
         <div className="mx-auto grid max-w-7xl gap-4 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
           {qualityItems.map(({ title, desc }) => (
@@ -494,10 +717,10 @@ export default function Home() {
               <span>Manufacturing Standards</span>
             </div>
             <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-forest-950 sm:text-4xl lg:text-5xl">
-              Precision Weaving &amp; Reinforced Construction
+              Precision Weaving &amp; Wholesale Complete Rolls
             </h2>
             <p className="mt-3 text-base text-slate-600 font-normal">
-              High-density virgin polymers, precision industrial stitching, and heat-sealed edges ensure supreme tear resistance under harsh weather.
+              High-density virgin polymers, precision industrial lock-stitching, and reinforced hems ensure supreme tear resistance under harsh monsoon weather and severe summer heat.
             </p>
           </div>
 
@@ -505,20 +728,18 @@ export default function Home() {
             {galleryImages.map((image) => (
               <figure
                 key={image.src}
-                className="group relative self-start overflow-hidden rounded-3xl bg-white p-3 ring-1 ring-forest-100/90 shadow-sm doppelrand-card transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-4"
+                className="group relative self-start overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
               >
-                <div className="overflow-hidden rounded-2xl bg-canvas-100/40">
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    width={image.width}
-                    height={image.height}
-                    className="h-auto w-full rounded-2xl transition-transform duration-700 ease-out group-hover:scale-102"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    quality={imageQuality}
-                  />
-                </div>
-                <figcaption className="mt-4 flex items-center justify-between px-2">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
+                  className="h-auto w-full rounded-2xl transition-transform duration-700 ease-out group-hover:scale-102"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  quality={imageQuality}
+                />
+                <figcaption className="mt-3 flex items-center justify-between px-1">
                   <span className="font-display text-sm font-bold text-slate-900">
                     {image.label}
                   </span>
@@ -532,7 +753,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* SEO FAQ Knowledge Base (Renders on-page & matches FAQPage Schema) */}
+      <SeoFaqSection />
+
+      {/* Contact & Business Card Section */}
       <ContactSection />
     </main>
   );

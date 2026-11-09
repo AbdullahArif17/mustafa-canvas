@@ -4,11 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  ArrowDownToLine,
-  Check,
-  Download,
   Expand,
-  ExternalLink,
   MapPin,
   Phone,
   ShieldCheck,
@@ -27,13 +23,6 @@ import {
 
 export function BusinessCardDisplay() {
   const [modalOpen, setModalOpen] = useState(false);
-  const [copiedNumber, setCopiedNumber] = useState<string | null>(null);
-
-  const handleCopy = (number: string) => {
-    navigator.clipboard.writeText(number);
-    setCopiedNumber(number);
-    setTimeout(() => setCopiedNumber(null), 2000);
-  };
 
   return (
     <>
@@ -77,7 +66,7 @@ export function BusinessCardDisplay() {
           <motion.div
             whileHover={{ scale: 1.012 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="relative cursor-pointer overflow-hidden rounded-2xl bg-white p-1.5 shadow-2xl ring-1 ring-brass-400/30 transition-shadow duration-300 hover:ring-brass-400/70 hover:shadow-brass-500/10 sm:p-2 sm:rounded-3xl"
+            className="relative cursor-pointer overflow-hidden rounded-2xl shadow-2xl transition-all duration-300 hover:shadow-brass-500/20"
             onClick={() => setModalOpen(true)}
             role="button"
             tabIndex={0}
@@ -89,7 +78,7 @@ export function BusinessCardDisplay() {
             }}
             aria-label="Click to enlarge official business card"
           >
-            <div className="relative aspect-[1024/686] w-full overflow-hidden rounded-xl bg-forest-950 sm:rounded-2xl">
+            <div className="relative aspect-[1024/686] w-full overflow-hidden rounded-2xl bg-forest-950">
               <Image
                 src={businessCardImagePath}
                 alt={`${businessName} Official Business Card with contact numbers and Karachi shop address`}
@@ -115,23 +104,13 @@ export function BusinessCardDisplay() {
           </p>
         </div>
 
-        {/* Quick Action Buttons (Download, Direct WhatsApps) */}
+        {/* Quick Action Buttons (Full View, Socials) */}
         <div className="relative mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-5">
           <div className="flex flex-wrap items-center gap-2">
-            <a
-              href={businessCardImagePath}
-              download="mustafa-canvas-official-business-card.jpg"
-              className="group/dl inline-flex h-10 items-center gap-2 rounded-full border border-brass-400/50 bg-brass-500/15 px-4 text-xs font-semibold text-brass-200 shadow-sm transition-all hover:bg-brass-500 hover:text-forest-950 active:scale-95"
-              aria-label="Download business card image"
-            >
-              <Download size={14} className="transition-transform group-hover/dl:-translate-y-0.5" />
-              <span>Save Business Card</span>
-            </a>
-
             <button
               type="button"
               onClick={() => setModalOpen(true)}
-              className="inline-flex h-10 items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 text-xs font-semibold text-white transition-all hover:bg-white/10 active:scale-95"
+              className="inline-flex h-10 items-center gap-2 rounded-full border border-brass-400/50 bg-brass-500/15 px-4 text-xs font-semibold text-brass-200 shadow-sm transition-all hover:bg-brass-500 hover:text-forest-950 active:scale-95"
             >
               <Expand size={13} />
               <span>Full View</span>
@@ -247,14 +226,6 @@ export function BusinessCardDisplay() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <a
-                    href={businessCardImagePath}
-                    download="mustafa-canvas-official-business-card.jpg"
-                    className="inline-flex h-9 items-center gap-2 rounded-full border border-brass-400/50 bg-brass-500/20 px-3.5 text-xs font-semibold text-brass-200 transition hover:bg-brass-500 hover:text-forest-950"
-                  >
-                    <ArrowDownToLine size={13} />
-                    <span className="hidden sm:inline">Save High-Res Image</span>
-                  </a>
                   <button
                     type="button"
                     onClick={() => setModalOpen(false)}

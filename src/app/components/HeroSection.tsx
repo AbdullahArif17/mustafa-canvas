@@ -66,19 +66,17 @@ export function HeroSection({
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="overflow-hidden rounded-2xl bg-white p-1.5 ring-1 ring-forest-100 shadow-sm doppelrand-card sm:p-2.5"
+          className="overflow-hidden rounded-2xl shadow-sm"
         >
-          <div className="overflow-hidden rounded-xl bg-canvas-50">
-            <picture>
-              <source media="(min-width: 640px)" srcSet={desktopSrcSet} />
-              <img
-                {...imageProps}
-                srcSet={mobileSrcSet}
-                className="h-auto w-full object-cover"
-                style={{ width: "100%", height: "auto" }}
-              />
-            </picture>
-          </div>
+          <picture>
+            <source media="(min-width: 640px)" srcSet={desktopSrcSet} />
+            <img
+              {...imageProps}
+              srcSet={mobileSrcSet}
+              className="h-auto w-full rounded-2xl object-cover"
+              style={{ width: "100%", height: "auto" }}
+            />
+          </picture>
         </motion.div>
       </div>
 
@@ -93,24 +91,24 @@ export function HeroSection({
           <div className="inline-flex items-center gap-2 rounded-full border border-forest-200/80 bg-white/90 px-3.5 py-1 text-xs font-semibold tracking-wider text-forest-900 shadow-sm backdrop-blur">
             <span className="flex h-2 w-2 rounded-full bg-brass-500 animate-pulse" />
             <span className="font-semibold uppercase text-[11px] tracking-widest text-forest-800">
-              Direct Wholesale Manufacturer &middot; Karachi
+              Direct Wholesale Canvas Shop &middot; Khori Garden, Karachi
             </span>
           </div>
 
-          {/* Primary Editorial Headline */}
+          {/* Primary Editorial Headline Optimized for SEO */}
           <h1 className="mt-5 font-display text-4xl font-extrabold tracking-[-0.03em] text-forest-950 sm:text-5xl lg:text-6xl leading-[1.08]">
-            Built for Strength. <br />
+            Green Nets, Haripur Nets &amp; <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-forest-800 via-forest-600 to-forest-800">
-              Engineered to Last.
+              Canvas Wholesale Rolls
             </span>
           </h1>
 
           <p className="mt-5 font-display text-xl font-semibold leading-snug text-forest-900/90 sm:text-2xl">
-            High-Performance Sun Shade Nets, Waterproof Canvas, Tarpaulins &amp; PVC Fabrics
+            Karachi&apos;s Leading Canvas Shop for Authentic Haripur Green Nets &amp; Complete Rolls
           </p>
 
           <p className="mt-4 text-base font-normal leading-relaxed text-slate-600 sm:text-lg">
-            Supplying premium UV-treated shade fabrics, tensile agricultural netting, and industrial-grade waterproof tarpaulins across Karachi and Pakistan with guaranteed durability and custom sizing.
+            Mustafa Canvas supplies genuine Haripur green nets, UV-treated sun shade netting, waterproof canvas cloth, PVC tarpaulins, and wholesale complete rolls at direct factory prices for commercial, agricultural, and industrial buyers across Pakistan.
           </p>
 
           {/* CTA Group with Island Button Architecture */}
@@ -139,47 +137,51 @@ export function HeroSection({
           </div>
 
           {/* Trust Guarantees */}
-          <div className="mt-10 grid grid-cols-2 gap-3 border-t border-forest-100/80 pt-6 sm:grid-cols-3">
+          <div className="mt-10 grid grid-cols-2 gap-3 border-t border-forest-100/80 pt-6 sm:grid-cols-4">
             <div className="flex items-center gap-2.5">
               <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-forest-50 text-forest-700">
                 <ShieldCheck size={16} />
               </div>
-              <span className="text-xs font-semibold text-slate-700">100% Guaranteed</span>
+              <span className="text-xs font-semibold text-slate-700">Genuine Haripur Nets</span>
             </div>
             <div className="flex items-center gap-2.5">
               <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brass-50 text-brass-700">
                 <Sun size={16} />
               </div>
-              <span className="text-xs font-semibold text-slate-700">90% UV Blockade</span>
+              <span className="text-xs font-semibold text-slate-700">90% UV Green Nets</span>
             </div>
-            <div className="col-span-2 flex items-center gap-2.5 sm:col-span-1">
+            <div className="flex items-center gap-2.5">
               <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-forest-50 text-forest-700">
                 <CheckCircle2 size={16} />
               </div>
-              <span className="text-xs font-semibold text-slate-700">Custom Dimensions</span>
+              <span className="text-xs font-semibold text-slate-700">Wholesale Complete Rolls</span>
+            </div>
+            <div className="flex items-center gap-2.5">
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brass-50 text-brass-700">
+                <Sparkles size={16} />
+              </div>
+              <span className="text-xs font-semibold text-slate-700">Direct Karachi Shop</span>
             </div>
           </div>
         </motion.div>
 
-        {/* Hero Feature Doppelrand Card */}
+        {/* Hero Feature Visual Showcase */}
         <motion.figure
           initial={{ opacity: 0, x: 24 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-          className="group relative overflow-hidden rounded-3xl bg-white p-2.5 ring-1 ring-forest-200/70 shadow-xl shadow-forest-950/5 doppelrand-card sm:p-3.5"
+          className="group relative overflow-hidden rounded-2xl shadow-lg shadow-forest-950/5"
         >
-          <div className="overflow-hidden rounded-2xl bg-canvas-100/50">
-            <Image
-              src={sunShadeScene.src}
-              alt={sunShadeScene.alt}
-              width={sunShadeScene.width}
-              height={sunShadeScene.height}
-              className="h-auto w-full rounded-2xl transition-transform duration-700 ease-out group-hover:scale-102"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              quality={imageQuality}
-            />
-          </div>
-          <figcaption className="mt-3.5 flex items-center justify-between px-2 text-xs font-semibold text-forest-950">
+          <Image
+            src={sunShadeScene.src}
+            alt={sunShadeScene.alt}
+            width={sunShadeScene.width}
+            height={sunShadeScene.height}
+            className="h-auto w-full rounded-2xl transition-transform duration-700 ease-out group-hover:scale-102"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            quality={imageQuality}
+          />
+          <figcaption className="mt-3 flex items-center justify-between px-1 text-xs font-semibold text-forest-950">
             <div className="flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-forest-600" />
               <span className="font-display font-bold text-sm">Sun Shade Net Architecture</span>

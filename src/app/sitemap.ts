@@ -20,12 +20,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     {
       url: siteUrl,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 1.0,
       images: [`${siteUrl}${ogImagePath}`, `${siteUrl}${logoPath}`],
     },
     {
       url: `${siteUrl}/products`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.9,
       images: [`${siteUrl}${ogImagePath}`],
     },
-    ...productEntries,
+    ...productEntries.map((entry) => ({
+      ...entry,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
   ];
 }

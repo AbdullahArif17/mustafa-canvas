@@ -54,11 +54,28 @@ function productPageJsonLd(product: Product) {
           "@id": `${url}#breadcrumb`,
         },
         mainEntity: {
-          "@type": "Thing",
+          "@type": "Product",
           "@id": `${url}#item`,
           name: product.title,
           description: product.description,
           image: images,
+          brand: {
+            "@type": "Brand",
+            name: product.company || businessName,
+          },
+          offers: {
+            "@type": "Offer",
+            url,
+            priceCurrency: "PKR",
+            price: "Contact for wholesale roll price",
+            availability: "https://schema.org/InStock",
+            itemCondition: "https://schema.org/NewCondition",
+            seller: {
+              "@type": "LocalBusiness",
+              name: businessName,
+              telephone: "+923108117857",
+            },
+          },
         },
       },
       {

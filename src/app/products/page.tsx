@@ -9,9 +9,10 @@ import {
 } from "../seo";
 import { imageQuality, siteLogo, siteNavItems } from "../site-config";
 
-const productsTitle = "Canvas, Tarpaulin & Sun Shade Nets Karachi";
+const productsTitle =
+  "Green Nets, Haripur Nets & Canvas Wholesale Catalog Karachi";
 const productsDescription =
-  "Browse canvas cloth, tarpaulin, PVC cloth, sun shade nets and netting products from Mustafa Canvas in Karachi, Pakistan.";
+  "Browse green nets, authentic Haripur nets, waterproof canvas cloth, PVC tarpaulins, and wholesale complete rolls from Mustafa Canvas in Karachi, Pakistan.";
 
 export const revalidate = 300;
 

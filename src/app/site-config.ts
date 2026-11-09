@@ -8,10 +8,11 @@ export const siteLogo = {
 };
 
 export const siteNavItems = [
-  { href: "/#solutions", label: "Solutions", sectionId: "solutions" },
+  { href: "/#solutions", label: "Applications", sectionId: "solutions" },
+  { href: "/#wholesale-rolls", label: "Wholesale Rolls", sectionId: "wholesale-rolls" },
   { href: "/#products", label: "Products", sectionId: "products" },
   { href: "/#catalog", label: "Catalog", sectionId: "catalog" },
-  { href: "/#quality", label: "Quality", sectionId: "quality" },
+  { href: "/#faq", label: "FAQ", sectionId: "faq" },
   { href: "/#contact", label: "Contact", sectionId: "contact" },
   { href: "/products", label: "All Products" },
 ];

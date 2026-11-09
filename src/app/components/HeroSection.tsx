@@ -111,16 +111,16 @@ export function HeroSection({
             Mustafa Canvas supplies genuine Haripur green nets, UV-treated sun shade netting, waterproof canvas cloth, PVC tarpaulins, and wholesale complete rolls at direct factory prices for commercial, agricultural, and industrial buyers across Pakistan.
           </p>
 
-          {/* CTA Group with Island Button Architecture */}
+          {/* CTA Group with Razor-Sharp Typography & Harmonized Alignment */}
           <div className="mt-8 flex flex-col gap-3.5 sm:flex-row sm:items-center">
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Link
                 href="#products"
-                className="group inline-flex h-12 w-full items-center justify-between gap-3 rounded-full bg-forest-900 pl-6 pr-2 text-sm font-semibold tracking-wide text-white shadow-lg shadow-forest-950/20 transition-all hover:bg-forest-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 focus-visible:ring-offset-2 sm:w-auto"
+                className="group inline-flex h-12 w-full items-center justify-center gap-3 rounded-full bg-forest-900 px-6 text-sm font-semibold tracking-wide text-white shadow-lg shadow-forest-950/20 transition-all hover:bg-forest-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 focus-visible:ring-offset-2 sm:w-auto antialiased [transform:translateZ(0)] [backface-visibility:hidden]"
               >
-                <span>Explore Products</span>
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 transition-transform duration-300 group-hover:translate-x-0.5">
-                  <ArrowRight size={15} aria-hidden />
+                <span className="antialiased">Explore Products</span>
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/15 transition-transform duration-300 group-hover:translate-x-1">
+                  <ArrowRight size={14} aria-hidden />
                 </span>
               </Link>
             </motion.div>
@@ -128,7 +128,7 @@ export function HeroSection({
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Link
                 href="#contact"
-                className="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-full border border-forest-200/90 bg-white px-7 text-sm font-semibold tracking-wide text-forest-950 shadow-sm transition-all hover:bg-forest-50 hover:border-forest-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 focus-visible:ring-offset-2 sm:w-auto"
+                className="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-full border border-forest-200/90 bg-white px-6 text-sm font-semibold tracking-wide text-forest-950 shadow-sm transition-all hover:bg-forest-50 hover:border-forest-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 focus-visible:ring-offset-2 sm:w-auto antialiased [transform:translateZ(0)]"
               >
                 <PhoneCall size={15} className="text-forest-700" aria-hidden />
                 <span>Contact &amp; Quotes</span>

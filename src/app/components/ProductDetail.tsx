@@ -125,7 +125,7 @@ export function ProductDetail({ slug, initialProduct }: ProductDetailProps) {
           <div className="grid gap-3 sm:gap-4">
             {activeImage ? (
               <>
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl sm:rounded-3xl bg-canvas-50/80 ring-1 ring-forest-100 shadow-sm doppelrand-card">
+                <div className="relative aspect-[1/1] sm:aspect-[4/3] w-full overflow-hidden rounded-2xl sm:rounded-3xl bg-canvas-50/80 ring-1 ring-forest-100 shadow-sm doppelrand-card">
                   <img
                     src={activeImage.url}
                     alt={activeImage.alt}

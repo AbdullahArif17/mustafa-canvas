@@ -26,7 +26,7 @@ export function BusinessCardDisplay() {
 
   return (
     <>
-      <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-forest-800/80 bg-gradient-to-br from-forest-900/90 via-[#07241d] to-forest-950 p-3.5 sm:p-7 shadow-2xl backdrop-blur-md ring-1 ring-brass-500/20">
+      <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-forest-800/80 bg-gradient-to-br from-forest-900/90 via-[#07241d] to-forest-950 p-2.5 xs:p-3.5 sm:p-7 shadow-2xl backdrop-blur-md ring-1 ring-brass-500/20">
         {/* Subtle decorative gold ambient glow */}
         <div
           className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-brass-500/10 blur-3xl"
@@ -38,7 +38,7 @@ export function BusinessCardDisplay() {
         />
 
         {/* Header Header & Verified Badge */}
-        <div className="relative mb-4 sm:mb-5 flex flex-wrap items-center justify-between gap-2.5 sm:gap-3 border-b border-white/10 pb-3.5 sm:pb-4">
+        <div className="relative mb-3.5 sm:mb-5 flex flex-wrap items-center justify-between gap-2 sm:gap-3 border-b border-white/10 pb-3 sm:pb-4">
           <div className="flex items-center gap-2 sm:gap-2.5">
             <div className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-xl bg-forest-800/80 border border-forest-600/50 text-brass-300 shadow-sm">
               <ShieldCheck size={17} aria-hidden />
@@ -66,7 +66,7 @@ export function BusinessCardDisplay() {
           <motion.div
             whileHover={{ scale: 1.012 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="relative cursor-pointer overflow-hidden rounded-2xl shadow-2xl transition-all duration-300 hover:shadow-brass-500/20"
+            className="relative cursor-pointer overflow-hidden rounded-xl sm:rounded-2xl shadow-2xl ring-1 ring-brass-400/30 transition-all duration-300 hover:shadow-brass-500/20"
             onClick={() => setModalOpen(true)}
             role="button"
             tabIndex={0}
@@ -78,13 +78,13 @@ export function BusinessCardDisplay() {
             }}
             aria-label="Click to enlarge official business card"
           >
-            <div className="relative aspect-[1024/686] w-full overflow-hidden rounded-2xl bg-forest-950">
+            <div className="relative aspect-[1024/686] w-full overflow-hidden rounded-xl sm:rounded-2xl bg-forest-950">
               <Image
                 src={businessCardImagePath}
                 alt={`${businessName} Official Business Card with contact numbers and Karachi shop address`}
                 width={1024}
                 height={686}
-                className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-103"
+                className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-102"
                 priority
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 560px"
               />
@@ -99,13 +99,18 @@ export function BusinessCardDisplay() {
             </div>
           </motion.div>
 
-          <p className="mt-2 text-center text-[10px] sm:text-[11px] font-medium text-forest-200/60 sm:hidden">
-            Tap card to inspect high-resolution details
-          </p>
+          <button
+            type="button"
+            onClick={() => setModalOpen(true)}
+            className="mt-2.5 flex w-full items-center justify-center gap-1.5 text-center text-[11px] font-semibold text-brass-300/90 sm:hidden hover:text-brass-200"
+          >
+            <Expand size={12} />
+            <span>Tap card to view full resolution</span>
+          </button>
         </div>
 
         {/* Quick Action Buttons (Full View, Socials) */}
-        <div className="relative mt-4 sm:mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-4 sm:pt-5">
+        <div className="relative mt-3.5 sm:mt-6 flex flex-wrap items-center justify-between gap-2.5 sm:gap-3 border-t border-white/10 pt-3.5 sm:pt-5">
           <div className="flex flex-wrap items-center gap-2">
             <button
               type="button"
@@ -113,7 +118,7 @@ export function BusinessCardDisplay() {
               className="inline-flex h-9 sm:h-10 items-center gap-1.5 sm:gap-2 rounded-full border border-brass-400/50 bg-brass-500/15 px-3.5 sm:px-4 text-xs font-semibold text-brass-200 shadow-sm transition-all hover:bg-brass-500 hover:text-forest-950 active:scale-95"
             >
               <Expand size={13} />
-              <span>Full View</span>
+              <span>Enlarge Full Card</span>
             </button>
           </div>
 
@@ -146,17 +151,17 @@ export function BusinessCardDisplay() {
         </div>
 
         {/* Direct Card Key Personnel Contacts (Mustafa, Abid, Arif) */}
-        <div className="mt-4 sm:mt-5 grid gap-2 sm:gap-2.5 sm:grid-cols-3">
+        <div className="mt-3.5 sm:mt-5 grid gap-2 sm:gap-2.5 sm:grid-cols-3">
           {contactNumbers.slice(0, 3).map((contact) => (
             <div
               key={contact.name}
-              className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.04] p-2.5 sm:p-3 text-white transition hover:bg-white/[0.08]"
+              className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.05] p-3 text-white transition hover:bg-white/[0.08]"
             >
               <div>
                 <span className="block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-brass-300">
                   {contact.name}
                 </span>
-                <span className="block font-display text-xs font-bold text-white">
+                <span className="block font-display text-sm font-bold text-white tracking-tight">
                   {contact.display}
                 </span>
               </div>
@@ -166,19 +171,19 @@ export function BusinessCardDisplay() {
                   href={`https://wa.me/${contact.whatsapp}?text=Hello%20${contact.name}%2C%20I%20got%20your%20number%20from%20Mustafa%20Canvas%20business%20card.`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#25d366]/20 text-[#25d366] transition hover:bg-[#25d366] hover:text-white"
+                  className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#25d366] text-white shadow-sm transition hover:bg-[#20ba59] active:scale-95"
                   title={`WhatsApp ${contact.name}`}
                   aria-label={`WhatsApp ${contact.name}`}
                 >
-                  <FaWhatsapp size={14} />
+                  <FaWhatsapp size={15} />
                 </a>
                 <a
                   href={`tel:${contact.tel}`}
-                  className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white transition hover:bg-white hover:text-forest-950"
+                  className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/15 text-white transition hover:bg-white hover:text-forest-950 active:scale-95"
                   title={`Call ${contact.name}`}
                   aria-label={`Call ${contact.name}`}
                 >
-                  <Phone size={12} />
+                  <Phone size={13} />
                 </a>
               </div>
             </div>
@@ -186,7 +191,7 @@ export function BusinessCardDisplay() {
         </div>
 
         {/* Address callout from card */}
-        <div className="mt-3.5 sm:mt-4 flex items-start gap-2.5 rounded-xl border border-white/10 bg-white/[0.03] p-2.5 sm:p-3 text-xs text-forest-200/80">
+        <div className="mt-3 sm:mt-4 flex items-start gap-2.5 rounded-xl border border-white/10 bg-white/[0.03] p-2.5 sm:p-3 text-xs text-forest-200/80">
           <MapPin size={15} className="mt-0.5 shrink-0 text-brass-400" aria-hidden />
           <p className="leading-relaxed text-[11px] sm:text-xs">
             <strong className="text-white">Shop Address:</strong> {locationAddress}

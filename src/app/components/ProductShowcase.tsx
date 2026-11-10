@@ -159,7 +159,7 @@ export function ProductShowcase() {
             <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
               {/* Left Column: Product Photography Display (7 cols on lg) */}
               <div className="lg:col-span-7 space-y-4 min-w-0">
-                <div className="group/stage relative aspect-[4/3] sm:aspect-[16/11] w-full overflow-hidden rounded-2xl bg-canvas-100/50 shadow-inner">
+                <div className="group/stage relative aspect-[1/1] xs:aspect-[4/3] sm:aspect-[16/11] w-full overflow-hidden rounded-2xl bg-canvas-100/50 shadow-inner">
                   {activeImage ? (
                     <img
                       src={activeImage.url}
@@ -189,13 +189,13 @@ export function ProductShowcase() {
 
                 {/* Gallery Thumbnails (if multiple images exist for this product) */}
                 {activeProduct.images.length > 1 && (
-                  <div className="flex items-center gap-2 overflow-x-auto pb-1 pt-1">
+                  <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 pt-1">
                     {activeProduct.images.map((img, idx) => (
                       <button
                         key={`${img.url}-${idx}`}
                         type="button"
                         onClick={() => setSelectedImageIndex(idx)}
-                        className={`relative h-14 w-16 sm:h-16 sm:w-20 shrink-0 overflow-hidden rounded-xl border-2 transition-all ${
+                        className={`relative h-16 w-20 sm:h-20 sm:w-24 shrink-0 overflow-hidden rounded-xl border-2 transition-all ${
                           selectedImageIndex === idx
                             ? "border-forest-700 ring-2 ring-forest-700/20 scale-[1.02]"
                             : "border-transparent opacity-65 hover:opacity-100"

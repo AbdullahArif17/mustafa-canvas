@@ -72,18 +72,18 @@ export function ProductsCatalog({ initialProducts }: ProductsCatalogProps) {
   };
 
   return (
-    <section className="bg-white py-14 sm:py-20">
+    <section className="bg-white py-10 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-10 flex flex-col gap-4 border-b border-forest-100/80 pb-8 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mb-8 sm:mb-10 flex flex-col gap-3.5 border-b border-forest-100/80 pb-6 sm:pb-8 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-forest-200/80 bg-forest-50/70 px-3.5 py-1 text-[11px] font-semibold tracking-widest uppercase text-forest-800">
               <Sparkles size={13} className="text-brass-600" />
               <span>Fabric Catalog</span>
             </div>
-            <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-forest-950 sm:text-5xl">
+            <h1 className="mt-3 font-display text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-forest-950">
               All Fabric Products
             </h1>
-            <p className="mt-2 text-sm font-normal text-slate-600">
+            <p className="mt-2 text-xs sm:text-sm font-normal text-slate-600">
               Explore our comprehensive range of industrial shade nets, canvas, and tarpaulins.
             </p>
           </div>
@@ -94,9 +94,9 @@ export function ProductsCatalog({ initialProducts }: ProductsCatalogProps) {
         </div>
 
         {/* Filters, Search & Sort Bar */}
-        <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <div className="mb-8 sm:mb-10 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           {/* Category Tabs */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
             {filterTabs.map(({ kind, label }) => {
               const count = counts[kind];
               const isSelected = filter === kind;
@@ -105,7 +105,7 @@ export function ProductsCatalog({ initialProducts }: ProductsCatalogProps) {
                   key={kind}
                   type="button"
                   onClick={() => setFilter(kind)}
-                  className={`inline-flex h-10 items-center gap-2 rounded-full px-4 text-xs font-semibold tracking-wide transition-all active:scale-95 ${
+                  className={`inline-flex h-9 sm:h-10 shrink-0 whitespace-nowrap items-center gap-2 rounded-full px-3.5 sm:px-4 text-xs font-semibold tracking-wide transition-all active:scale-95 ${
                     isSelected
                       ? "bg-forest-900 text-white shadow-sm ring-1 ring-forest-900"
                       : "border border-forest-200/80 bg-white text-forest-950 hover:bg-forest-50 hover:border-forest-300"
@@ -176,13 +176,13 @@ export function ProductsCatalog({ initialProducts }: ProductsCatalogProps) {
 
         {/* Product Cards Grid / Skeletons / Empty State */}
         {!loaded ? (
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
             <ProductCardSkeleton />
             <ProductCardSkeleton />
             <ProductCardSkeleton />
           </div>
         ) : filteredProducts.length ? (
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
             {filteredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

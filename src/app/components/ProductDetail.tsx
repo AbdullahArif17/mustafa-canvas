@@ -120,16 +120,16 @@ export function ProductDetail({ slug, initialProduct }: ProductDetailProps) {
         </nav>
 
         {/* Main Product Showcase Grid */}
-        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+        <div className="grid gap-8 sm:gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
           {/* Images Section */}
-          <div className="grid gap-4">
+          <div className="grid gap-3 sm:gap-4">
             {activeImage ? (
               <>
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl bg-canvas-50/80 p-4 ring-1 ring-forest-100 shadow-sm doppelrand-card sm:p-6">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl sm:rounded-3xl bg-canvas-50/80 ring-1 ring-forest-100 shadow-sm doppelrand-card">
                   <img
                     src={activeImage.url}
                     alt={activeImage.alt}
-                    className="h-full w-full object-contain transition-all duration-300"
+                    className="h-full w-full object-cover transition-all duration-300"
                   />
                   {detailImages.length > 1 && (
                     <div className="absolute bottom-3 right-3 rounded-full bg-slate-900/75 px-3 py-1 text-[11px] font-medium text-white backdrop-blur">
@@ -139,14 +139,14 @@ export function ProductDetail({ slug, initialProduct }: ProductDetailProps) {
                 </div>
 
                 {detailImages.length > 1 && (
-                  <div className="grid grid-cols-4 gap-3 sm:grid-cols-5">
+                  <div className="grid grid-cols-4 gap-2 sm:gap-3 sm:grid-cols-5">
                     {detailImages.map((image, index) => (
                       <button
                         key={image.path}
                         type="button"
                         onClick={() => setActiveImagePath(image.path)}
                         aria-label={`View image ${index + 1} for ${product.title}`}
-                        className={`overflow-hidden rounded-2xl bg-canvas-50 p-1.5 ring-offset-2 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 ${
+                        className={`overflow-hidden rounded-xl bg-canvas-50 ring-offset-2 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 ${
                           image.path === activeImage.path
                             ? "ring-2 ring-forest-800 shadow-sm"
                             : "opacity-75 hover:opacity-100 hover:ring-2 hover:ring-forest-200"
@@ -155,7 +155,7 @@ export function ProductDetail({ slug, initialProduct }: ProductDetailProps) {
                         <img
                           src={image.url}
                           alt={image.alt}
-                          className="aspect-square w-full object-contain rounded-xl"
+                          className="aspect-square w-full object-cover rounded-xl"
                           loading="lazy"
                         />
                       </button>
@@ -164,14 +164,14 @@ export function ProductDetail({ slug, initialProduct }: ProductDetailProps) {
                 )}
               </>
             ) : (
-              <div className="flex aspect-[4/3] items-center justify-center rounded-3xl bg-canvas-50 p-6 text-center text-xs font-semibold text-slate-400">
+              <div className="flex aspect-[4/3] items-center justify-center rounded-2xl sm:rounded-3xl bg-canvas-50 p-6 text-center text-xs font-semibold text-slate-400">
                 No product images available
               </div>
             )}
           </div>
 
           {/* Details & Inquiries Column */}
-          <article className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-forest-100/90 doppelrand-card sm:p-8">
+          <article className="rounded-2xl sm:rounded-3xl bg-white p-4 sm:p-8 shadow-sm ring-1 ring-forest-100/90 doppelrand-card">
             <div className="flex items-center justify-between gap-4">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-forest-50 border border-forest-200/60 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase text-forest-800">
                 <span className="h-1.5 w-1.5 rounded-full bg-forest-600" aria-hidden />
@@ -190,7 +190,7 @@ export function ProductDetail({ slug, initialProduct }: ProductDetailProps) {
               )}
             </div>
 
-            <h1 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-forest-950 sm:text-4xl">
+            <h1 className="mt-3.5 sm:mt-4 font-display text-2xl sm:text-4xl font-extrabold tracking-tight text-forest-950">
               {product.title}
             </h1>
 

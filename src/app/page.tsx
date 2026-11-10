@@ -423,38 +423,38 @@ export default function Home() {
       />
 
       {/* Applications & Solutions Section */}
-      <section id="solutions" className="relative overflow-hidden bg-gradient-to-b from-forest-950 via-[#071d18] to-forest-950 py-20 text-white sm:py-28">
+      <section id="solutions" className="relative overflow-hidden bg-gradient-to-b from-forest-950 via-[#071d18] to-forest-950 py-12 sm:py-20 lg:py-28 text-white">
         <div className="pointer-events-none absolute left-1/4 top-0 h-[400px] w-[400px] rounded-full bg-forest-800/20 blur-3xl" aria-hidden />
         <div className="pointer-events-none absolute right-1/4 bottom-0 h-[400px] w-[400px] rounded-full bg-brass-500/10 blur-3xl" aria-hidden />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-14 max-w-2xl">
+          <div className="mb-8 sm:mb-14 max-w-2xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-forest-700/60 bg-forest-900/80 px-3.5 py-1 text-[11px] font-semibold tracking-widest uppercase text-brass-300">
               <span className="h-1.5 w-1.5 rounded-full bg-brass-400" />
               <span>Specialized Applications</span>
             </div>
-            <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+            <h2 className="mt-4 font-display text-2xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
               Engineered Green Nets &amp; Safety Solutions
             </h2>
-            <p className="mt-4 text-base font-normal leading-relaxed text-forest-200/90 sm:text-lg">
+            <p className="mt-3 sm:mt-4 text-sm font-normal leading-relaxed text-forest-200/90 sm:text-lg">
               Precision-woven polymer solutions designed for high-heat protection, dust suppression, agricultural microclimates, and commercial safety across Pakistan.
             </p>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          <div className="grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {solutionItems.map(({ label, icon: Icon, description }) => (
               <article
                 key={label}
-                className="group relative flex flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-brass-400/40 hover:bg-white/[0.07] hover:shadow-2xl hover:shadow-forest-950/40"
+                className="group relative flex flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.04] p-4 sm:p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-brass-400/40 hover:bg-white/[0.07] hover:shadow-2xl hover:shadow-forest-950/40"
               >
                 <div>
-                  <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-forest-900 border border-forest-700 text-brass-300 shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:border-brass-400 group-hover:text-brass-200">
-                    <Icon size={22} aria-hidden />
+                  <div className="mb-4 sm:mb-5 inline-flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-forest-900 border border-forest-700 text-brass-300 shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:border-brass-400 group-hover:text-brass-200">
+                    <Icon size={20} aria-hidden />
                   </div>
-                  <h3 className="font-display text-lg font-bold tracking-normal text-white">
+                  <h3 className="font-display text-base sm:text-lg font-bold tracking-normal text-white">
                     {label}
                   </h3>
-                  <p className="mt-2.5 text-xs font-normal leading-relaxed text-forest-200/80">
+                  <p className="mt-2 text-xs font-normal leading-relaxed text-forest-200/80">
                     {description}
                   </p>
                 </div>
@@ -465,26 +465,26 @@ export default function Home() {
       </section>
 
       {/* Dedicated Wholesale Complete Rolls Section (Targeting "wholesale complete rolls", "green nets", "haripur nets") */}
-      <section id="wholesale-rolls" className="bg-white py-20 sm:py-28 border-b border-forest-100">
+      <section id="wholesale-rolls" className="bg-white py-12 sm:py-20 lg:py-28 border-b border-forest-100">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-forest-200/80 bg-forest-50/70 px-3.5 py-1 text-[11px] font-semibold tracking-widest uppercase text-forest-900">
               <Boxes size={14} className="text-forest-700" />
               <span>Bulk Factory Supply</span>
             </div>
-            <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-forest-950 sm:text-4xl lg:text-5xl">
+            <h2 className="mt-4 font-display text-2xl font-extrabold tracking-tight text-forest-950 sm:text-4xl lg:text-5xl">
               Wholesale Complete Rolls &amp; Master Sizing
             </h2>
-            <p className="mt-4 text-base font-normal leading-relaxed text-slate-600 sm:text-lg">
+            <p className="mt-3 sm:mt-4 text-sm font-normal leading-relaxed text-slate-600 sm:text-lg">
               Mustafa Canvas is Karachi&apos;s primary stockist of factory-sealed complete rolls. We deliver 50-meter and 100-meter master rolls of genuine Haripur nets, green shade fabric, waterproof canvas, and PVC tarpaulins directly to commercial contractors and agricultural resellers across Pakistan.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 sm:mt-12 grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {wholesaleRollItems.map((item) => (
               <article
                 key={item.title}
-                className="group flex flex-col justify-between rounded-3xl border border-forest-100 bg-canvas-50/50 p-6 shadow-sm doppelrand-card transition-all duration-300 hover:-translate-y-1 hover:border-forest-300 hover:bg-white hover:shadow-xl"
+                className="group flex flex-col justify-between rounded-2xl sm:rounded-3xl border border-forest-100 bg-canvas-50/50 p-4 sm:p-6 shadow-sm doppelrand-card transition-all duration-300 hover:-translate-y-1 hover:border-forest-300 hover:bg-white hover:shadow-xl"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
@@ -494,21 +494,21 @@ export default function Home() {
                     <Package size={18} className="text-forest-600" aria-hidden />
                   </div>
 
-                  <h3 className="mt-4 font-display text-lg font-bold text-slate-900 group-hover:text-forest-800 transition-colors">
+                  <h3 className="mt-3 sm:mt-4 font-display text-base sm:text-lg font-bold text-slate-900 group-hover:text-forest-800 transition-colors">
                     {item.title}
                   </h3>
 
-                  <div className="mt-3 space-y-1 text-xs">
+                  <div className="mt-2.5 sm:mt-3 space-y-1 text-xs">
                     <p className="font-semibold text-forest-800">{item.spec}</p>
                     <p className="text-slate-500 font-medium">{item.density}</p>
                   </div>
 
-                  <p className="mt-3 text-xs text-slate-600 leading-relaxed">
+                  <p className="mt-2.5 sm:mt-3 text-xs text-slate-600 leading-relaxed">
                     {item.desc}
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-forest-100/70">
+                <div className="mt-5 sm:mt-6 pt-3.5 sm:pt-4 border-t border-forest-100/70">
                   <Link
                     href="#contact"
                     className="inline-flex items-center gap-1.5 text-xs font-semibold text-forest-800 group-hover:text-forest-950 transition-colors"
@@ -521,16 +521,16 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="mt-10 rounded-2xl border border-forest-200/80 bg-forest-50/60 p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div className="flex items-center gap-3.5">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-forest-900 text-white">
-                <Truck size={20} />
+          <div className="mt-8 sm:mt-10 rounded-2xl border border-forest-200/80 bg-forest-50/60 p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div className="flex items-start sm:items-center gap-3.5">
+              <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl bg-forest-900 text-white">
+                <Truck size={18} />
               </div>
               <div>
                 <h4 className="font-display text-sm font-bold text-forest-950">
                   Nationwide Bulk Freight &amp; Direct Transport Dispatch
                 </h4>
-                <p className="text-xs text-slate-600">
+                <p className="text-xs text-slate-600 mt-0.5">
                   Daily wholesale dispatches of complete rolls to Lahore, Islamabad, Rawalpindi, Peshawar, Quetta, Multan, Faisalabad, and all cities.
                 </p>
               </div>
@@ -538,7 +538,7 @@ export default function Home() {
 
             <Link
               href="#contact"
-              className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-full bg-forest-900 px-5 text-xs font-semibold tracking-wide text-white transition hover:bg-forest-800"
+              className="inline-flex h-11 w-full sm:w-auto items-center justify-center whitespace-nowrap rounded-full bg-forest-900 px-5 text-xs font-semibold tracking-wide text-white transition hover:bg-forest-800"
             >
               Order Complete Rolls
             </Link>
@@ -547,28 +547,28 @@ export default function Home() {
       </section>
 
       {/* Core Products Overview Section */}
-      <section id="products" className="bg-canvas-50/50 py-20 sm:py-28">
-        <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
+      <section id="products" className="bg-canvas-50/50 py-12 sm:py-20 lg:py-28">
+        <div className="mx-auto grid max-w-7xl gap-10 sm:gap-14 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-forest-200/80 bg-white px-3.5 py-1 text-[11px] font-semibold tracking-widest uppercase text-forest-900 shadow-sm">
               <span className="h-1.5 w-1.5 rounded-full bg-forest-600" />
               <span>Core Manufacturing Line</span>
             </div>
-            <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-forest-950 sm:text-4xl lg:text-5xl">
+            <h2 className="mt-4 font-display text-2xl font-extrabold tracking-tight text-forest-950 sm:text-4xl lg:text-5xl">
               Canvas, Tarpaulin &amp; Green Nets
             </h2>
-            <p className="mt-4 text-base font-normal leading-relaxed text-slate-600 sm:text-lg">
+            <p className="mt-3 sm:mt-4 text-sm font-normal leading-relaxed text-slate-600 sm:text-lg">
               From heavy cotton duck canvas to waterproof vinyl tarpaulins, authentic Haripur netting, and custom stitched tool kits, each fabric is manufactured to withstand intense abrasion, monsoon downpours, and relentless sun.
             </p>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+            <div className="mt-6 sm:mt-8 grid gap-2.5 sm:gap-3 sm:grid-cols-2">
               {productItems.map((item) => (
                 <div
                   key={item}
-                  className="flex items-center gap-3 rounded-xl border border-forest-100/90 bg-white p-3.5 shadow-sm transition-all hover:border-forest-300 hover:shadow"
+                  className="flex items-center gap-3 rounded-xl border border-forest-100/90 bg-white p-3 sm:p-3.5 shadow-sm transition-all hover:border-forest-300 hover:shadow"
                 >
                   <CheckCircle2
-                    size={18}
+                    size={17}
                     className="shrink-0 text-forest-700"
                     aria-hidden
                   />
@@ -579,10 +579,10 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="mt-10">
+            <div className="mt-8 sm:mt-10">
               <Link
                 href="/products"
-                className="group inline-flex h-12 items-center justify-between gap-3 rounded-full bg-forest-900 pl-6 pr-2 text-xs font-semibold tracking-wide text-white shadow-sm transition-all hover:bg-forest-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 focus-visible:ring-offset-2"
+                className="group inline-flex h-12 w-full sm:w-auto items-center justify-between sm:justify-start gap-3 rounded-full bg-forest-900 pl-6 pr-2 text-xs font-semibold tracking-wide text-white shadow-sm transition-all hover:bg-forest-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 focus-visible:ring-offset-2"
               >
                 <span>Browse Full Product Range</span>
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 transition-transform duration-200 group-hover:translate-x-0.5">
@@ -607,7 +607,7 @@ export default function Home() {
       <ProductShowcase />
 
       {/* Karachi Market Authority & Canvas Shop Section (Targeting "canvas shops in Karachi", "haripur nets") */}
-      <section aria-labelledby="karachi-products-heading" className="bg-white py-20 sm:py-28">
+      <section aria-labelledby="karachi-products-heading" className="bg-white py-12 sm:py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-forest-200/80 bg-forest-50/60 px-3.5 py-1 text-[11px] font-semibold tracking-widest uppercase text-forest-900">
@@ -616,57 +616,57 @@ export default function Home() {
             </div>
             <h2
               id="karachi-products-heading"
-              className="mt-4 font-display text-3xl font-extrabold tracking-tight text-forest-950 sm:text-4xl lg:text-5xl"
+              className="mt-4 font-display text-2xl font-extrabold tracking-tight text-forest-950 sm:text-4xl lg:text-5xl"
             >
               Leading Canvas Shop in Karachi &mdash; Khori Garden
             </h2>
-            <p className="mt-4 text-base font-normal leading-relaxed text-slate-600 sm:text-lg">
+            <p className="mt-3 sm:mt-4 text-sm font-normal leading-relaxed text-slate-600 sm:text-lg">
               Operating directly from Fazal Chamber, Murad Khan Road, Khori Garden, Market Quarter, Karachi, Mustafa Canvas is recognized as one of the most reliable canvas shops in Karachi. We supply authentic Haripur nets, heavy-duty tarpaulins, and wholesale complete rolls across Pakistan with unmatched quality control.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            <article className="rounded-3xl border border-forest-100 bg-white p-6 shadow-sm doppelrand-card transition-all hover:border-forest-300 hover:shadow-md">
-              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-forest-50 border border-forest-100 text-forest-800">
-                <Layers size={22} aria-hidden />
+          <div className="mt-8 sm:mt-12 grid gap-4 sm:gap-6 md:grid-cols-3">
+            <article className="rounded-2xl sm:rounded-3xl border border-forest-100 bg-white p-4 sm:p-6 shadow-sm doppelrand-card transition-all hover:border-forest-300 hover:shadow-md">
+              <div className="mb-4 sm:mb-5 inline-flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-forest-50 border border-forest-100 text-forest-800">
+                <Layers size={20} aria-hidden />
               </div>
-              <h3 className="font-display text-lg font-bold text-slate-900">
+              <h3 className="font-display text-base sm:text-lg font-bold text-slate-900">
                 Canvas Shop &amp; Cloth Rolls
               </h3>
-              <p className="mt-2.5 text-xs font-normal leading-relaxed text-slate-600">
+              <p className="mt-2 text-xs font-normal leading-relaxed text-slate-600">
                 Waterproof canvas cloth, tents, transport covers, supply bags, and durable tool bags engineered for maximum tensile strength and longevity.
               </p>
             </article>
 
-            <article className="rounded-3xl border border-forest-100 bg-white p-6 shadow-sm doppelrand-card transition-all hover:border-forest-300 hover:shadow-md">
-              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-forest-50 border border-forest-100 text-forest-800">
-                <ShieldCheck size={22} aria-hidden />
+            <article className="rounded-2xl sm:rounded-3xl border border-forest-100 bg-white p-4 sm:p-6 shadow-sm doppelrand-card transition-all hover:border-forest-300 hover:shadow-md">
+              <div className="mb-4 sm:mb-5 inline-flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-forest-50 border border-forest-100 text-forest-800">
+                <ShieldCheck size={20} aria-hidden />
               </div>
-              <h3 className="font-display text-lg font-bold text-slate-900">
+              <h3 className="font-display text-base sm:text-lg font-bold text-slate-900">
                 Tarpaulins &amp; Vinyl PVC
               </h3>
-              <p className="mt-2.5 text-xs font-normal leading-relaxed text-slate-600">
+              <p className="mt-2 text-xs font-normal leading-relaxed text-slate-600">
                 Heavy-duty tarpaulin sheets and waterproof PVC coated fabrics designed to protect industrial machinery, transport cargo, and raw materials.
               </p>
             </article>
 
-            <article className="rounded-3xl border border-forest-100 bg-white p-6 shadow-sm doppelrand-card transition-all hover:border-forest-300 hover:shadow-md">
-              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-forest-50 border border-forest-100 text-forest-800">
-                <Sun size={22} aria-hidden />
+            <article className="rounded-2xl sm:rounded-3xl border border-forest-100 bg-white p-4 sm:p-6 shadow-sm doppelrand-card transition-all hover:border-forest-300 hover:shadow-md">
+              <div className="mb-4 sm:mb-5 inline-flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-forest-50 border border-forest-100 text-forest-800">
+                <Sun size={20} aria-hidden />
               </div>
-              <h3 className="font-display text-lg font-bold text-slate-900">
+              <h3 className="font-display text-base sm:text-lg font-bold text-slate-900">
                 Haripur Green Nets
               </h3>
-              <p className="mt-2.5 text-xs font-normal leading-relaxed text-slate-600">
+              <p className="mt-2 text-xs font-normal leading-relaxed text-slate-600">
                 Genuine Haripur green nets, agricultural nursery netting, construction debris netting, and car parking shades available in custom sizes and wholesale complete rolls.
               </p>
             </article>
           </div>
 
-          <div className="mt-10 flex flex-wrap items-center gap-3.5">
+          <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-3.5">
             <Link
               href="/products"
-              className="group inline-flex h-12 items-center justify-between gap-3 rounded-full bg-forest-900 pl-6 pr-2 text-xs font-semibold tracking-wide text-white shadow-sm transition-all hover:bg-forest-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 focus-visible:ring-offset-2"
+              className="group inline-flex h-12 w-full sm:w-auto items-center justify-between sm:justify-start gap-3 rounded-full bg-forest-900 pl-6 pr-2 text-xs font-semibold tracking-wide text-white shadow-sm transition-all hover:bg-forest-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 focus-visible:ring-offset-2"
             >
               <span>Explore All Products</span>
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 transition-transform duration-200 group-hover:translate-x-0.5">
@@ -676,7 +676,7 @@ export default function Home() {
 
             <Link
               href="#contact"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-forest-200 bg-white px-6 text-xs font-semibold tracking-wide text-forest-900 shadow-sm transition hover:bg-forest-50 hover:border-forest-300 active:scale-95"
+              className="inline-flex h-12 w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-forest-200 bg-white px-6 text-xs font-semibold tracking-wide text-forest-900 shadow-sm transition hover:bg-forest-50 hover:border-forest-300 active:scale-95"
             >
               <ShieldCheck size={16} className="text-forest-700" />
               <span>Official Business Card &amp; Shop Details</span>
@@ -686,15 +686,15 @@ export default function Home() {
       </section>
 
       {/* Quality Guarantees Banner */}
-      <section className="bg-canvas-50/80 border-y border-forest-100/80 py-12">
-        <div className="mx-auto grid max-w-7xl gap-4 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
+      <section className="bg-canvas-50/80 border-y border-forest-100/80 py-8 sm:py-12">
+        <div className="mx-auto grid max-w-7xl gap-3 sm:gap-4 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
           {qualityItems.map(({ title, desc }) => (
             <div
               key={title}
-              className="flex items-start gap-3.5 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-forest-100/90 doppelrand-card"
+              className="flex items-start gap-3 rounded-2xl bg-white p-4 sm:p-5 shadow-sm ring-1 ring-forest-100/90 doppelrand-card"
             >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-forest-50 text-forest-800">
-                <ShieldCheck size={20} aria-hidden />
+              <div className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-xl bg-forest-50 text-forest-800">
+                <ShieldCheck size={18} aria-hidden />
               </div>
               <div>
                 <h4 className="font-display text-sm font-bold text-slate-900">
@@ -710,21 +710,21 @@ export default function Home() {
       </section>
 
       {/* Quality & Manufacturing Gallery */}
-      <section id="quality" className="bg-white py-20 sm:py-28">
+      <section id="quality" className="bg-white py-12 sm:py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 max-w-2xl">
+          <div className="mb-8 sm:mb-12 max-w-2xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-forest-200/80 bg-forest-50/60 px-3.5 py-1 text-[11px] font-semibold tracking-widest uppercase text-forest-900">
               <span>Manufacturing Standards</span>
             </div>
-            <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-forest-950 sm:text-4xl lg:text-5xl">
+            <h2 className="mt-4 font-display text-2xl font-extrabold tracking-tight text-forest-950 sm:text-4xl lg:text-5xl">
               Precision Weaving &amp; Wholesale Complete Rolls
             </h2>
-            <p className="mt-3 text-base text-slate-600 font-normal">
+            <p className="mt-3 text-sm sm:text-base text-slate-600 font-normal">
               High-density virgin polymers, precision industrial lock-stitching, and reinforced hems ensure supreme tear resistance under harsh monsoon weather and severe summer heat.
             </p>
           </div>
 
-          <div className="grid items-start gap-8 lg:grid-cols-2">
+          <div className="grid items-start gap-6 sm:gap-8 lg:grid-cols-2">
             {galleryImages.map((image) => (
               <figure
                 key={image.src}

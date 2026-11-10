@@ -18,8 +18,8 @@ export function ProductCard({ product, actions }: ProductCardProps) {
   const coverImage = productMainImage(product);
 
   return (
-    <article className="group flex flex-col justify-between rounded-2xl bg-white p-5 shadow-sm ring-1 ring-forest-100/90 doppelrand-card transition-all duration-300 hover:-translate-y-1 hover:ring-forest-300">
-      <div className="space-y-4">
+    <article className="group flex flex-col justify-between rounded-2xl bg-white p-4 sm:p-5 shadow-sm ring-1 ring-forest-100/90 doppelrand-card transition-all duration-300 hover:-translate-y-1 hover:ring-forest-300">
+      <div className="space-y-3.5 sm:space-y-4">
         {coverImage && (
           <Link
             href={`/products/${product.slug}`}
@@ -43,7 +43,7 @@ export function ProductCard({ product, actions }: ProductCardProps) {
             </span>
             <Link
               href={`/products/${product.slug}`}
-              className="mt-2.5 block font-display text-lg font-bold tracking-tight text-slate-900 transition-colors group-hover:text-forest-700"
+              className="mt-2 sm:mt-2.5 block font-display text-base sm:text-lg font-bold tracking-tight text-slate-900 transition-colors group-hover:text-forest-700"
             >
               {product.title}
             </Link>

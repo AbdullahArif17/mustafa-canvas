@@ -26,7 +26,7 @@ export function BusinessCardDisplay() {
 
   return (
     <>
-      <div className="relative overflow-hidden rounded-3xl border border-forest-800/80 bg-gradient-to-br from-forest-900/90 via-[#07241d] to-forest-950 p-4 shadow-2xl backdrop-blur-md ring-1 ring-brass-500/20 sm:p-7">
+      <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-forest-800/80 bg-gradient-to-br from-forest-900/90 via-[#07241d] to-forest-950 p-3.5 sm:p-7 shadow-2xl backdrop-blur-md ring-1 ring-brass-500/20">
         {/* Subtle decorative gold ambient glow */}
         <div
           className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-brass-500/10 blur-3xl"
@@ -38,23 +38,23 @@ export function BusinessCardDisplay() {
         />
 
         {/* Header Header & Verified Badge */}
-        <div className="relative mb-5 flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
-          <div className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-forest-800/80 border border-forest-600/50 text-brass-300 shadow-sm">
-              <ShieldCheck size={18} aria-hidden />
+        <div className="relative mb-4 sm:mb-5 flex flex-wrap items-center justify-between gap-2.5 sm:gap-3 border-b border-white/10 pb-3.5 sm:pb-4">
+          <div className="flex items-center gap-2 sm:gap-2.5">
+            <div className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-xl bg-forest-800/80 border border-forest-600/50 text-brass-300 shadow-sm">
+              <ShieldCheck size={17} aria-hidden />
             </div>
             <div>
-              <span className="block font-display text-base font-bold text-white">
+              <span className="block font-display text-sm sm:text-base font-bold text-white">
                 Official Business Card
               </span>
-              <span className="block text-[11px] font-medium text-forest-200/80">
+              <span className="block text-[10px] sm:text-[11px] font-medium text-forest-200/80">
                 Verified Commercial Manufacturer &middot; Karachi
               </span>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-brass-400/40 bg-brass-500/10 px-3 py-1 text-[11px] font-semibold tracking-wider uppercase text-brass-300">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-brass-400/40 bg-brass-500/10 px-2.5 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase text-brass-300">
               <Sparkles size={11} className="text-brass-400" />
               <span>Authentic</span>
             </span>
@@ -99,18 +99,18 @@ export function BusinessCardDisplay() {
             </div>
           </motion.div>
 
-          <p className="mt-2 text-center text-[11px] font-medium text-forest-200/60 sm:hidden">
+          <p className="mt-2 text-center text-[10px] sm:text-[11px] font-medium text-forest-200/60 sm:hidden">
             Tap card to inspect high-resolution details
           </p>
         </div>
 
         {/* Quick Action Buttons (Full View, Socials) */}
-        <div className="relative mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-5">
+        <div className="relative mt-4 sm:mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-4 sm:pt-5">
           <div className="flex flex-wrap items-center gap-2">
             <button
               type="button"
               onClick={() => setModalOpen(true)}
-              className="inline-flex h-10 items-center gap-2 rounded-full border border-brass-400/50 bg-brass-500/15 px-4 text-xs font-semibold text-brass-200 shadow-sm transition-all hover:bg-brass-500 hover:text-forest-950 active:scale-95"
+              className="inline-flex h-9 sm:h-10 items-center gap-1.5 sm:gap-2 rounded-full border border-brass-400/50 bg-brass-500/15 px-3.5 sm:px-4 text-xs font-semibold text-brass-200 shadow-sm transition-all hover:bg-brass-500 hover:text-forest-950 active:scale-95"
             >
               <Expand size={13} />
               <span>Full View</span>
@@ -119,41 +119,41 @@ export function BusinessCardDisplay() {
 
           {/* Social icons directly from card */}
           <div className="flex items-center gap-2">
-            <span className="text-[11px] font-medium text-forest-200/70">
+            <span className="text-[10px] sm:text-[11px] font-medium text-forest-200/70">
               @Mustafacanvas:
             </span>
             <a
               href={instagramPageUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition hover:bg-pink-600 hover:border-pink-500"
+              className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition hover:bg-pink-600 hover:border-pink-500"
               aria-label="Mustafa Canvas on Instagram"
               title="Instagram: @Mustafacanvas"
             >
-              <FaInstagram size={14} />
+              <FaInstagram size={13} />
             </a>
             <a
               href={facebookPageUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition hover:bg-[#1877f2] hover:border-[#1877f2]"
+              className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition hover:bg-[#1877f2] hover:border-[#1877f2]"
               aria-label="Mustafa Canvas on Facebook"
               title="Facebook: @Mustafacanvas"
             >
-              <FaFacebookF size={13} />
+              <FaFacebookF size={12} />
             </a>
           </div>
         </div>
 
         {/* Direct Card Key Personnel Contacts (Mustafa, Abid, Arif) */}
-        <div className="mt-5 grid gap-2.5 sm:grid-cols-3">
+        <div className="mt-4 sm:mt-5 grid gap-2 sm:gap-2.5 sm:grid-cols-3">
           {contactNumbers.slice(0, 3).map((contact) => (
             <div
               key={contact.name}
-              className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.04] p-3 text-white transition hover:bg-white/[0.08]"
+              className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.04] p-2.5 sm:p-3 text-white transition hover:bg-white/[0.08]"
             >
               <div>
-                <span className="block text-[11px] font-bold uppercase tracking-wider text-brass-300">
+                <span className="block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-brass-300">
                   {contact.name}
                 </span>
                 <span className="block font-display text-xs font-bold text-white">
@@ -186,9 +186,9 @@ export function BusinessCardDisplay() {
         </div>
 
         {/* Address callout from card */}
-        <div className="mt-4 flex items-start gap-2.5 rounded-xl border border-white/10 bg-white/[0.03] p-3 text-xs text-forest-200/80">
-          <MapPin size={16} className="mt-0.5 shrink-0 text-brass-400" aria-hidden />
-          <p className="leading-relaxed">
+        <div className="mt-3.5 sm:mt-4 flex items-start gap-2.5 rounded-xl border border-white/10 bg-white/[0.03] p-2.5 sm:p-3 text-xs text-forest-200/80">
+          <MapPin size={15} className="mt-0.5 shrink-0 text-brass-400" aria-hidden />
+          <p className="leading-relaxed text-[11px] sm:text-xs">
             <strong className="text-white">Shop Address:</strong> {locationAddress}
           </p>
         </div>

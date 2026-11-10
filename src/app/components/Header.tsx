@@ -77,11 +77,11 @@ export function Header({ logo, navItems, imageQuality }: HeaderProps) {
             : "border-b border-forest-100/50 bg-white/80 backdrop-blur-sm"
         }`}
       >
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex h-16 sm:h-20 max-w-7xl items-center justify-between px-3.5 sm:px-6 lg:px-8">
           {/* Logo & Brand Identity */}
           <Link
             href="/#home"
-            className="group flex shrink-0 items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 focus-visible:ring-offset-2"
+            className="group flex shrink-0 items-center gap-2.5 sm:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 focus-visible:ring-offset-2"
             onClick={() => setMobileMenuOpen(false)}
           >
             <div className="relative overflow-hidden rounded-full ring-2 ring-forest-600/15 transition-all duration-300 group-hover:ring-forest-600/40 group-hover:scale-105 shrink-0">
@@ -90,16 +90,16 @@ export function Header({ logo, navItems, imageQuality }: HeaderProps) {
                 alt={logo.alt}
                 width={logo.width}
                 height={logo.height}
-                className="h-11 w-11 rounded-full object-contain sm:h-12 sm:w-12"
+                className="h-9 w-9 sm:h-12 sm:w-12 rounded-full object-contain"
                 sizes="48px"
                 quality={imageQuality}
               />
             </div>
             <div className="min-w-0">
-              <span className="block truncate font-display text-base font-bold tracking-tight text-forest-950 sm:text-lg xl:text-xl">
+              <span className="block truncate font-display text-sm sm:text-lg xl:text-xl font-bold tracking-tight text-forest-950">
                 Mustafa <span className="text-forest-700">Canvas</span>
               </span>
-              <span className="block truncate text-[10px] font-semibold tracking-wider uppercase text-forest-700/80 sm:text-[11px]">
+              <span className="block truncate text-[9px] sm:text-[11px] font-semibold tracking-wider uppercase text-forest-700/80">
                 Shade Nets &amp; Industrial Fabrics
               </span>
             </div>
@@ -155,16 +155,29 @@ export function Header({ logo, navItems, imageQuality }: HeaderProps) {
             </a>
           </div>
 
-          {/* Mobile Menu Trigger */}
-          <button
-            type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-forest-200/80 bg-white text-forest-900 transition-colors hover:bg-forest-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 lg:hidden"
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileMenuOpen}
-            onClick={() => setMobileMenuOpen((open) => !open)}
-          >
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+          {/* Mobile Right Controls: WhatsApp Quick Button + Hamburger */}
+          <div className="flex items-center gap-2 lg:hidden">
+            <a
+              href="https://wa.me/923108117857?text=Hello%20Mustafa%20Canvas%2C%20I%20want%20to%20inquire%20about%20your%20products."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-9 items-center gap-1.5 rounded-full border border-forest-200/90 bg-forest-50/80 px-2.5 text-xs font-semibold text-forest-900 shadow-sm transition-all hover:bg-forest-100 active:scale-95 sm:h-10 sm:px-3"
+              aria-label="Quick WhatsApp chat"
+            >
+              <FaWhatsapp size={14} className="text-[#25d366]" aria-hidden />
+              <span className="text-[11px] font-bold">Chat</span>
+            </a>
+
+            <button
+              type="button"
+              className="inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-forest-200/80 bg-white text-forest-900 transition-colors hover:bg-forest-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700"
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileMenuOpen}
+              onClick={() => setMobileMenuOpen((open) => !open)}
+            >
+              {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+            </button>
+          </div>
         </div>
       </header>
 
@@ -177,7 +190,7 @@ export function Header({ logo, navItems, imageQuality }: HeaderProps) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 top-20 z-40 bg-slate-950/40 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 top-16 sm:top-20 z-40 bg-slate-950/40 backdrop-blur-sm lg:hidden"
               onClick={() => setMobileMenuOpen(false)}
               aria-hidden
             />
@@ -186,7 +199,7 @@ export function Header({ logo, navItems, imageQuality }: HeaderProps) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed inset-x-0 top-20 z-50 border-b border-forest-100 bg-white/95 px-5 py-6 shadow-2xl backdrop-blur-md lg:hidden"
+              className="fixed inset-x-0 top-16 sm:top-20 z-50 border-b border-forest-100 bg-white/95 px-5 py-6 shadow-2xl backdrop-blur-md lg:hidden max-h-[calc(100vh-4rem)] overflow-y-auto"
               aria-label="Mobile Navigation"
             >
               <div className="mx-auto grid max-w-lg gap-2">

@@ -102,7 +102,7 @@ export function ProductShowcase() {
   const primaryWhatsapp = contactNumbers[0]?.whatsapp || "923108117857";
 
   return (
-    <section id="catalog" className="relative overflow-hidden bg-canvas-50/70 py-16 sm:py-24 border-y border-forest-100/70">
+    <section id="catalog" className="relative overflow-hidden bg-canvas-50/70 py-12 sm:py-20 lg:py-24 border-y border-forest-100/70">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -150,7 +150,7 @@ export function ProductShowcase() {
         ) : activeProduct ? (
           /* Active Featured Product Stage */
           <div
-            className="rounded-3xl border border-forest-100/80 bg-white p-5 sm:p-8 lg:p-10 shadow-sm transition-all duration-300 hover:shadow-md"
+            className="rounded-2xl sm:rounded-3xl border border-forest-100/80 bg-white p-4 sm:p-8 lg:p-10 shadow-sm transition-all duration-300 hover:shadow-md"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
             onTouchStart={handleTouchStart}
@@ -309,10 +309,10 @@ export function ProductShowcase() {
                     <span>Inquire Wholesale Rate on WhatsApp</span>
                   </a>
 
-                  <div className="flex items-center gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <Link
                       href={`/products/${activeProduct.slug}`}
-                      className="inline-flex h-10 flex-1 items-center justify-center gap-1.5 rounded-full border border-forest-200/90 bg-white px-4 text-xs font-semibold text-forest-900 shadow-sm transition hover:bg-forest-50"
+                      className="inline-flex h-10 items-center justify-center gap-1.5 rounded-full border border-forest-200/90 bg-white px-4 text-xs font-semibold text-forest-900 shadow-sm transition hover:bg-forest-50"
                     >
                       <span>Full Specifications</span>
                       <ArrowRight size={13} />
@@ -381,13 +381,13 @@ export function ProductShowcase() {
                     </div>
 
                     {/* Horizontal Product Chips */}
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1">
                       {visibleProducts.map((p, idx) => (
                         <button
                           key={p.id}
                           type="button"
                           onClick={() => setActiveIndex(idx)}
-                          className={`rounded-lg px-2.5 py-1 text-[11px] font-semibold transition-all ${
+                          className={`shrink-0 whitespace-nowrap rounded-lg px-2.5 py-1 text-[11px] font-semibold transition-all ${
                             idx === activeIndex
                               ? "bg-forest-900 text-white shadow-sm"
                               : "bg-canvas-100/60 text-slate-700 hover:bg-forest-50 hover:text-forest-950"

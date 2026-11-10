@@ -61,7 +61,7 @@ export function HeroSection({
       />
 
       {/* Top Banner Hero Showcase */}
-      <div className="relative mx-auto max-w-7xl pt-4 sm:px-6 sm:pt-8 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-3.5 pt-3 sm:px-6 sm:pt-8 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -81,39 +81,39 @@ export function HeroSection({
       </div>
 
       {/* Main Value Proposition & Visual Split */}
-      <div className="relative mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:px-8">
+      <div className="relative mx-auto grid max-w-7xl gap-8 px-3.5 py-10 sm:gap-12 sm:px-6 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:px-8">
         <motion.div
           initial={{ opacity: 0, x: -24 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           {/* Refined Eyebrow */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-forest-200/80 bg-white/90 px-3.5 py-1 text-xs font-semibold tracking-wider text-forest-900 shadow-sm backdrop-blur">
+          <div className="inline-flex items-center gap-2 rounded-full border border-forest-200/80 bg-white/90 px-3 py-1 text-xs font-semibold tracking-wider text-forest-900 shadow-sm backdrop-blur sm:px-3.5">
             <span className="flex h-2 w-2 rounded-full bg-brass-500 animate-pulse" />
-            <span className="font-semibold uppercase text-[11px] tracking-widest text-forest-800">
+            <span className="font-semibold uppercase text-[10px] sm:text-[11px] tracking-widest text-forest-800">
               Direct Wholesale Canvas Shop &middot; Khori Garden, Karachi
             </span>
           </div>
 
           {/* Primary Editorial Headline Optimized for SEO */}
-          <h1 className="mt-5 font-display text-4xl font-extrabold tracking-[-0.03em] text-forest-950 sm:text-5xl lg:text-6xl leading-[1.08]">
+          <h1 className="mt-4 sm:mt-5 font-display text-[1.85rem] xs:text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-[-0.03em] text-forest-950 leading-[1.12] sm:leading-[1.08]">
             Green Nets, Haripur Nets &amp; <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-forest-800 via-forest-600 to-forest-800">
               Canvas Wholesale Rolls
             </span>
           </h1>
 
-          <p className="mt-5 font-display text-xl font-semibold leading-snug text-forest-900/90 sm:text-2xl">
+          <p className="mt-3.5 sm:mt-5 font-display text-lg sm:text-2xl font-semibold leading-snug text-forest-900/90">
             Karachi&apos;s Leading Canvas Shop for Authentic Haripur Green Nets &amp; Complete Rolls
           </p>
 
-          <p className="mt-4 text-base font-normal leading-relaxed text-slate-600 sm:text-lg">
+          <p className="mt-3 sm:mt-4 text-sm sm:text-lg font-normal leading-relaxed text-slate-600">
             Mustafa Canvas supplies genuine Haripur green nets, UV-treated sun shade netting, waterproof canvas cloth, PVC tarpaulins, and wholesale complete rolls at direct factory prices for commercial, agricultural, and industrial buyers across Pakistan.
           </p>
 
-          {/* CTA Group with Razor-Sharp Typography & Harmonized Alignment */}
-          <div className="mt-8 flex flex-col gap-3.5 sm:flex-row sm:items-center">
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+          {/* CTA Group with Full-Width Touch Friendly Buttons on Mobile */}
+          <div className="mt-6 sm:mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full sm:w-auto">
               <Link
                 href="#products"
                 className="group inline-flex h-12 w-full items-center justify-center gap-3 rounded-full bg-forest-900 px-6 text-sm font-semibold tracking-wide text-white shadow-lg shadow-forest-950/20 transition-all hover:bg-forest-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 focus-visible:ring-offset-2 sm:w-auto antialiased [transform:translateZ(0)] [backface-visibility:hidden]"
@@ -125,7 +125,7 @@ export function HeroSection({
               </Link>
             </motion.div>
 
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full sm:w-auto">
               <Link
                 href="#contact"
                 className="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-full border border-forest-200/90 bg-white px-6 text-sm font-semibold tracking-wide text-forest-950 shadow-sm transition-all hover:bg-forest-50 hover:border-forest-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 focus-visible:ring-offset-2 sm:w-auto antialiased [transform:translateZ(0)]"
@@ -137,30 +137,30 @@ export function HeroSection({
           </div>
 
           {/* Trust Guarantees */}
-          <div className="mt-10 grid grid-cols-2 gap-3 border-t border-forest-100/80 pt-6 sm:grid-cols-4">
-            <div className="flex items-center gap-2.5">
-              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-forest-50 text-forest-700">
-                <ShieldCheck size={16} />
+          <div className="mt-8 sm:mt-10 grid grid-cols-2 gap-2 sm:gap-3 border-t border-forest-100/80 pt-5 sm:pt-6 sm:grid-cols-4">
+            <div className="flex items-center gap-2 rounded-xl bg-white/60 p-2 sm:bg-transparent sm:p-0">
+              <div className="flex h-6 w-6 sm:h-7 sm:w-7 shrink-0 items-center justify-center rounded-full bg-forest-50 text-forest-700">
+                <ShieldCheck size={15} />
               </div>
-              <span className="text-xs font-semibold text-slate-700">Genuine Haripur Nets</span>
+              <span className="text-[11px] sm:text-xs font-semibold text-slate-700 leading-tight">Genuine Haripur Nets</span>
             </div>
-            <div className="flex items-center gap-2.5">
-              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brass-50 text-brass-700">
-                <Sun size={16} />
+            <div className="flex items-center gap-2 rounded-xl bg-white/60 p-2 sm:bg-transparent sm:p-0">
+              <div className="flex h-6 w-6 sm:h-7 sm:w-7 shrink-0 items-center justify-center rounded-full bg-brass-50 text-brass-700">
+                <Sun size={15} />
               </div>
-              <span className="text-xs font-semibold text-slate-700">90% UV Green Nets</span>
+              <span className="text-[11px] sm:text-xs font-semibold text-slate-700 leading-tight">90% UV Green Nets</span>
             </div>
-            <div className="flex items-center gap-2.5">
-              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-forest-50 text-forest-700">
-                <CheckCircle2 size={16} />
+            <div className="flex items-center gap-2 rounded-xl bg-white/60 p-2 sm:bg-transparent sm:p-0">
+              <div className="flex h-6 w-6 sm:h-7 sm:w-7 shrink-0 items-center justify-center rounded-full bg-forest-50 text-forest-700">
+                <CheckCircle2 size={15} />
               </div>
-              <span className="text-xs font-semibold text-slate-700">Wholesale Complete Rolls</span>
+              <span className="text-[11px] sm:text-xs font-semibold text-slate-700 leading-tight">Wholesale Master Rolls</span>
             </div>
-            <div className="flex items-center gap-2.5">
-              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brass-50 text-brass-700">
-                <Sparkles size={16} />
+            <div className="flex items-center gap-2 rounded-xl bg-white/60 p-2 sm:bg-transparent sm:p-0">
+              <div className="flex h-6 w-6 sm:h-7 sm:w-7 shrink-0 items-center justify-center rounded-full bg-brass-50 text-brass-700">
+                <Sparkles size={15} />
               </div>
-              <span className="text-xs font-semibold text-slate-700">Direct Karachi Shop</span>
+              <span className="text-[11px] sm:text-xs font-semibold text-slate-700 leading-tight">Direct Karachi Shop</span>
             </div>
           </div>
         </motion.div>

@@ -272,7 +272,7 @@ const structuredData = {
               "@type": "Product",
               name: "Haripur Green Nets (Complete Master Rolls)",
               description:
-                "Authentic Haripur UV-stabilized green nets for agricultural nurseries, greenhouses, and sunshade structures in 50m and 100m complete rolls.",
+                "Authentic Haripur UV-stabilized agricultural green nets for plant nurseries, greenhouses, and crop sun protection in 50m and 100m complete rolls.",
             },
           },
           {
@@ -308,7 +308,7 @@ const structuredData = {
               "@type": "Product",
               name: "Construction Safety Debris Netting Rolls",
               description:
-                "Flame retardant building scaffolding debris netting rolls for construction site safety.",
+                "Flame retardant building scaffolding debris netting rolls for construction site fall safety and hazard containment.",
             },
           },
         ],
@@ -327,6 +327,24 @@ const structuredData = {
           text: item.answer,
         },
       })),
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${siteUrl}/#breadcrumbs`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: siteUrl,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Products",
+          item: `${siteUrl}/products`,
+        },
+      ],
     },
     {
       "@type": "WebSite",
@@ -625,7 +643,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-8 sm:mt-12 grid gap-4 sm:gap-6 md:grid-cols-3">
+          <div className="mt-8 sm:mt-12 grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <article className="rounded-2xl sm:rounded-3xl border border-forest-100 bg-white p-4 sm:p-6 shadow-sm doppelrand-card transition-all hover:border-forest-300 hover:shadow-md">
               <div className="mb-4 sm:mb-5 inline-flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-forest-50 border border-forest-100 text-forest-800">
                 <Layers size={20} aria-hidden />
@@ -658,7 +676,19 @@ export default function Home() {
                 Haripur Green Nets
               </h3>
               <p className="mt-2 text-xs font-normal leading-relaxed text-slate-600">
-                Genuine Haripur green nets, agricultural nursery netting, construction debris netting, and car parking shades available in custom sizes and wholesale complete rolls.
+                Genuine Haripur agricultural green nets, plant nursery netting, greenhouse UV shade cloth, and lawn sunshades in wholesale complete rolls.
+              </p>
+            </article>
+
+            <article className="rounded-2xl sm:rounded-3xl border border-forest-100 bg-white p-4 sm:p-6 shadow-sm doppelrand-card transition-all hover:border-forest-300 hover:shadow-md">
+              <div className="mb-4 sm:mb-5 inline-flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-forest-50 border border-forest-100 text-forest-800">
+                <Hammer size={20} aria-hidden />
+              </div>
+              <h3 className="font-display text-base sm:text-lg font-bold text-slate-900">
+                Construction Safety Netting
+              </h3>
+              <p className="mt-2 text-xs font-normal leading-relaxed text-slate-600">
+                Heavy-duty building scaffolding debris safety netting, fall-protection mesh, and dust containment rolls for industrial contractors.
               </p>
             </article>
           </div>

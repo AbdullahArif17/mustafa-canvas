@@ -259,7 +259,13 @@ export function ProductShowcase() {
                         <span>Origin / Mill</span>
                       </div>
                       <p className="mt-1 text-xs font-bold text-slate-900 truncate">
-                        {activeProduct.company || "Haripur / Karachi"}
+                        {activeProduct.company ||
+                          (activeProduct.title.toLowerCase().includes("haripur")
+                            ? "Haripur Certified Mill"
+                            : activeProduct.title.toLowerCase().includes("construction") ||
+                              activeProduct.title.toLowerCase().includes("debris")
+                            ? "Karachi Safety Mesh Mill"
+                            : "Karachi Wholesale Mill")}
                       </p>
                     </div>
 

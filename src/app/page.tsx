@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image, { getImageProps } from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -48,12 +48,6 @@ const imagePaths = {
     width: 2032,
     height: 774,
   },
-  brandSheetMobile: {
-    src: "/mustafa-canvas-brand-sheet-mobile.png",
-    alt: "Mustafa Canvas product range and business details for mobile",
-    width: 1080,
-    height: 2858,
-  },
   shadeNetMaterial: {
     src: "/sun-shade-net-material.png",
     alt: "Green sun shade net material details with virgin HDPE knotting",
@@ -83,12 +77,6 @@ const imagePaths = {
     alt: "Mustafa Canvas green nets, Haripur nets, and canvas catalog",
     width: 1396,
     height: 905,
-  },
-  productRangeMobile: {
-    src: "/mustafa-canvas-product-catalog-mobile.png",
-    alt: "Mustafa Canvas product catalog mobile view",
-    width: 1080,
-    height: 2607,
   },
   sunShadeScene: {
     src: "/sun-shade-net-installation.png",
@@ -359,64 +347,6 @@ const structuredData = {
   ],
 };
 
-type ImageAsset = {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-};
-
-type ResponsiveImageProps = {
-  mobile: ImageAsset;
-  desktop: ImageAsset;
-  sizes: string;
-  className?: string;
-  fetchPriority?: "high" | "low" | "auto";
-};
-
-function ResponsiveImage({
-  mobile,
-  desktop,
-  sizes,
-  className,
-  fetchPriority,
-}: ResponsiveImageProps) {
-  const commonProps = {
-    alt: mobile.alt,
-    sizes,
-    quality: imageQuality,
-  };
-  const {
-    props: { srcSet: desktopSrcSet },
-  } = getImageProps({
-    ...commonProps,
-    src: desktop.src,
-    width: desktop.width,
-    height: desktop.height,
-  });
-  const {
-    props: { srcSet: mobileSrcSet, ...imageProps },
-  } = getImageProps({
-    ...commonProps,
-    src: mobile.src,
-    width: mobile.width,
-    height: mobile.height,
-    fetchPriority,
-  });
-
-  return (
-    <picture>
-      <source media="(min-width: 640px)" srcSet={desktopSrcSet} />
-      <img
-        {...imageProps}
-        srcSet={mobileSrcSet}
-        className={className}
-        style={{ width: "100%", height: "auto" }}
-      />
-    </picture>
-  );
-}
-
 export default function Home() {
   return (
     <main className="flex flex-1 flex-col bg-background text-foreground">
@@ -435,7 +365,6 @@ export default function Home() {
       {/* Hero Section with SEO Title & H1 */}
       <HeroSection
         brandSheet={imagePaths.brandSheet}
-        brandSheetMobile={imagePaths.brandSheetMobile}
         sunShadeScene={imagePaths.sunShadeScene}
         imageQuality={imageQuality}
       />
@@ -611,10 +540,13 @@ export default function Home() {
           </div>
 
           <figure className="overflow-hidden rounded-2xl shadow-md">
-            <ResponsiveImage
-              mobile={imagePaths.productRangeMobile}
-              desktop={imagePaths.productRange}
-              sizes="(max-width: 639px) 100vw, (max-width: 1024px) 100vw, 56vw"
+            <Image
+              src={imagePaths.productRange.src}
+              alt={imagePaths.productRange.alt}
+              width={imagePaths.productRange.width}
+              height={imagePaths.productRange.height}
+              sizes="(max-width: 1024px) 100vw, 56vw"
+              quality={imageQuality}
               className="h-auto w-full rounded-2xl object-cover"
             />
           </figure>

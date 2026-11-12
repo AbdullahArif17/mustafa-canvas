@@ -1,6 +1,6 @@
 "use client";
 
-import Image, { getImageProps } from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, PhoneCall, ShieldCheck, Sparkles, Sun } from "lucide-react";
@@ -13,41 +13,16 @@ type ImageAsset = {
 };
 
 type HeroSectionProps = {
-  brandSheetMobile: ImageAsset;
   brandSheet: ImageAsset;
   sunShadeScene: ImageAsset;
   imageQuality: number;
 };
 
 export function HeroSection({
-  brandSheetMobile,
   brandSheet,
   sunShadeScene,
   imageQuality,
 }: HeroSectionProps) {
-  const commonProps = {
-    alt: brandSheetMobile.alt,
-    sizes: "(max-width: 639px) 100vw, (max-width: 1280px) 100vw, 1280px",
-    quality: imageQuality,
-  };
-  const {
-    props: { srcSet: desktopSrcSet },
-  } = getImageProps({
-    ...commonProps,
-    src: brandSheet.src,
-    width: brandSheet.width,
-    height: brandSheet.height,
-  });
-  const {
-    props: { srcSet: mobileSrcSet, ...imageProps },
-  } = getImageProps({
-    ...commonProps,
-    src: brandSheetMobile.src,
-    width: brandSheetMobile.width,
-    height: brandSheetMobile.height,
-    fetchPriority: "high",
-  });
-
   return (
     <section id="home" className="relative overflow-hidden bg-gradient-to-b from-canvas-50 via-white to-canvas-50/40">
       {/* Subtle architectural ambient lights */}
@@ -62,16 +37,17 @@ export function HeroSection({
 
       {/* Top Banner Hero Showcase */}
       <div className="relative mx-auto max-w-7xl px-3.5 pt-3 sm:px-6 sm:pt-8 lg:px-8">
-        <div className="overflow-hidden rounded-2xl shadow-sm">
-          <picture>
-            <source media="(min-width: 640px)" srcSet={desktopSrcSet} />
-            <img
-              {...imageProps}
-              srcSet={mobileSrcSet}
-              className="h-auto w-full rounded-2xl object-cover"
-              style={{ width: "100%", height: "auto" }}
-            />
-          </picture>
+        <div className="overflow-hidden rounded-xl sm:rounded-2xl shadow-sm">
+          <Image
+            src={brandSheet.src}
+            alt={brandSheet.alt}
+            width={brandSheet.width}
+            height={brandSheet.height}
+            priority
+            sizes="(max-width: 1280px) 100vw, 1280px"
+            quality={imageQuality}
+            className="h-auto w-full rounded-xl sm:rounded-2xl object-cover"
+          />
         </div>
       </div>
 

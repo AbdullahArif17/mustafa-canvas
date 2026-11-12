@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -29,6 +30,9 @@ import { contactNumbers } from "../seo";
 import { useProducts } from "./useProducts";
 
 const slideshowDelayMs = 7000;
+
+const isOptimizableUrl = (url: string) =>
+  url.startsWith("/") || /^https:\/\/[^/]+\.supabase\.co\//.test(url);
 
 export function ProductShowcase() {
   const { loaded, products } = useProducts();
@@ -161,10 +165,13 @@ export function ProductShowcase() {
               <div className="lg:col-span-7 space-y-4 min-w-0">
                 <div className="group/stage relative aspect-[1/1] xs:aspect-[4/3] sm:aspect-[16/11] w-full overflow-hidden rounded-2xl bg-canvas-100/50 shadow-inner">
                   {activeImage ? (
-                    <img
+                    <Image
                       src={activeImage.url}
                       alt={activeImage.alt || activeProduct.title}
+                      fill
+                      sizes="(max-width: 1023px) 100vw, 58vw"
                       className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/stage:scale-103"
+                      unoptimized={!isOptimizableUrl(activeImage.url)}
                     />
                   ) : (
                     <div className="flex h-full w-full items-center justify-center bg-forest-900/5 text-slate-400">
@@ -202,10 +209,13 @@ export function ProductShowcase() {
                         }`}
                         title={img.alt || `View image ${idx + 1}`}
                       >
-                        <img
+                        <Image
                           src={img.url}
                           alt={img.alt || activeProduct.title}
+                          fill
+                          sizes="96px"
                           className="h-full w-full object-cover"
+                          unoptimized={!isOptimizableUrl(img.url)}
                         />
                       </button>
                     ))}
@@ -254,7 +264,7 @@ export function ProductShowcase() {
                   {/* 2x2 Specifications Grid */}
                   <div className="mt-5 grid grid-cols-2 gap-2.5">
                     <div className="rounded-xl border border-forest-100/90 bg-canvas-50/70 p-3">
-                      <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-forest-700">
+                      <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-forest-700">
                         <Building2 size={12} />
                         <span>Origin / Mill</span>
                       </div>
@@ -270,7 +280,7 @@ export function ProductShowcase() {
                     </div>
 
                     <div className="rounded-xl border border-forest-100/90 bg-canvas-50/70 p-3">
-                      <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-forest-700">
+                      <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-forest-700">
                         <Ruler size={12} />
                         <span>Dimensions</span>
                       </div>
@@ -282,7 +292,7 @@ export function ProductShowcase() {
                     </div>
 
                     <div className="rounded-xl border border-forest-100/90 bg-canvas-50/70 p-3">
-                      <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-forest-700">
+                      <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-forest-700">
                         <Weight size={12} />
                         <span>Density & Weight</span>
                       </div>
@@ -292,7 +302,7 @@ export function ProductShowcase() {
                     </div>
 
                     <div className="rounded-xl border border-forest-100/90 bg-canvas-50/70 p-3">
-                      <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-forest-700">
+                      <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-forest-700">
                         <ShieldCheck size={12} />
                         <span>Supply Format</span>
                       </div>
@@ -346,30 +356,30 @@ export function ProductShowcase() {
                         <button
                           type="button"
                           onClick={() => setIsPaused(!isPaused)}
-                          className="inline-flex h-6 w-6 items-center justify-center rounded-full text-forest-700 hover:bg-forest-50 transition-colors"
+                          className="inline-flex h-8 w-8 items-center justify-center rounded-full text-forest-700 hover:bg-forest-50 transition-colors"
                           aria-label={isPaused ? "Resume autoplay" : "Pause autoplay"}
                           title={isPaused ? "Resume autoplay" : "Pause autoplay"}
                         >
-                          {isPaused ? <Play size={10} /> : <Pause size={10} />}
+                          {isPaused ? <Play size={12} /> : <Pause size={12} />}
                         </button>
                       </div>
 
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-center gap-1.5">
                         <button
                           type="button"
                           onClick={() => move(-1)}
-                          className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-forest-200 text-forest-900 transition hover:bg-forest-50 active:scale-95"
+                          className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-forest-200 text-forest-900 transition hover:bg-forest-50 active:scale-95"
                           aria-label="Previous product"
                         >
-                          <ChevronLeft size={14} />
+                          <ChevronLeft size={15} />
                         </button>
                         <button
                           type="button"
                           onClick={() => move(1)}
-                          className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-forest-200 text-forest-900 transition hover:bg-forest-50 active:scale-95"
+                          className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-forest-200 text-forest-900 transition hover:bg-forest-50 active:scale-95"
                           aria-label="Next product"
                         >
-                          <ChevronRight size={14} />
+                          <ChevronRight size={15} />
                         </button>
                       </div>
                     </div>
@@ -393,7 +403,7 @@ export function ProductShowcase() {
                           key={p.id}
                           type="button"
                           onClick={() => setActiveIndex(idx)}
-                          className={`shrink-0 whitespace-nowrap rounded-lg px-2.5 py-1 text-[11px] font-semibold transition-all ${
+                          className={`inline-flex min-h-9 items-center shrink-0 whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
                             idx === activeIndex
                               ? "bg-forest-900 text-white shadow-sm"
                               : "bg-canvas-100/60 text-slate-700 hover:bg-forest-50 hover:text-forest-950"

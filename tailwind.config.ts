@@ -19,6 +19,16 @@ const config = {
       },
     },
     extend: {
+      screens: {
+        xs: "400px",
+      },
+      spacing: {
+        13: "3.25rem",
+      },
+      scale: {
+        102: "1.02",
+        103: "1.03",
+      },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "-apple-system", "sans-serif"],
         display: ["var(--font-display)", "var(--font-sans)", "system-ui", "sans-serif"],

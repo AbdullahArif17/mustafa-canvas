@@ -16,7 +16,7 @@ const whatsappMessage = encodeURIComponent(
 
 export function Footer() {
   return (
-    <footer className="border-t border-forest-100 bg-canvas-50/70 px-4 py-14 text-slate-900 sm:px-6 lg:px-8">
+    <footer className="border-t border-forest-100 bg-canvas-50/70 px-4 pt-14 pb-24 text-slate-900 sm:px-6 sm:pb-16 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-md">
@@ -39,17 +39,17 @@ export function Footer() {
               <p className="font-display text-xs font-bold uppercase tracking-wider text-forest-950">
                 Navigation
               </p>
-              <nav aria-label="Footer navigation" className="mt-4 flex flex-col gap-2.5 text-xs font-semibold">
-                <Link href="/" className="text-slate-600 transition hover:text-forest-900">
+              <nav aria-label="Footer navigation" className="mt-3 flex flex-col gap-1 text-xs font-semibold">
+                <Link href="/" className="inline-flex min-h-9 items-center py-1 text-slate-600 transition hover:text-forest-900">
                   Home
                 </Link>
-                <Link href="/products" className="text-slate-600 transition hover:text-forest-900">
+                <Link href="/products" className="inline-flex min-h-9 items-center py-1 text-slate-600 transition hover:text-forest-900">
                   All Products
                 </Link>
-                <Link href="/#solutions" className="text-slate-600 transition hover:text-forest-900">
+                <Link href="/#solutions" className="inline-flex min-h-9 items-center py-1 text-slate-600 transition hover:text-forest-900">
                   Applications &amp; Solutions
                 </Link>
-                <Link href="/#contact" className="text-slate-600 transition hover:text-forest-900">
+                <Link href="/#contact" className="inline-flex min-h-9 items-center py-1 text-slate-600 transition hover:text-forest-900">
                   Contact &amp; Wholesale
                 </Link>
               </nav>
@@ -98,7 +98,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-forest-200/60 pt-6 text-xs font-normal text-slate-500 sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-forest-200/60 pt-6 text-xs font-normal text-slate-500 sm:flex-row sm:pr-20">
           <p>
             &copy; {new Date().getFullYear()} {businessName}. All rights reserved.
           </p>

@@ -61,7 +61,14 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
   overflow-x: hidden;
+}
+
+@media (min-width: 640px) {
+  html {
+    scroll-padding-top: 5.5rem;
+  }
 }
 
 /* Hide scrollbar for clean horizontal swipe on mobile */
@@ -141,9 +148,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   .product-slide-enter,
   .product-slide-progress,
-  .animate-shimmer {
-    animation: none;
+  .animate-shimmer,
+  .animate-ping,
+  .animate-pulse {
+    animation: none !important;
   }
 }

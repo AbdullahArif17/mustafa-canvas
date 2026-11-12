@@ -40,7 +40,7 @@ export function ContactSection() {
             {businessName} &mdash; {businessTagline}
           </p>
           <p className="mt-2 text-xs sm:text-sm font-normal leading-relaxed text-forest-200/80">
-            Visit our wholesale shop in Market Quarter Karachi or contact our sales partners directly for custom orders, bulk quotes, and rapid nationwide delivery.
+            Visit our wholesale shop in Khori Garden, Karachi or contact our sales partners directly for custom orders, bulk quotes, and rapid nationwide delivery.
           </p>
         </div>
 
@@ -56,7 +56,7 @@ export function ContactSection() {
                   <Clock size={18} aria-hidden />
                 </div>
                 <div>
-                  <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-brass-300">Warehouse &amp; Shop Hours</p>
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-brass-300">Warehouse &amp; Shop Hours</p>
                   <p className="text-xs font-medium text-forest-100">Monday &ndash; Saturday: 10:00 AM &ndash; 8:00 PM</p>
                 </div>
               </div>
@@ -69,24 +69,24 @@ export function ContactSection() {
               {contactNumbers.map((contact) => (
                 <div
                   key={contact.name}
-                  className="flex flex-col gap-3 rounded-2xl border border-forest-100/80 bg-white p-3.5 sm:p-5 text-slate-900 shadow-sm transition-all hover:shadow-md sm:flex-row sm:items-center sm:justify-between"
+                  className="flex items-center justify-between gap-3 rounded-2xl border border-forest-100/80 bg-white p-3.5 sm:p-4 text-slate-900 shadow-sm transition-all hover:shadow-md"
                 >
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl bg-forest-50 border border-forest-100 text-forest-800">
-                      <Phone size={17} aria-hidden />
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-forest-50 border border-forest-100 text-forest-800">
+                      <Phone size={16} aria-hidden />
                     </div>
-                    <div>
-                      <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-400">Direct Line</span>
-                      <div className="font-display text-sm sm:text-base font-bold text-slate-900">
+                    <div className="min-w-0">
+                      <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">Direct Line</span>
+                      <div className="truncate font-display text-sm sm:text-base font-bold text-slate-900">
                         {contact.name}: {contact.display}
                       </div>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-2 sm:flex sm:items-center">
+                  <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
                     <a
                       href={`tel:${contact.tel}`}
-                      className="inline-flex h-9 sm:h-10 items-center justify-center gap-1.5 sm:gap-2 rounded-xl bg-forest-900 px-3.5 sm:px-4 text-xs font-semibold tracking-wide text-white shadow-sm transition-all hover:bg-forest-800 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 focus-visible:ring-offset-2"
+                      className="inline-flex h-10 items-center justify-center gap-1.5 rounded-xl bg-forest-900 px-3 sm:px-4 text-xs font-semibold tracking-wide text-white shadow-sm transition-all hover:bg-forest-800 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 focus-visible:ring-offset-2"
                       aria-label={`Call ${contact.name}`}
                     >
                       <Phone size={12} aria-hidden />
@@ -96,7 +96,7 @@ export function ContactSection() {
                       href={`https://wa.me/${contact.whatsapp}?text=${whatsappMessage}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex h-9 sm:h-10 items-center justify-center gap-1.5 sm:gap-2 rounded-xl border border-forest-200 bg-white px-3.5 sm:px-4 text-xs font-semibold tracking-wide text-forest-900 transition-all hover:bg-forest-50 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 focus-visible:ring-offset-2"
+                      className="inline-flex h-10 items-center justify-center gap-1.5 rounded-xl border border-forest-200 bg-white px-3 sm:px-4 text-xs font-semibold tracking-wide text-forest-900 transition-all hover:bg-forest-50 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 focus-visible:ring-offset-2"
                       aria-label={`Message ${contact.name} on WhatsApp`}
                     >
                       <FaWhatsapp
@@ -104,7 +104,7 @@ export function ContactSection() {
                         className="text-[#25d366]"
                         aria-hidden
                       />
-                      <span>WhatsApp</span>
+                      <span className="hidden xs:inline">WhatsApp</span>
                     </a>
                   </div>
                 </div>
@@ -115,28 +115,28 @@ export function ContactSection() {
               href={`mailto:${businessEmail}`}
               className="flex items-center gap-3 rounded-2xl border border-forest-100/80 bg-white p-3.5 sm:p-4 text-slate-900 shadow-sm transition hover:bg-forest-50 hover:border-forest-200"
             >
-              <div className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-xl bg-forest-50 text-forest-800">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-forest-50 text-forest-800">
                 <Mail size={17} aria-hidden />
               </div>
               <div>
-                <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-400">Email Inquiry</span>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Email Inquiry</span>
                 <p className="break-all font-display text-xs sm:text-sm font-semibold text-slate-900">{businessEmail}</p>
               </div>
             </a>
 
-            <div className="grid grid-cols-1 gap-2.5 sm:gap-3 sm:grid-cols-2">
+            <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
               <a
                 href={instagramPageUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 rounded-2xl border border-forest-100/80 bg-white p-3.5 sm:p-4 text-slate-900 shadow-sm transition hover:bg-forest-50 hover:border-forest-200"
               >
-                <div className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-xl bg-pink-50 text-pink-600">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-pink-50 text-pink-600">
                   <FaInstagram size={17} aria-hidden />
                 </div>
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Instagram</span>
-                  <p className="font-display text-xs font-bold text-slate-900">@Mustafacanvas</p>
+                <div className="min-w-0">
+                  <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">Instagram</span>
+                  <p className="truncate font-display text-xs font-bold text-slate-900">@Mustafacanvas</p>
                 </div>
               </a>
 
@@ -146,22 +146,22 @@ export function ContactSection() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 rounded-2xl border border-forest-100/80 bg-white p-3.5 sm:p-4 text-slate-900 shadow-sm transition hover:bg-forest-50 hover:border-forest-200"
               >
-                <div className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-[#1877f2]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-[#1877f2]">
                   <FaFacebookF size={16} aria-hidden />
                 </div>
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Facebook</span>
-                  <p className="font-display text-xs font-bold text-slate-900">@Mustafacanvas</p>
+                <div className="min-w-0">
+                  <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">Facebook</span>
+                  <p className="truncate font-display text-xs font-bold text-slate-900">@Mustafacanvas</p>
                 </div>
               </a>
             </div>
 
             <address className="flex items-start gap-3 rounded-2xl border border-forest-100/80 bg-white p-3.5 sm:p-4 text-slate-900 not-italic shadow-sm">
-              <div className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-xl bg-forest-50 text-forest-800">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-forest-50 text-forest-800">
                 <MapPin size={17} aria-hidden />
               </div>
               <div>
-                <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-400">Shop Address</span>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Shop Address</span>
                 <p className="text-xs font-medium leading-relaxed text-slate-800">{locationAddress}</p>
               </div>
             </address>
@@ -172,7 +172,7 @@ export function ContactSection() {
         <div className="mt-8 sm:mt-12 overflow-hidden rounded-2xl sm:rounded-3xl bg-white p-2 sm:p-2.5 shadow-2xl ring-1 ring-forest-800/50">
           <div className="overflow-hidden rounded-xl sm:rounded-2xl">
             <iframe
-              title="Mustafa Canvas location map in Market Quarter Karachi"
+              title="Mustafa Canvas location map in Khori Garden, Karachi"
               src={mapEmbedSrc}
               className="h-[260px] sm:h-[440px] w-full border-0"
               loading="lazy"

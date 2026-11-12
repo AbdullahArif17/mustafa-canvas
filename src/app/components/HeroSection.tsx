@@ -62,12 +62,7 @@ export function HeroSection({
 
       {/* Top Banner Hero Showcase */}
       <div className="relative mx-auto max-w-7xl px-3.5 pt-3 sm:px-6 sm:pt-8 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="overflow-hidden rounded-2xl shadow-sm"
-        >
+        <div className="overflow-hidden rounded-2xl shadow-sm">
           <picture>
             <source media="(min-width: 640px)" srcSet={desktopSrcSet} />
             <img
@@ -77,20 +72,16 @@ export function HeroSection({
               style={{ width: "100%", height: "auto" }}
             />
           </picture>
-        </motion.div>
+        </div>
       </div>
 
       {/* Main Value Proposition & Visual Split */}
       <div className="relative mx-auto grid max-w-7xl gap-8 px-3.5 py-10 sm:gap-12 sm:px-6 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, x: -24 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        >
+        <div>
           {/* Refined Eyebrow */}
           <div className="inline-flex items-center gap-2 rounded-full border border-forest-200/80 bg-white/90 px-3 py-1 text-xs font-semibold tracking-wider text-forest-900 shadow-sm backdrop-blur sm:px-3.5">
             <span className="flex h-2 w-2 rounded-full bg-brass-500 animate-pulse" />
-            <span className="font-semibold uppercase text-[10px] sm:text-[11px] tracking-widest text-forest-800">
+            <span className="font-semibold uppercase text-[11px] tracking-widest text-forest-800">
               Direct Wholesale Canvas Shop &middot; Khori Garden, Karachi
             </span>
           </div>
@@ -163,15 +154,10 @@ export function HeroSection({
               <span className="text-[11px] sm:text-xs font-semibold text-slate-700 leading-tight">Direct Karachi Shop</span>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Hero Feature Visual Showcase */}
-        <motion.figure
-          initial={{ opacity: 0, x: 24 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-          className="group relative overflow-hidden rounded-2xl shadow-lg shadow-forest-950/5"
-        >
+        <figure className="group relative overflow-hidden rounded-2xl shadow-lg shadow-forest-950/5">
           <Image
             src={sunShadeScene.src}
             alt={sunShadeScene.alt}
@@ -190,7 +176,7 @@ export function HeroSection({
               Commercial &amp; Residential
             </span>
           </figcaption>
-        </motion.figure>
+        </figure>
       </div>
     </section>
   );

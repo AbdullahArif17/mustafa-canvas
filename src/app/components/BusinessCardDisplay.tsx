@@ -47,14 +47,14 @@ export function BusinessCardDisplay() {
               <span className="block font-display text-sm sm:text-base font-bold text-white">
                 Official Business Card
               </span>
-              <span className="block text-[10px] sm:text-[11px] font-medium text-forest-200/80">
+              <span className="block text-[11px] font-medium text-forest-200/80">
                 Verified Commercial Manufacturer &middot; Karachi
               </span>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-brass-400/40 bg-brass-500/10 px-2.5 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase text-brass-300">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-brass-400/40 bg-brass-500/10 px-2.5 py-0.5 sm:px-3 sm:py-1 text-[11px] font-semibold tracking-wider uppercase text-brass-300">
               <Sparkles size={11} className="text-brass-400" />
               <span>Authentic</span>
             </span>
@@ -102,7 +102,7 @@ export function BusinessCardDisplay() {
           <button
             type="button"
             onClick={() => setModalOpen(true)}
-            className="mt-2.5 flex w-full items-center justify-center gap-1.5 text-center text-[11px] font-semibold text-brass-300/90 sm:hidden hover:text-brass-200"
+            className="mt-2 flex min-h-9 w-full items-center justify-center gap-1.5 py-1.5 text-center text-[11px] font-semibold text-brass-300/90 sm:hidden hover:text-brass-200"
           >
             <Expand size={12} />
             <span>Tap card to view full resolution</span>
@@ -124,14 +124,14 @@ export function BusinessCardDisplay() {
 
           {/* Social icons directly from card */}
           <div className="flex items-center gap-2">
-            <span className="text-[10px] sm:text-[11px] font-medium text-forest-200/70">
+            <span className="text-[11px] font-medium text-forest-200/70">
               @Mustafacanvas:
             </span>
             <a
               href={instagramPageUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition hover:bg-pink-600 hover:border-pink-500"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition hover:bg-pink-600 hover:border-pink-500"
               aria-label="Mustafa Canvas on Instagram"
               title="Instagram: @Mustafacanvas"
             >
@@ -141,7 +141,7 @@ export function BusinessCardDisplay() {
               href={facebookPageUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition hover:bg-[#1877f2] hover:border-[#1877f2]"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition hover:bg-[#1877f2] hover:border-[#1877f2]"
               aria-label="Mustafa Canvas on Facebook"
               title="Facebook: @Mustafacanvas"
             >
@@ -158,7 +158,7 @@ export function BusinessCardDisplay() {
               className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.05] p-3 text-white transition hover:bg-white/[0.08]"
             >
               <div>
-                <span className="block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-brass-300">
+                <span className="block text-[11px] font-bold uppercase tracking-wider text-brass-300">
                   {contact.name}
                 </span>
                 <span className="block font-display text-sm font-bold text-white tracking-tight">

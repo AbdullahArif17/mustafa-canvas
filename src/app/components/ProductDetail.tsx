@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -22,8 +23,12 @@ import {
   productMainImage,
   type Product,
 } from "../product-data";
+import { contactNumbers } from "../seo";
 import { ProductCard } from "./ProductCard";
 import { useProducts } from "./useProducts";
+
+const isOptimizableUrl = (url: string) =>
+  url.startsWith("/") || /^https:\/\/[^/]+\.supabase\.co\//.test(url);
 
 type ProductDetailProps = {
   slug: string;
@@ -93,7 +98,8 @@ export function ProductDetail({ slug, initialProduct }: ProductDetailProps) {
   const activeImage =
     detailImages.find((image) => image.path === activeImagePath) || mainImage;
 
-  const whatsappInquiryUrl = `https://wa.me/923482026858?text=${encodeURIComponent(
+  const primaryWhatsapp = contactNumbers[0]?.whatsapp || "923108117857";
+  const whatsappInquiryUrl = `https://wa.me/${primaryWhatsapp}?text=${encodeURIComponent(
     `Hello Mustafa Canvas, I want to inquire about "${product.title}" (${productKindLabel(product.kind)}).`
   )}`;
 
@@ -126,10 +132,14 @@ export function ProductDetail({ slug, initialProduct }: ProductDetailProps) {
             {activeImage ? (
               <>
                 <div className="relative aspect-[1/1] sm:aspect-[4/3] w-full overflow-hidden rounded-2xl sm:rounded-3xl bg-canvas-50/80 ring-1 ring-forest-100 shadow-sm doppelrand-card">
-                  <img
+                  <Image
                     src={activeImage.url}
                     alt={activeImage.alt}
+                    fill
+                    priority
+                    sizes="(max-width: 1023px) 100vw, 55vw"
                     className="h-full w-full object-cover transition-all duration-300"
+                    unoptimized={!isOptimizableUrl(activeImage.url)}
                   />
                   {detailImages.length > 1 && (
                     <div className="absolute bottom-3 right-3 rounded-full bg-slate-900/75 px-3 py-1 text-[11px] font-medium text-white backdrop-blur">
@@ -146,17 +156,19 @@ export function ProductDetail({ slug, initialProduct }: ProductDetailProps) {
                         type="button"
                         onClick={() => setActiveImagePath(image.path)}
                         aria-label={`View image ${index + 1} for ${product.title}`}
-                        className={`overflow-hidden rounded-xl bg-canvas-50 ring-offset-2 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 ${
+                        className={`relative aspect-square overflow-hidden rounded-xl bg-canvas-50 ring-offset-2 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 ${
                           image.path === activeImage.path
                             ? "ring-2 ring-forest-800 shadow-sm"
                             : "opacity-75 hover:opacity-100 hover:ring-2 hover:ring-forest-200"
                         }`}
                       >
-                        <img
+                        <Image
                           src={image.url}
                           alt={image.alt}
-                          className="aspect-square w-full object-cover rounded-xl"
-                          loading="lazy"
+                          fill
+                          sizes="120px"
+                          className="object-cover rounded-xl"
+                          unoptimized={!isOptimizableUrl(image.url)}
                         />
                       </button>
                     ))}
@@ -313,7 +325,7 @@ export function ProductDetail({ slug, initialProduct }: ProductDetailProps) {
           <div className="mt-20 border-t border-forest-100/80 pt-14">
             <div className="mb-8 flex items-end justify-between">
               <div>
-                <p className="inline-flex items-center gap-1.5 rounded-full border border-forest-200/80 bg-forest-50/60 px-3 py-0.5 text-[10px] font-semibold tracking-widest uppercase text-forest-800">
+                <p className="inline-flex items-center gap-1.5 rounded-full border border-forest-200/80 bg-forest-50/60 px-3 py-0.5 text-[11px] font-semibold tracking-widest uppercase text-forest-800">
                   <Sparkles size={11} className="text-brass-600" />
                   <span>Recommended</span>
                 </p>
@@ -329,7 +341,7 @@ export function ProductDetail({ slug, initialProduct }: ProductDetailProps) {
               </Link>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {relatedProducts.map((relProduct) => (
                 <ProductCard key={relProduct.id} product={relProduct} />
               ))}

@@ -506,7 +506,7 @@ export default function Home() {
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
-                    <span className="rounded-full bg-forest-100/80 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-forest-800">
+                    <span className="rounded-full bg-forest-100/80 px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider text-forest-800">
                       {item.badge}
                     </span>
                     <Package size={18} className="text-forest-600" aria-hidden />
@@ -526,10 +526,10 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="mt-5 sm:mt-6 pt-3.5 sm:pt-4 border-t border-forest-100/70">
+                <div className="mt-4 sm:mt-5 pt-3 border-t border-forest-100/70">
                   <Link
                     href="#contact"
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-forest-800 group-hover:text-forest-950 transition-colors"
+                    className="inline-flex min-h-9 items-center gap-1.5 py-1 text-xs font-semibold text-forest-800 group-hover:text-forest-950 transition-colors"
                   >
                     <span>Request Wholesale Rate</span>
                     <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />

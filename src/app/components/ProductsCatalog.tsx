@@ -105,7 +105,7 @@ export function ProductsCatalog({ initialProducts }: ProductsCatalogProps) {
                   key={kind}
                   type="button"
                   onClick={() => setFilter(kind)}
-                  className={`inline-flex h-9 sm:h-10 shrink-0 whitespace-nowrap items-center gap-2 rounded-full px-3.5 sm:px-4 text-xs font-semibold tracking-wide transition-all active:scale-95 ${
+                  className={`inline-flex h-10 shrink-0 whitespace-nowrap items-center gap-2 rounded-full px-3.5 sm:px-4 text-xs font-semibold tracking-wide transition-all active:scale-95 ${
                     isSelected
                       ? "bg-forest-900 text-white shadow-sm ring-1 ring-forest-900"
                       : "border border-forest-200/80 bg-white text-forest-950 hover:bg-forest-50 hover:border-forest-300"
@@ -113,7 +113,7 @@ export function ProductsCatalog({ initialProducts }: ProductsCatalogProps) {
                 >
                   <span>{label}</span>
                   <span
-                    className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${
+                    className={`rounded-full px-2 py-0.5 text-[11px] font-bold ${
                       isSelected
                         ? "bg-white/20 text-white"
                         : "bg-forest-100/70 text-forest-800"
@@ -140,13 +140,14 @@ export function ProductsCatalog({ initialProducts }: ProductsCatalogProps) {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search products..."
-                className="h-10 w-full rounded-full border border-forest-200/90 bg-white pl-10 pr-9 text-xs font-medium text-slate-900 outline-none transition focus:border-forest-700 focus:ring-2 focus:ring-forest-100"
+                aria-label="Search products"
+                className="h-10 w-full rounded-full border border-forest-200/90 bg-white pl-10 pr-9 text-base sm:text-xs font-medium text-slate-900 outline-none transition focus:border-forest-700 focus:ring-2 focus:ring-forest-100"
               />
               {searchQuery && (
                 <button
                   type="button"
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                  className="absolute right-2 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full text-slate-400 hover:bg-forest-50 hover:text-slate-600"
                   aria-label="Clear search"
                 >
                   <X size={14} />
@@ -164,7 +165,8 @@ export function ProductsCatalog({ initialProducts }: ProductsCatalogProps) {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortOption)}
-                className="h-10 w-full rounded-full border border-forest-200/90 bg-white pl-9 pr-8 text-xs font-semibold tracking-wide text-slate-700 outline-none transition hover:border-forest-300 focus:border-forest-700 focus:ring-2 focus:ring-forest-100 sm:w-auto"
+                aria-label="Sort products"
+                className="h-10 w-full rounded-full border border-forest-200/90 bg-white pl-9 pr-8 text-base sm:text-xs font-semibold tracking-wide text-slate-700 outline-none transition hover:border-forest-300 focus:border-forest-700 focus:ring-2 focus:ring-forest-100 sm:w-auto"
               >
                 <option value="newest">Newest First</option>
                 <option value="title-asc">Name: A to Z</option>
@@ -176,13 +178,13 @@ export function ProductsCatalog({ initialProducts }: ProductsCatalogProps) {
 
         {/* Product Cards Grid / Skeletons / Empty State */}
         {!loaded ? (
-          <div className="grid gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <ProductCardSkeleton />
             <ProductCardSkeleton />
             <ProductCardSkeleton />
           </div>
         ) : filteredProducts.length ? (
-          <div className="grid gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filteredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

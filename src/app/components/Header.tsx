@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Menu, Phone, X } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa6";
@@ -27,6 +28,7 @@ type HeaderProps = {
 };
 
 export function Header({ logo, navItems, imageQuality }: HeaderProps) {
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [scrolled, setScrolled] = useState(false);
@@ -96,10 +98,10 @@ export function Header({ logo, navItems, imageQuality }: HeaderProps) {
               />
             </div>
             <div className="min-w-0">
-              <span className="block truncate font-display text-sm sm:text-lg xl:text-xl font-bold tracking-tight text-forest-950">
+              <span className="block truncate font-display text-base sm:text-lg xl:text-xl font-bold tracking-tight text-forest-950">
                 Mustafa <span className="text-forest-700">Canvas</span>
               </span>
-              <span className="block truncate text-[9px] sm:text-[11px] font-semibold tracking-wider uppercase text-forest-700/80">
+              <span className="hidden xs:block lg:hidden xl:block truncate text-[11px] font-semibold tracking-wider uppercase text-forest-700/80">
                 Shade Nets &amp; Industrial Fabrics
               </span>
             </div>
@@ -107,17 +109,20 @@ export function Header({ logo, navItems, imageQuality }: HeaderProps) {
 
           {/* Desktop Navigation */}
           <nav
-            className="hidden shrink-0 items-center gap-0.5 rounded-full border border-forest-100/80 bg-canvas-50/70 p-1.5 lg:flex xl:gap-1"
+            className="hidden shrink-0 items-center gap-0.5 rounded-full border border-forest-100/80 bg-canvas-50/70 p-1 xl:p-1.5 lg:flex xl:gap-1"
             aria-label="Main Navigation"
           >
             {navItems.map((item) => {
               const sectionId = item.sectionId;
-              const isActive = sectionId && activeSection === sectionId;
+              const isProductsRoute = pathname?.startsWith("/products");
+              const isActive = isProductsRoute
+                ? item.href === "/products"
+                : (!pathname || pathname === "/") && Boolean(sectionId && activeSection === sectionId);
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`relative whitespace-nowrap rounded-full px-2.5 py-1.5 text-xs font-semibold tracking-wide transition-all duration-200 xl:px-3.5 ${
+                  className={`relative whitespace-nowrap rounded-full px-2 py-1.5 text-[11px] font-semibold tracking-wide transition-all duration-200 xl:px-3.5 xl:text-xs ${
                     isActive
                       ? "bg-forest-900 text-white shadow-sm shadow-forest-950/20"
                       : "text-slate-600 hover:text-forest-950 hover:bg-white/80"
@@ -130,12 +135,12 @@ export function Header({ logo, navItems, imageQuality }: HeaderProps) {
           </nav>
 
           {/* Action CTAs */}
-          <div className="hidden shrink-0 items-center gap-2.5 md:flex">
+          <div className="hidden shrink-0 items-center gap-1.5 lg:flex xl:gap-2.5">
             <a
               href="https://wa.me/923108117857?text=Hello%20Mustafa%20Canvas%2C%20I%20want%20to%20inquire%20about%20your%20products."
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-10 shrink-0 items-center gap-2 rounded-full border border-forest-200/90 bg-white px-3.5 text-xs font-semibold tracking-wide text-forest-900 shadow-sm transition-all hover:bg-forest-50 hover:border-forest-300 active:scale-95 whitespace-nowrap"
+              className="inline-flex h-9 xl:h-10 shrink-0 items-center gap-1.5 xl:gap-2 rounded-full border border-forest-200/90 bg-white px-2.5 xl:px-3.5 text-xs font-semibold tracking-wide text-forest-900 shadow-sm transition-all hover:bg-forest-50 hover:border-forest-300 active:scale-95 whitespace-nowrap"
               aria-label="Direct WhatsApp inquiry"
             >
               <FaWhatsapp size={15} className="text-[#25d366]" aria-hidden />
@@ -144,11 +149,12 @@ export function Header({ logo, navItems, imageQuality }: HeaderProps) {
 
             <a
               href="tel:03108117857"
-              className="group inline-flex h-10 shrink-0 items-center gap-2 rounded-full bg-forest-900 pl-3.5 pr-2.5 text-xs font-semibold tracking-wide text-white shadow-sm shadow-forest-950/15 transition-all hover:bg-forest-800 active:scale-95 whitespace-nowrap antialiased [transform:translateZ(0)]"
+              className="group inline-flex h-9 xl:h-10 shrink-0 items-center gap-1.5 xl:gap-2 rounded-full bg-forest-900 pl-3 pr-2 xl:pl-3.5 xl:pr-2.5 text-xs font-semibold tracking-wide text-white shadow-sm shadow-forest-950/15 transition-all hover:bg-forest-800 active:scale-95 whitespace-nowrap antialiased [transform:translateZ(0)]"
               aria-label="Call Mustafa Canvas"
             >
               <Phone size={13} aria-hidden />
-              <span className="whitespace-nowrap font-mono tracking-tight">0310&#8209;8117857</span>
+              <span className="hidden xl:inline whitespace-nowrap font-mono tracking-tight">0310&#8209;8117857</span>
+              <span className="xl:hidden">Call</span>
               <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/15 transition-transform duration-200 group-hover:translate-x-0.5">
                 <ArrowUpRight size={11} aria-hidden />
               </span>
@@ -161,16 +167,16 @@ export function Header({ logo, navItems, imageQuality }: HeaderProps) {
               href="https://wa.me/923108117857?text=Hello%20Mustafa%20Canvas%2C%20I%20want%20to%20inquire%20about%20your%20products."
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-9 items-center gap-1.5 rounded-full border border-forest-200/90 bg-forest-50/80 px-2.5 text-xs font-semibold text-forest-900 shadow-sm transition-all hover:bg-forest-100 active:scale-95 sm:h-10 sm:px-3"
+              className="inline-flex h-10 items-center gap-1.5 rounded-full border border-forest-200/90 bg-forest-50/80 px-3 text-xs font-semibold text-forest-900 shadow-sm transition-all hover:bg-forest-100 active:scale-95"
               aria-label="Quick WhatsApp chat"
             >
-              <FaWhatsapp size={14} className="text-[#25d366]" aria-hidden />
+              <FaWhatsapp size={15} className="text-[#25d366]" aria-hidden />
               <span className="text-[11px] font-bold">Chat</span>
             </a>
 
             <button
               type="button"
-              className="inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-forest-200/80 bg-white text-forest-900 transition-colors hover:bg-forest-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-forest-200/80 bg-white text-forest-900 transition-colors hover:bg-forest-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700"
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileMenuOpen}
               onClick={() => setMobileMenuOpen((open) => !open)}
@@ -199,13 +205,16 @@ export function Header({ logo, navItems, imageQuality }: HeaderProps) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed inset-x-0 top-16 sm:top-20 z-50 border-b border-forest-100 bg-white/95 px-5 py-6 shadow-2xl backdrop-blur-md lg:hidden max-h-[calc(100vh-4rem)] overflow-y-auto"
+              className="fixed inset-x-0 top-16 sm:top-20 z-50 border-b border-forest-100 bg-white/95 px-5 py-6 shadow-2xl backdrop-blur-md lg:hidden max-h-[calc(100dvh-4rem)] overflow-y-auto"
               aria-label="Mobile Navigation"
             >
               <div className="mx-auto grid max-w-lg gap-2">
                 {navItems.map((item) => {
                   const sectionId = item.sectionId;
-                  const isActive = sectionId && activeSection === sectionId;
+                  const isProductsRoute = pathname?.startsWith("/products");
+                  const isActive = isProductsRoute
+                    ? item.href === "/products"
+                    : (!pathname || pathname === "/") && Boolean(sectionId && activeSection === sectionId);
                   return (
                     <Link
                       key={item.href}

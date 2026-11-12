@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { contactNumbers } from "../seo";
 
 // Primary official line: Mustafa from the official business card
@@ -12,6 +13,12 @@ const whatsappUrl = `https://wa.me/${primaryWhatsApp}?text=${encodeURIComponent(
 )}`;
 
 export function FloatingWhatsApp() {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   return (
     <aside aria-label="WhatsApp quick contact">
       <a

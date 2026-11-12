@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Building2, Palette, Package, Ruler, Weight } from "lucide-react";
 import {
@@ -8,6 +9,9 @@ import {
   productSpecs,
 } from "../product-data";
 
+const isOptimizableUrl = (url: string) =>
+  url.startsWith("/") || /^https:\/\/[^/]+\.supabase\.co\//.test(url);
+
 type ProductCardProps = {
   product: Product;
   actions?: ReactNode;
@@ -16,6 +20,14 @@ type ProductCardProps = {
 export function ProductCard({ product, actions }: ProductCardProps) {
   const specs = productSpecs(product);
   const coverImage = productMainImage(product);
+  const hasDetails = Boolean(
+    product.color ||
+      product.company ||
+      product.lengthFeet ||
+      product.widthFeet ||
+      product.weight ||
+      product.size
+  );
 
   return (
     <article className="group flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-3xl bg-white shadow-sm ring-1 ring-forest-100/90 doppelrand-card transition-all duration-300 hover:-translate-y-1 hover:ring-forest-300 hover:shadow-md">
@@ -25,11 +37,13 @@ export function ProductCard({ product, actions }: ProductCardProps) {
             href={`/products/${product.slug}`}
             className="group/img relative block aspect-[16/11] sm:aspect-[4/3] w-full overflow-hidden bg-canvas-100/60"
           >
-            <img
+            <Image
               src={coverImage.url}
               alt={coverImage.alt}
+              fill
+              sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
               className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover/img:scale-105"
-              loading="lazy"
+              unoptimized={!isOptimizableUrl(coverImage.url)}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-forest-950/25 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover/img:opacity-100" />
 
@@ -64,47 +78,49 @@ export function ProductCard({ product, actions }: ProductCardProps) {
             {product.description}
           </p>
 
-          <dl className="grid gap-2 border-t border-forest-100/60 pt-3 text-xs text-slate-700">
-            {product.color && (
-              <div className="flex items-center gap-2">
-                <Palette size={14} className="shrink-0 text-forest-700" aria-hidden />
-                <dt className="text-slate-400 font-medium">Color:</dt>
-                <dd className="font-semibold text-slate-800">{product.color}</dd>
-              </div>
-            )}
-            {product.company && (
-              <div className="flex items-center gap-2">
-                <Building2 size={14} className="shrink-0 text-forest-700" aria-hidden />
-                <dt className="text-slate-400 font-medium">Origin:</dt>
-                <dd className="font-semibold text-slate-800">{product.company}</dd>
-              </div>
-            )}
-            {(product.lengthFeet || product.widthFeet) && (
-              <div className="flex items-center gap-2">
-                <Ruler size={14} className="shrink-0 text-forest-700" aria-hidden />
-                <dt className="text-slate-400 font-medium">Dimensions:</dt>
-                <dd className="font-semibold text-slate-800">
-                  {product.lengthFeet ? `${product.lengthFeet} ft` : "Standard"}
-                  {" × "}
-                  {product.widthFeet ? `${product.widthFeet} ft` : "Standard"}
-                </dd>
-              </div>
-            )}
-            {product.weight && (
-              <div className="flex items-center gap-2">
-                <Weight size={14} className="shrink-0 text-forest-700" aria-hidden />
-                <dt className="text-slate-400 font-medium">Weight:</dt>
-                <dd className="font-semibold text-slate-800">{product.weight}</dd>
-              </div>
-            )}
-            {product.size && (
-              <div className="flex items-center gap-2">
-                <Package size={14} className="shrink-0 text-forest-700" aria-hidden />
-                <dt className="text-slate-400 font-medium">Spec:</dt>
-                <dd className="font-semibold text-slate-800">{product.size}</dd>
-              </div>
-            )}
-          </dl>
+          {hasDetails && (
+            <dl className="grid gap-2 border-t border-forest-100/60 pt-3 text-xs text-slate-700">
+              {product.color && (
+                <div className="flex items-center gap-2">
+                  <Palette size={14} className="shrink-0 text-forest-700" aria-hidden />
+                  <dt className="text-slate-400 font-medium">Color:</dt>
+                  <dd className="font-semibold text-slate-800">{product.color}</dd>
+                </div>
+              )}
+              {product.company && (
+                <div className="flex items-center gap-2">
+                  <Building2 size={14} className="shrink-0 text-forest-700" aria-hidden />
+                  <dt className="text-slate-400 font-medium">Origin:</dt>
+                  <dd className="font-semibold text-slate-800">{product.company}</dd>
+                </div>
+              )}
+              {(product.lengthFeet || product.widthFeet) && (
+                <div className="flex items-center gap-2">
+                  <Ruler size={14} className="shrink-0 text-forest-700" aria-hidden />
+                  <dt className="text-slate-400 font-medium">Dimensions:</dt>
+                  <dd className="font-semibold text-slate-800">
+                    {product.lengthFeet ? `${product.lengthFeet} ft` : "Standard"}
+                    {" × "}
+                    {product.widthFeet ? `${product.widthFeet} ft` : "Standard"}
+                  </dd>
+                </div>
+              )}
+              {product.weight && (
+                <div className="flex items-center gap-2">
+                  <Weight size={14} className="shrink-0 text-forest-700" aria-hidden />
+                  <dt className="text-slate-400 font-medium">Weight:</dt>
+                  <dd className="font-semibold text-slate-800">{product.weight}</dd>
+                </div>
+              )}
+              {product.size && (
+                <div className="flex items-center gap-2">
+                  <Package size={14} className="shrink-0 text-forest-700" aria-hidden />
+                  <dt className="text-slate-400 font-medium">Spec:</dt>
+                  <dd className="font-semibold text-slate-800">{product.size}</dd>
+                </div>
+              )}
+            </dl>
+          )}
 
           {specs.length > 0 && (
             <div className="flex flex-wrap gap-1.5 pt-1">

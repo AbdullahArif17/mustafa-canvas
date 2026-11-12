@@ -36,8 +36,8 @@ export function HeroSection({
       />
 
       {/* Top Banner Hero Showcase */}
-      <div className="relative mx-auto max-w-7xl px-3.5 pt-3 sm:px-6 sm:pt-8 lg:px-8">
-        <div className="overflow-hidden rounded-xl sm:rounded-2xl shadow-sm">
+      <div className="relative mx-auto max-w-7xl px-0 pt-0 sm:px-6 sm:pt-8 lg:px-8">
+        <div className="overflow-hidden border-b border-forest-100/80 shadow-sm sm:rounded-2xl sm:border-0">
           <Image
             src={brandSheet.src}
             alt={brandSheet.alt}
@@ -45,8 +45,8 @@ export function HeroSection({
             height={brandSheet.height}
             priority
             sizes="(max-width: 1280px) 100vw, 1280px"
-            quality={imageQuality}
-            className="h-auto w-full rounded-xl sm:rounded-2xl object-cover"
+            quality={95}
+            className="h-auto w-full object-cover sm:rounded-2xl"
           />
         </div>
       </div>

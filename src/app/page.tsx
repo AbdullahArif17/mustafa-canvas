@@ -539,15 +539,15 @@ export default function Home() {
             </div>
           </div>
 
-          <figure className="overflow-hidden rounded-2xl shadow-md">
+          <figure className="-mx-4 overflow-hidden shadow-md sm:mx-0 sm:rounded-2xl">
             <Image
               src={imagePaths.productRange.src}
               alt={imagePaths.productRange.alt}
               width={imagePaths.productRange.width}
               height={imagePaths.productRange.height}
               sizes="(max-width: 1024px) 100vw, 56vw"
-              quality={imageQuality}
-              className="h-auto w-full rounded-2xl object-cover"
+              quality={95}
+              className="h-auto w-full object-cover sm:rounded-2xl"
             />
           </figure>
         </div>
